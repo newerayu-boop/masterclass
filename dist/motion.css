@@ -249,3 +249,16 @@
 @media(max-width:900px){.rm-extra{grid-template-columns:1fr;gap:18px;padding:22px 20px}}
 @media(max-width:560px){.rm-flow{grid-template-columns:1fr}.rm-flow li:not(:last-child):after{content:"↓";right:auto;left:50%;top:auto;bottom:-15px;margin:0 0 0 -11px}}
 @media(prefers-reduced-motion:reduce){.rm-extra:after{animation:none}}
+
+/* Floating CTA: appears after the first screen, hides at the contact section */
+.float-cta{position:fixed;right:24px;bottom:24px;z-index:60;display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:54px;padding:0 26px;border-radius:999px;background:linear-gradient(100deg,#c9a84c,#e3c070);color:#15130f;font-size:16px;font-weight:800;letter-spacing:-.01em;text-decoration:none;box-shadow:0 12px 34px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.12) inset,0 0 36px rgba(201,168,76,.35);opacity:0;visibility:hidden;transform:translateY(24px) scale(.96);transition:opacity .35s ease,transform .45s cubic-bezier(.2,.8,.2,1),visibility 0s linear .45s;overflow:hidden;isolation:isolate}
+.float-cta.is-visible{opacity:1;visibility:visible;transform:none;transition:opacity .35s ease,transform .45s cubic-bezier(.2,.8,.2,1),visibility 0s}
+.float-cta:hover{color:#15130f;transform:translateY(-2px)}
+.float-cta:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.5) 50%,transparent 65%);transform:translateX(-130%);animation:cta-sweep 4.5s ease-in-out 1s infinite}
+@keyframes cta-sweep{0%,60%{transform:translateX(-130%)}85%,100%{transform:translateX(130%)}}
+.float-cta:focus-visible{outline:2px solid #efe3bf;outline-offset:3px}
+@media(max-width:700px){.float-cta{left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom));min-height:52px;font-size:15px}}
+@media(prefers-reduced-motion:reduce){.float-cta,.float-cta.is-visible{transition:none}.float-cta:after{animation:none}}
+/* hero now has a single quiet link */
+.hero-actions{justify-content:center}
+@media(max-width:700px){.hero-actions{align-items:flex-start;margin-top:22px}.hero-link{align-self:flex-start}}

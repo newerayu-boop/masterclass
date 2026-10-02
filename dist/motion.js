@@ -348,4 +348,17 @@
     window.addEventListener('resize', setActive);
     if (document.readyState === 'complete') center(); else window.addEventListener('load', center);
   }
+
+  /* ---------- Floating CTA ---------- */
+  const floatCta = document.getElementById('float-cta');
+  const hero = document.querySelector('.site-hero');
+  const contact = document.getElementById('diagnostika');
+  if (floatCta && hero && 'IntersectionObserver' in window) {
+    let pastHero = false, atContact = false;
+    const sync = () => floatCta.classList.toggle('is-visible', pastHero && !atContact);
+    new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; sync(); }, {threshold: 0}).observe(hero);
+    if (contact) new IntersectionObserver(([e]) => { atContact = e.isIntersecting; sync(); }, {threshold: 0.25}).observe(contact);
+  } else if (floatCta) {
+    floatCta.classList.add('is-visible');
+  }
 })();
