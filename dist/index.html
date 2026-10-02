@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="uz">
+<html lang="uz" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,6 +86,7 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 @media(max-width:640px){header{display:flex;min-height:100svh}header>.wrap{width:100%;flex:1;justify-content:space-between}}
 </style>
 <link rel="stylesheet" href="./design.css">
+<link rel="stylesheet" href="./motion.css">
 </head>
 <body>
 <div class="site-shell">
@@ -105,12 +106,31 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 <div class="hero-actions"><a class="btn btn-gold" href="#diagnostika">Diagnostikaga yozilish <span aria-hidden="true">↗</span></a><a class="btn btn-ghost" href="#dastur">Dasturni ko‘rish <span aria-hidden="true">↓</span></a></div>
 </div>
 <div class="hero-stage" aria-hidden="true">
-<div class="orbit-glow"></div>
-<div class="preview-panel">
-<div class="preview-top"><span class="preview-logo">AI <span>Mentorship</span> <small>3.0</small><i></i></span><span>Dashboard</span><span class="preview-live"><b></b> Kurs natijasi</span></div>
-<div class="preview-body"><div class="preview-title">Siz quradigan tizim <small>AI bilan boshqaruv paneli</small></div>
-<div class="preview-metrics"><div><small>AI-agentlar</small><strong>05</strong><span>↗ Ishga tayyor</span></div><div><small>Shaxsiy yordamchi</small><strong>Jarvis</strong><span>↗ Sozlangan</span></div><div><small>Dashboard</small><strong>01</strong><span>↗ Jonli</span></div><div><small>AI strategiya</small><strong>01</strong><span>↗ Himoyaga tayyor</span></div></div>
-<div class="preview-lower"><div class="preview-chart"><span>Biznes jarayonlari</span><div class="chart-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="preview-feed"><span>AI tizimi</span><p><b>01</b> Bilim bazasi</p><p><b>02</b> Agentlar jamoasi</p><p><b>03</b> Jonli analitika</p></div></div>
+<canvas class="planet" id="planet"></canvas>
+<div class="planet-flare"></div>
+<div class="float-chip float-chip--a"><b class="fc-dot"></b><span id="ticker">Jarvis: kunlik hisobot tayyor</span></div>
+<div class="float-chip float-chip--b"><span class="fc-num">−40</span> soat / hafta rutina</div>
+<div class="preview-panel" id="preview-panel">
+<div class="preview-shine"></div>
+<div class="preview-top"><span class="preview-logo">AI <span>Mentorship</span> <small>3.0</small><i></i></span>
+<span class="preview-tabs"><em class="is-active">▥ Analitika</em><em>◎ Agentlar</em><em>☰ Mijozlar</em><em>✦ Kontent</em><em>⚙ Sozlamalar</em></span>
+<span class="preview-live"><b></b> Jonli</span><span class="preview-avatar">J</span></div>
+<div class="preview-body">
+<div class="preview-head"><div class="preview-title">Boshqaruv paneli <small>Siz kursda quradigan AI tizim</small></div><span class="preview-invite">＋ Jamoani taklif qilish</span></div>
+<div class="preview-metrics">
+<div><small>AI-agentlar</small><strong data-count="5" data-pad="2">05</strong><span>↗ Ishlayapti</span><svg class="spark" viewBox="0 0 100 30" preserveAspectRatio="none"><path d="M0 24 L12 20 L22 23 L34 14 L46 17 L58 9 L70 12 L82 5 L100 7"/></svg></div>
+<div><small>Tejalgan vaqt</small><strong><span data-count="40">40</span>+ soat</strong><span>↗ har hafta</span><svg class="spark" viewBox="0 0 100 30" preserveAspectRatio="none"><path d="M0 26 L10 22 L20 24 L32 18 L44 19 L56 13 L68 15 L80 8 L92 9 L100 4"/></svg></div>
+<div><small>Tejash potensiali</small><strong>$<span data-count="2000" data-sep="1">2,000</span>+</strong><span>↗ har oy</span><svg class="spark" viewBox="0 0 100 30" preserveAspectRatio="none"><path d="M0 22 L14 25 L26 18 L38 20 L50 12 L62 16 L74 10 L86 11 L100 3"/></svg></div>
+<div><small>Jarvis</small><strong>24/7</strong><span>↗ Onlayn</span><svg class="spark" viewBox="0 0 100 30" preserveAspectRatio="none"><path d="M0 15 L10 13 L20 17 L30 12 L40 16 L50 11 L60 15 L70 10 L80 14 L90 9 L100 12"/></svg></div>
+</div>
+<div class="preview-lower">
+<div class="preview-feed"><span>Agentlar jamoasi <small>vazifalarni bajaryapti</small></span>
+<p><b class="ag-ic">✦</b><span>Kontent agenti<small>Reels ssenariylari</small></span><i class="ag-bar"><u style="--w:72%"></u></i></p>
+<p><b class="ag-ic">◎</b><span>Sotuv agenti<small>Lidlar → CRM</small></span><i class="ag-bar"><u style="--w:54%"></u></i></p>
+<p><b class="ag-ic">▥</b><span>Hisobot agenti<small>Kunlik raqamlar</small></span><i class="ag-bar"><u style="--w:88%"></u></i></p>
+</div>
+<div class="preview-chart"><span>Haftalik avtomatlashtirish <small>soat</small></span><div class="chart-bars" id="chart-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+</div>
 </div></div>
 </div>
 </div>
@@ -459,6 +479,7 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 
 <!-- FINAL -->
 <section class="sec section-final">
+<div class="final-horizon" aria-hidden="true"><i></i></div>
 <div class="wrap" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; max-width: 860px">
 <p style="margin: 0; font-size: clamp(16px, 1.7vw, 19px); line-height: 1.6; max-width: 46ch">«Qanday qilishni» emas — «nima qilishni» bilish muhimroq. Vositalar o‘zgaradi, to‘g‘ri qaror esa qoladi.</p>
 <h2 class="h2" style="font-size: clamp(26px, 3.6vw, 44px)">AI sizni ishsiz qoldirmaydi. <span class="gold">Bugun AI’ni joriy qilgan inson</span> sizni ishsiz qoldiradi.</h2>
@@ -550,5 +571,6 @@ leadForm.addEventListener('submit', async (event) => {
   }
 });
 </script>
+<script src="./motion.js" defer></script>
 </body>
 </html>
