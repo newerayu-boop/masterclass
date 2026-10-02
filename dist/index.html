@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AI bilan strategik boshqaruv 2.0: 6 haftalik AI-komanda dasturi, amaliy loyihalar va tariflar.">
+<meta name="theme-color" content="#0b0b0a">
+<title>AI bilan strategik boshqaruv 2.0 — AI Strateg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=Playfair+Display:ital,wght@1,700&amp;display=swap">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0a'/%3E%3Cpath d='M14 45 30 15l7 14 5-9 9 25H14Zm12-8h11l-6-11-5 11Z' fill='%23c9a84c'/%3E%3C/svg%3E">
+<style>
+body{margin:0;background:#0b0b0a;color:#bbbbba;font-family:Inter,"Helvetica Neue",Arial,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#c9a84c}a:hover{color:#e0c46c}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px;box-sizing:border-box}
+.sec{padding:88px 0;border-top:1px solid #1e1c18}
+.eb{display:flex;align-items:center;gap:14px;color:#c9a84c;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+.eb:before{content:"";width:28px;height:2px;background:#c9a84c;border-radius:2px}
+.h2{margin:0;color:#fff;font-weight:800;letter-spacing:-.035em;line-height:1.04;font-size:clamp(30px,4.4vw,54px)}
+.gold{color:#c9a84c}
+.lead{margin:0;font-size:clamp(16px,1.6vw,19px);line-height:1.6;max-width:62ch}
+.card{background:#16140f;border:1.5px solid #2d2b27;border-radius:20px;padding:26px;box-sizing:border-box}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:14px;font-weight:700;font-size:16px;text-decoration:none;box-sizing:border-box;text-align:center}
+.btn-gold{background:#c9a84c;color:#15130f;box-shadow:0 0 60px 8px rgba(201,168,76,.22)}
+.btn-gold:hover{background:#d6b65a;color:#15130f}
+.btn-ghost{border:1.5px solid #3a362c;color:#fff}
+.btn-ghost:hover{border-color:#c9a84c;color:#fff}
+.btn:focus-visible,summary:focus-visible{outline:2px solid #c9a84c;outline-offset:3px}
+.chip{display:inline-flex;align-items:center;padding:8px 14px;border-radius:999px;background:#1c1a15;border:1px solid #2d2b27;color:#e8e6df;font-size:14px;font-weight:600}
+.tag{display:inline-block;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:700;letter-spacing:.12em}
+.t-fakt{background:#263026;color:#8fcaa9}
+.t-hisob{background:#332b17;color:#e3c070}
+.num{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:700;color:#c9a84c}
+.road{position:relative}
+.road:before{content:"";position:absolute;left:14px;top:10px;bottom:10px;width:26px;background:#1d1a14;border-radius:6px;box-shadow:7px 5px 0 #b8953f,0 0 30px rgba(201,168,76,.18)}
+.wk{position:relative;padding-left:76px;padding-bottom:22px}
+.node{position:absolute;left:8px;top:26px;width:38px;height:15px;border-radius:50%;background:#e3c070;box-shadow:0 0 22px 6px rgba(246,220,140,.45)}
+.node.big{left:4px;width:46px;height:18px;background:#f6dc8c;box-shadow:0 0 30px 10px rgba(246,220,140,.5)}
+.wkc{background:#16140f;border:1.5px solid #2d2b27;border-radius:20px;padding:24px;box-sizing:border-box}
+.wkc.hot{border-color:#4a3f1f;background:#1a170f}
+.wk-eb{font-size:12px;font-weight:700;letter-spacing:.18em;color:#c9a84c}
+.wk-t{margin:8px 0 12px;color:#fff;font-size:clamp(21px,2.4vw,27px);font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.promise{margin:0 0 16px;padding:12px 14px;border-radius:12px;background:#221e14;color:#efe3bf;font-size:15px;line-height:1.5}
+.promise b{color:#c9a84c}
+.ls{margin:0 0 14px;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.ls li{font-size:15px;line-height:1.55}
+.ls b{color:#fff}
+.res{margin:0;font-size:15px;line-height:1.55;padding-top:14px;border-top:1px solid #292928}
+.res b{color:#fff}
+.cp{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:7px 12px;border-radius:10px;background:#263026;color:#8fcaa9;font-size:13px;font-weight:700}
+details.hw{margin-top:12px}
+details.hw summary{cursor:pointer;list-style:none;color:#c9a84c;font-size:14px;font-weight:700}
+details.hw summary::-webkit-details-marker{display:none}
+details.hw summary:after{content:" +"}
+details.hw[open] summary:after{content:" –"}
+details.hw p{margin:10px 0 0;font-size:14px;line-height:1.6}
+.row{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid #292928;font-size:15px;line-height:1.45}
+.row b{color:#fff;white-space:nowrap}
+.tl{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.tl li{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #26241f;font-size:14px;line-height:1.45}
+.tl li span:last-child{color:#8a8478;white-space:nowrap}
+
+html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-decoration-skip-ink:auto}.btn{transition:background .18s ease,border-color .18s ease,transform .18s ease}.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0)}:focus-visible{outline:2px solid #e3c070;outline-offset:3px}.wrap,.card,.wkc{min-width:0}.tl li span:first-child{min-width:0}.tl li span:last-child{text-align:right}@media(max-width:640px){.sec{padding:58px 0}header{padding-bottom:58px!important}header .wrap{gap:42px!important}.card,.wkc{padding:21px}.wk{padding-left:48px}.road:before{left:8px;width:19px}.node{left:1px;width:33px}.node.big{left:0;width:37px}.tl li{flex-wrap:wrap}.tl li span:last-child{white-space:normal}.row b{white-space:normal;text-align:right}.btn{width:100%}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+.lead-form{display:grid;gap:15px}.lead-form label{display:grid;gap:8px;color:#e8e6df;font-size:14px;font-weight:600}.lead-form input,.lead-form select{width:100%;min-height:50px;padding:12px 14px;border:1.5px solid #3a362c;border-radius:12px;background:#0f0e0c;color:#fff;font:inherit}.lead-form input::placeholder{color:#8a8478}.lead-form input:focus,.lead-form select:focus{outline:2px solid #c9a84c;outline-offset:2px}.lead-form button{cursor:pointer;border:0;width:100%;margin-top:2px}.lead-form p{margin:0;min-height:1.5em;font-size:14px;line-height:1.5}.lead-form p.error{color:#ffb8ae}.lead-form p.success{color:#8fcaa9}[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div style="width: 100%; min-height: 100%; background: radial-gradient(ellipse 80% 45% at 50% 0%, #1f1c16 0%, #0b0b0a 70%); box-sizing: border-box">
+
+<!-- HERO -->
+<header style="padding: 26px 0 84px">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 64px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap">
+<div style="color: #fff; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">AI <span class="gold">Strateg</span></div>
+<a class="btn btn-ghost" href="#diagnostika" style="min-height: 44px; padding: 0 18px; font-size: 14px">Diagnostikaga yozilish</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 26px">
+<div class="eb">«AI-komanda» dasturi</div>
+<h1 style="margin: 0; color: #fff; font-weight: 800; letter-spacing: -0.04em; line-height: 0.98; font-size: clamp(40px, 6.6vw, 84px); max-width: 14ch">AI bilan strategik boshqaruv <span class="gold">2.0</span></h1>
+<p class="lead"><b style="color: #fff">From operator to strategist.</b> 6 haftada operatorlikdan strategik boshqaruvga.</p>
+<div style="display: flex; gap: 14px; flex-wrap: wrap">
+<a class="btn btn-gold" href="#diagnostika">Diagnostikaga yozilish</a>
+<a class="btn btn-ghost" href="#dastur">Dasturni ko‘rish</a>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<span class="chip">ChatGPT</span><span class="chip">Claude</span><span class="chip">Gemini</span><span class="chip">NotebookLM</span><span class="chip">Claude Code</span><span class="chip">HeyGen</span>
+</div>
+</div>
+</header>
+
+<!-- HAQIQAT -->
+<section class="sec">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div class="eb">Haqiqat</div>
+<h2 class="h2" style="max-width: 18ch">Siz hozir <span class="gold">pul va vaqt</span> yo‘qotmoqdasiz</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 16px">
+<div class="card">
+<div style="color: #8a8478; font-size: 13px; font-weight: 700; letter-spacing: .16em; margin-bottom: 16px">OPERATOR</div>
+<ul class="ls" style="margin: 0">
+<li>✕ Rutinaga botgan, har bir qadam uchun kadr kutadi</li>
+<li>✕ Oylik to‘laydi, hisobotlarni haftalab kutadi</li>
+</ul>
+</div>
+<div class="card" style="border-color: #4a3f1f; background: #1a170f">
+<div style="color: #c9a84c; font-size: 13px; font-weight: 700; letter-spacing: .16em; margin-bottom: 16px">STRATEG</div>
+<ul class="ls" style="margin: 0">
+<li><b>✓</b> AI xodimlarini boshqaradi, operatsion xarajatlari nolga teng (0 marginal cost)</li>
+<li><b>✓</b> Jonli boshqaruv paneliga ega</li>
+</ul>
+</div>
+</div>
+<p style="margin: 0; color: #fff; font-size: clamp(19px, 2.2vw, 26px); font-weight: 700; line-height: 1.35; max-width: 34ch">6 haftadan keyin — bitta xodim oyligidan kam pulga butun AI-otdel. <span class="gold">Operator emas, strateg bo‘lib chiqasiz.</span></p>
+</div>
+</section>
+
+<!-- 4 ARTEFAKT -->
+<section class="sec">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div class="eb">Kutilayotgan natija</div>
+<h2 class="h2" style="max-width: 16ch">Kurs oxirida qo‘lingizda <span class="gold">4 ta artefakt</span></h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 16px">
+<div class="card" style="display: flex; flex-direction: column; gap: 12px"><div class="num" style="font-size: 32px">01</div><div style="color: #fff; font-size: 21px; font-weight: 800">5 ta oddiy agent</div><div style="font-size: 15px; margin-top: auto; padding-top: 12px; border-top: 1px solid #292928"><b style="color: #c9a84c">Kalit:</b> 5 agent ishlayapti</div></div>
+<div class="card" style="display: flex; flex-direction: column; gap: 12px"><div class="num" style="font-size: 32px">02</div><div style="color: #fff; font-size: 21px; font-weight: 800">Mukammal agent «Jarvis»</div><div style="font-size: 15px; margin-top: auto; padding-top: 12px; border-top: 1px solid #292928"><b style="color: #c9a84c">Kalit:</b> Jarvis sozlangan</div></div>
+<div class="card" style="display: flex; flex-direction: column; gap: 12px"><div class="num" style="font-size: 32px">03</div><div style="color: #fff; font-size: 21px; font-weight: 800">Jonli dashboard</div><div style="font-size: 15px; margin-top: auto; padding-top: 12px; border-top: 1px solid #292928"><b style="color: #c9a84c">Kalit:</b> Ma’lumotlar ekranda</div></div>
+<div class="card" style="display: flex; flex-direction: column; gap: 12px"><div class="num" style="font-size: 32px">04</div><div style="color: #fff; font-size: 21px; font-weight: 800">AI strategiyasi</div><div style="font-size: 15px; margin-top: auto; padding-top: 12px; border-top: 1px solid #292928"><b style="color: #c9a84c">Kalit:</b> Strategiya himoyasi</div></div>
+</div>
+<div style="padding: 16px 20px; border-radius: 14px; border: 1.5px solid #4a3f1f; background: #1a170f; color: #efe3bf; font-size: 16px; line-height: 1.5"><b class="gold">BONUS:</b> 4 artefaktni to‘liq topshirganlarga klubga 1 oy bepul a’zolik.</div>
+</div>
+</section>
+
+<!-- ROADMAP -->
+<section id="dastur" class="sec">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px; max-width: 860px">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div class="eb">Yo‘l xaritasi</div>
+<h2 class="h2" style="max-width: 16ch">Transformatsiya: <span class="gold">6 haftalik zavod</span></h2>
+<p class="lead">12 jonli dars, 0-hafta va bootcamp. Har haftaning o‘z mini-va’dasi va aniq natijasi bor.</p>
+</div>
+
+<div class="road">
+
+<div class="wk"><div class="node big"></div>
+<div class="wkc"><div class="wk-eb">0-HAFTA</div><h3 class="wk-t">Prabucheniye</h3><p class="lead" style="font-size: 15px">Tayyorgarlik: kursga kirish va ish muhitini sozlash.</p></div></div>
+
+<div class="wk"><div class="node"></div>
+<div class="wkc"><div class="wk-eb">1-HAFTA</div><h3 class="wk-t">Biznes rentgeni va aqlli fundament</h3>
+<p class="promise"><b>Mini-va’da:</b> analitik yollamasdan — biznesingizning to‘liq tahlilini olasiz (90 daqiqada).</p>
+<ul class="ls"><li><b>1-dars. Biznes rentgeni</b> — 5 bloknot: marketing, moliya, sotuv, mijozlar, raqobat.</li><li><b>2-dars. Aqlli fundament</b> — Claude proyekti yaratish va bilim bazasini ulash.</li></ul>
+<p class="res"><b>Natija:</b> biznes tahlili fayli + 3 gem + 1 rasm. Ishlaydigan Claude proyekti (bilim bazasi ulangan).</p>
+<details class="hw"><summary>Uyga vazifa</summary><p>Biznesmen avatari: deep research → 5 bloknot → 3 tasi Gemini’ga → tahlil → Gem-bot’da rasm. O‘z Claude proyektingizni yarating.</p></details>
+</div></div>
+
+<div class="wk"><div class="node"></div>
+<div class="wkc"><div class="wk-eb">2-HAFTA</div><h3 class="wk-t">Birinchi AI-xodim va AI-otdel yig‘ilishi</h3>
+<p class="promise"><b>Mini-va’da:</b> birinchi AI-xodimlaringiz ishga tushadi — oyliksiz, 24/7.</p>
+<ul class="ls"><li><b>3-dars.</b> Ekspert bilimi bilan assistent yaratish (agent = xodim).</li><li><b>4-dars. AI-otdel yig‘ilishi</b> — 5 ta agent 5 xil vazifa turini yopadi, real vazifalar topshiriladi.</li></ul>
+<p class="res"><b>Natija:</b> 5 ta ishlaydigan agent — dialog loglari va linklari.</p>
+<div class="cp">✓ Chekpoint: 5 AI-agent</div>
+<details class="hw"><summary>Uyga vazifa</summary><p>O‘z bilimingiz bilan 2–3 agent quring. Real vazifani agentlarga topshirib, jami 5 agentga yetkazing.</p></details>
+</div></div>
+
+<div class="wk"><div class="node"></div>
+<div class="wkc"><div class="wk-eb">3-HAFTA</div><h3 class="wk-t">Boshqaruv paneli va raqamlar bilan gapirish</h3>
+<p class="promise"><b>Mini-va’da:</b> biznesingizni ekranda ko‘rasiz — hisobot kutmasdan.</p>
+<ul class="ls"><li><b>5-dars.</b> Claude Code bilan jonli dashboard qurish (dasturchisiz).</li><li><b>6-dars. Himoya</b> — guruh oldida raqamlar bilan gapirish.</li></ul>
+<p class="res"><b>Natija:</b> jonli dashboard linki + Jarvis o‘rnatilgani skrini.</p>
+<div class="cp">✓ Chekpoint: jonli dashboard</div>
+<details class="hw"><summary>Uyga vazifa</summary><p>O‘z dashboardingizni quring, guruh oldida namoyish eting. Orqada qolganlarni yopib, Jarvis bazasini o‘rnating.</p></details>
+</div></div>
+
+<div class="wk"><div class="node big"></div>
+<div class="wkc hot"><div class="wk-eb">BOOTCAMP</div><h3 class="wk-t">Buster kun — intensiv</h3>
+<p class="lead" style="font-size: 15px">4 soatlik buster kun: qarzlarni yopish va Jarvis bazasini o‘rnatish.</p></div></div>
+
+<div class="wk"><div class="node"></div>
+<div class="wkc"><div class="wk-eb">4-HAFTA</div><h3 class="wk-t">Shaxsiy «Jarvis»</h3>
+<p class="promise"><b>Mini-va’da:</b> kompyuteringizda 24/7 ishlaydigan yordamchi — siz uxlaganda ham.</p>
+<ul class="ls"><li><b>7-dars. Shaxsiy Jarvis</b> — bu shunchaki chat emas, kompyuterda o‘zi ishlaydigan agent. Sozlash va real vazifada ishlatish.</li></ul>
+<p class="res"><b>Natija:</b> sozlangan Jarvis (video-dalil).</p>
+<div class="cp">✓ Chekpoint: shaxsiy Jarvis</div>
+<details class="hw"><summary>Uyga vazifa</summary><p>Jarvisga real vazifa toping va ishlab turganini ko‘rsating.</p></details>
+</div></div>
+
+<div class="wk"><div class="node"></div>
+<div class="wkc"><div class="wk-eb">5-HAFTA</div><h3 class="wk-t">Vibe coding va AI yo‘l xaritasi</h3>
+<p class="promise"><b>Mini-va’da:</b> o‘z g‘oyangizdan ilova yaratasiz + kompaniyangizga AI strategiyasini tuzasiz.</p>
+<ul class="ls"><li><b>8–9-dars.</b> Vibe coding orqali g‘oyadan ilovagacha. Dasturchisiz, ovoz yordamida ishlaydigan mahsulot.</li><li><b>10-dars. AI yo‘l xaritasi</b> — «Bir qadam orqaga» metodikasi orqali joriy etish strategiyasi.</li></ul>
+<p class="res"><b>Natija:</b> ishlaydigan ilova + strategiya hujjati.</p>
+<details class="hw"><summary>Uyga vazifa</summary><p>O‘z g‘oyangizdan ilova yarating + AI joriy etish strategiyangizni yozing (shablon bo‘yicha).</p></details>
+</div></div>
+
+<div class="wk" style="padding-bottom: 0"><div class="node big"></div>
+<div class="wkc hot"><div class="wk-eb">6-HAFTA</div><h3 class="wk-t">Strateg maqomi va bitiruv</h3>
+<p class="promise"><b>Mini-va’da:</b> strategiyangizni himoya qilasiz — endi boshqacha boshqarasiz.</p>
+<ul class="ls"><li><b>11-dars. Strateg maqomi</b> — komissiya oldida AI joriy etish strategiyasini himoya qilish.</li><li><b>12-dars. Bitiruv</b> — sertifikatlar, klubga o‘tish.</li></ul>
+<p class="res"><b>Natija:</b> kurs tugallandi → klubga 1 oy bepul a’zolik.</p>
+<div class="cp">✓ Chekpoint: strategiya</div>
+<details class="hw"><summary>Yakuniy vazifa</summary><p>Strategiyangizni komissiya oldida himoya qiling. 4 artefaktni to‘liq topshiring.</p></details>
+</div></div>
+
+</div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section class="sec">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div class="eb">Nimalarni o‘rganasiz</div>
+<h2 class="h2" style="max-width: 20ch">Turli vositalarni bog‘lab, <span class="gold">noldan tizim</span> yaratish</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px">
+<div class="card"><div style="color: #fff; font-size: 19px; font-weight: 800; margin-bottom: 8px">Oddiy AI agentlar</div><div style="font-size: 15px; line-height: 1.55">Takrorlanuvchi vazifalar uchun. Gemini Gems, Claude Project.</div></div>
+<div class="card"><div style="color: #fff; font-size: 19px; font-weight: 800; margin-bottom: 8px">Murakkab AI agentlar</div><div style="font-size: 15px; line-height: 1.55">Jarayonlarni optimallashtirish, orkestratsiya va rejalashtirish. Claude Cowork, OpenClaw + Claude Code.</div></div>
+<div class="card"><div style="color: #fff; font-size: 19px; font-weight: 800; margin-bottom: 8px">Dashboardlar</div><div style="font-size: 15px; line-height: 1.55">Turli bo‘limlar ma’lumotlarini bir joyga yig‘uvchi va tahlil qiluvchi panellar.</div></div>
+<div class="card"><div style="color: #fff; font-size: 19px; font-weight: 800; margin-bottom: 8px">Murakkab dasturlar va saytlar</div><div style="font-size: 15px; line-height: 1.55">Biznes uchun to‘liq ishlaydigan saytlar va ilovalar — Claude Code orqali yaratish va deploy qilish.</div></div>
+<div class="card"><div style="color: #fff; font-size: 19px; font-weight: 800; margin-bottom: 8px">Shaxsiy «Jarvis» assistenti</div><div style="font-size: 15px; line-height: 1.55">Shaxsiy va biznes vazifalarni boshqaruvchi bosh agent. Siz strategiya bilan shug‘ullanasiz — Jarvis operatsion ishlarni bajaradi.</div></div>
+<div class="card"><div style="color: #fff; font-size: 19px; font-weight: 800; margin-bottom: 8px">Ekspertsiz kontent zavodi</div><div style="font-size: 15px; line-height: 1.55">Haftasiga 100+ kontent: tahlil (Gemini, NotebookLM) → avatar va video (HeyGen) → avtomontaj (Submagic).</div></div>
+</div>
+</div>
+</section>
+
+<!-- CASES -->
+<section class="sec">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div class="eb">O‘quvchilar natijalari</div>
+<h2 class="h2" style="max-width: 18ch">Oldingi oqimlar <span class="gold">nima qurdi</span></h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px">
+<div class="card" style="display: flex; flex-direction: column; gap: 10px"><div style="display: flex; justify-content: space-between; align-items: center; gap: 8px"><span style="font-size: 13px; color: #8a8478">Distribyutsiya</span><span class="tag t-fakt">FAKT</span></div><div style="color: #fff; font-size: 21px; font-weight: 800">Aliyorbek</div><div style="color: #fff; font-size: 16px; line-height: 1.45; font-weight: 600; padding-top: 10px; border-top: 1px solid #292928">Hisobot: ~2 soat kutish → telefonda 30 soniya</div></div>
+<div class="card" style="display: flex; flex-direction: column; gap: 10px"><div style="display: flex; justify-content: space-between; align-items: center; gap: 8px"><span style="font-size: 13px; color: #8a8478">Ishlab chiqarish</span><span class="tag t-fakt">FAKT</span></div><div style="color: #fff; font-size: 21px; font-weight: 800">Feruz aka</div><div style="color: #fff; font-size: 16px; line-height: 1.45; font-weight: 600; padding-top: 10px; border-top: 1px solid #292928">3 podryadchik uddalamagan CRM → 2 kunda o‘zi yozdi</div></div>
+<div class="card" style="display: flex; flex-direction: column; gap: 10px"><div style="display: flex; justify-content: space-between; align-items: center; gap: 8px"><span style="font-size: 13px; color: #8a8478">Poligrafiya</span><span class="tag t-fakt">FAKT</span></div><div style="color: #fff; font-size: 21px; font-weight: 800">Mohinur</div><div style="color: #fff; font-size: 16px; line-height: 1.45; font-weight: 600; padding-top: 10px; border-top: 1px solid #292928">Sayt uchun 12–55 mln so‘mlik takliflar → saytni o‘zi qildi</div></div>
+<div class="card" style="display: flex; flex-direction: column; gap: 10px"><div style="display: flex; justify-content: space-between; align-items: center; gap: 8px"><span style="font-size: 13px; color: #8a8478">Savdo, ta’minot</span><span class="tag t-fakt">FAKT</span></div><div style="color: #fff; font-size: 21px; font-weight: 800">Axrorbek</div><div style="color: #fff; font-size: 16px; line-height: 1.45; font-weight: 600; padding-top: 10px; border-top: 1px solid #292928">To‘lovlarni taqsimlash: 30 daqiqa → 3 daqiqa</div></div>
+</div>
+</div>
+</section>
+
+<!-- ECONOMICS -->
+<section class="sec">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px; max-width: 860px">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div class="eb">Iqtisod</div>
+<h2 class="h2" style="max-width: 18ch">Tez joriy etish qancha <span class="gold">pul va vaqt</span> tejaydi?</h2>
+<div style="display: flex; gap: 10px; align-items: center; font-size: 14px"><span class="tag t-hisob">O‘QUVCHILAR AMALIYOTIDAN</span><span>potensial hisob</span></div>
+</div>
+<div style="border-top: 1px solid #292928">
+<div class="row"><span>Dizayner va vizual kontent (oyiga to‘lov)</span><b>~$500/oy</b></div>
+<div class="row"><span>Direct va mijozlar bilan ishlash (yo‘qolgan tungi lidlar)</span><b>~$500/oy</b></div>
+<div class="row"><span>Kopirayting va hisobotlar (frilanser)</span><b>~$300–500/oy</b></div>
+<div class="row"><span>Har yangi g‘oya / MVP (podryadchiksiz)</span><b>$1,000+ / g‘oya</b></div>
+<div class="row"><span>Sizning vaqtingiz (rutina)</span><b>40+ soat/hafta</b></div>
+</div>
+<div style="padding: 22px 24px; border-radius: 18px; background: #c9a84c; color: #15130f; display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: clamp(22px, 3vw, 32px); font-weight: 800; letter-spacing: -0.02em">Jami tejash potensiali: $2,000+/oy</div>
+<div style="font-size: 15px; font-weight: 600">Oddiy hisob: AI-Strateg tarifi shu tejashda 1–2 oyda o‘zini qoplaydi.</div>
+</div>
+</div>
+</section>
+
+<!-- TARIFFS -->
+<section id="tariflar" class="sec">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div class="eb">Tariflar</div>
+<h2 class="h2" style="max-width: 18ch">Uchta format — <span class="gold">bitta natija</span>: ishlaydigan AI-tizim</h2>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<span class="chip">6 hafta</span><span class="chip">12 jonli dars + 0-hafta + bootcamp</span><span class="chip">Payshanba kurator-zoom</span><span class="chip">Yangi oqim — faqat 20 ishtirokchi</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 16px; align-items: stretch">
+
+<div class="card" style="display: flex; flex-direction: column; gap: 16px">
+<div><div style="font-size: 13px; font-weight: 700; letter-spacing: .16em; color: #8a8478">TARIF 01</div><div style="color: #fff; font-size: 24px; font-weight: 800; margin-top: 6px">AI — Strateg</div></div>
+<div style="font-size: 15px; line-height: 1.5"><b style="color: #fff">Kimga:</b> o‘zi kirib, biznesiga AI joriy qilmoqchi bo‘lgan rahbar (1 kishi).</div>
+<ul class="tl">
+<li><span>12 jonli dars + 0-hafta + bootcamp</span><span>$3,000</span></li>
+<li><span>Prompt kutubxonasi, 500+ tayyor prompt</span><span>$500</span></li>
+<li><span>Agent va dashboard shablonlari</span><span>$400</span></li>
+<li><span>Yopiq chat + payshanba kurator-zoom</span><span>$300</span></li>
+<li><span>Darslar yozuvi abadiy + vositalar yangilanishi 6 oy</span><span>$800</span></li>
+</ul>
+<div style="font-size: 14px; line-height: 1.5; padding: 12px 14px; border-radius: 12px; background: #221e14; color: #efe3bf"><b class="gold">Bugun band qilsangiz:</b> shaxsiy strategik sessiya BEPUL (+$500).</div>
+<div style="font-size: 14px"><b style="color: #fff">Natija:</b> 6 haftada 4 artefakt.</div>
+<div style="margin-top: auto; display: flex; align-items: baseline; gap: 12px"><span style="color: #8a8478; text-decoration: line-through; font-size: 20px">$5,000</span><span style="color: #fff; font-size: 42px; font-weight: 800; letter-spacing: -0.03em">$2,500</span></div>
+<a class="btn btn-ghost" href="#diagnostika">Diagnostikaga yozilish</a>
+</div>
+
+<div class="card" style="display: flex; flex-direction: column; gap: 16px; border-color: #c9a84c; background: #1a170f; box-shadow: 0 0 60px rgba(201,168,76,.12)">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px"><div><div style="font-size: 13px; font-weight: 700; letter-spacing: .16em; color: #c9a84c">TARIF 02</div><div style="color: #fff; font-size: 24px; font-weight: 800; margin-top: 6px">AI — Team</div></div><span class="tag t-hisob">SIZGA TAVSIYA</span></div>
+<div style="font-size: 15px; line-height: 1.5"><b style="color: #fff">Kimga:</b> siz + 2 boshqaruvchingiz (3 kishi). Tizim bitta odamda emas, jamoada qolishi kerak.</div>
+<ul class="tl">
+<li><span>Strateg paketi × 3 kishi</span><span>$7,500</span></li>
+<li><span>Jamoa uchun strategik sessiya</span><span>$500</span></li>
+<li><span>AI tizimini birgalikda qurish</span><span>$1,000</span></li>
+<li><span>Alohida kurator va yopiq chat</span><span>$500</span></li>
+<li><span>2 ta guruhiy razbor</span><span>$400</span></li>
+</ul>
+<div style="font-size: 14px; line-height: 1.5; padding: 12px 14px; border-radius: 12px; background: #2a2413; color: #efe3bf"><b class="gold">Bugun band qilsangiz:</b> jamoa uchun qo‘shimcha razbor BEPUL (+$200).</div>
+<div style="font-size: 14px; line-height: 1.5"><b style="color: #fff">Natija:</b> jamoangiz AI bilan mustaqil ishlaydi, raqamlar dashboardda, rutina agentlarda.</div>
+<div style="margin-top: auto; display: flex; align-items: baseline; gap: 12px"><span style="color: #8a8478; text-decoration: line-through; font-size: 20px">$9,900</span><span style="color: #fff; font-size: 42px; font-weight: 800; letter-spacing: -0.03em">$5,000</span></div>
+<a class="btn btn-gold" href="#diagnostika">Diagnostikaga yozilish</a>
+</div>
+
+<div class="card" style="display: flex; flex-direction: column; gap: 16px">
+<div><div style="font-size: 13px; font-weight: 700; letter-spacing: .16em; color: #8a8478">TARIF 03</div><div style="color: #fff; font-size: 24px; font-weight: 800; margin-top: 6px">AI — Tizim (pod klyuch)</div></div>
+<div style="font-size: 15px; line-height: 1.5"><b style="color: #fff">Kimga:</b> butun biznesni birga avtomatlashtirishni istagan egalar. Mentorlikka 2 kishi kiradi.</div>
+<ul class="tl">
+<li><span>Mentorlikda 2 ta o‘rin — Team formati</span><span>$5,000</span></li>
+<li><span>Mac mini — shaxsiy AI-server, Jarvis 24/7</span><span>kiritilgan</span></li>
+<li><span>Biznes jarayonlari to‘liq tahlili + maxsus AI agentlar</span><span>$5,000</span></li>
+<li><span>Kontent + sotuv + analitika tizimi</span><span>$2,000</span></li>
+<li><span>Jamoa o‘qitish + 3 oy aktiv nazorat</span><span>$3,000</span></li>
+</ul>
+<div style="font-size: 14px; line-height: 1.5; padding: 12px 14px; border-radius: 12px; background: #221e14; color: #efe3bf"><b class="gold">Bugun band qilsangiz:</b> birinchi oylik nazorat BEPUL (+$500).</div>
+<div style="font-size: 14px; line-height: 1.5"><b style="color: #fff">Natija:</b> 90 kunda marketing, kontent va sotuv jarayonlarining asosiy qismi avtomatlashtiriladi — tizim sizsiz ishlaydi.</div>
+<div style="margin-top: auto; display: flex; align-items: baseline; gap: 12px"><span style="color: #8a8478; text-decoration: line-through; font-size: 20px">$16,000+</span><span style="color: #fff; font-size: 42px; font-weight: 800; letter-spacing: -0.03em">$10,000</span></div>
+<a class="btn btn-ghost" href="#diagnostika">Diagnostikaga yozilish</a>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- DIAGNOSTIKA -->
+<section id="diagnostika" class="sec" style="background: radial-gradient(ellipse 60% 70% at 50% 100%, #2a2413 0%, #0b0b0a 70%)">
+<div class="wrap" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 40px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 22px">
+<div class="eb">Diagnostika</div>
+<h2 class="h2">Qaror qilish uchun raqam kerakmi? <span class="gold">Diagnostikadan boshlang.</span></h2>
+<p class="lead">Hali ikkilanyapsizmi — normal. Katta qaror shunaqa bo‘ladi. Shuning uchun birinchi qadam sotib olish emas. Birinchi qadam — diagnostika.</p>
+</div>
+<div class="card" style="display: flex; flex-direction: column; gap: 18px; border-color: #4a3f1f">
+<div style="color: #fff; font-size: 18px; font-weight: 700">Diagnostikada nima bo‘ladi:</div>
+<ul class="ls" style="margin: 0">
+<li><b class="gold">01</b>&nbsp; 30 daqiqa — faqat sizning biznesingiz haqida gaplashamiz</li>
+<li><b class="gold">02</b>&nbsp; AI qayerda birinchi pulni berishini aniq ko‘rsatamiz</li>
+<li><b class="gold">03</b>&nbsp; Sizga qaysi format mos (yoki umuman mos emasligini) halol aytamiz</li>
+</ul>
+<form id="lead-form" class="lead-form" novalidate>
+<label>Ismingiz <input name="name" autocomplete="name" required placeholder="Ismingizni kiriting"></label>
+<label>Telefon raqamingiz <input name="phone" type="tel" autocomplete="tel" required placeholder="+998 90 123 45 67"></label>
+<label>Biznesingiz sohasi <input name="business" required placeholder="Masalan, savdo yoki xizmatlar"></label>
+<label>Qaysi format sizga qiziq? <select name="plan" required><option value="">Formatni tanlang</option><option>AI — Strateg</option><option>AI — Team</option><option>AI — Tizim</option><option>Hali bilmayman</option></select></label>
+<button class="btn btn-gold" type="submit">Ariza yuborish</button>
+<p id="form-status" role="status" aria-live="polite"></p>
+</form>
+<a id="contact-fallback" class="btn btn-gold" href="https://t.me/kodiyusufbay" target="_blank" rel="noopener noreferrer" hidden>Telegram orqali bog‘lanish</a>
+<div style="font-size: 14px; line-height: 1.5; color: #8a8478">Ma’lumotlaringiz faqat diagnostika bo‘yicha bog‘lanish uchun ishlatiladi.</div>
+</div>
+</div>
+</section>
+
+<!-- FINAL -->
+<section class="sec">
+<div class="wrap" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; max-width: 860px">
+<p style="margin: 0; font-size: clamp(16px, 1.7vw, 19px); line-height: 1.6; max-width: 46ch">«Qanday qilishni» emas — «nima qilishni» bilish muhimroq. Vositalar o‘zgaradi, to‘g‘ri qaror esa qoladi.</p>
+<h2 class="h2" style="font-size: clamp(26px, 3.6vw, 44px)">AI sizni ishsiz qoldirmaydi. <span class="gold">Bugun AI’ni joriy qilgan inson</span> sizni ishsiz qoldiradi.</h2>
+<a class="btn btn-gold" href="#diagnostika" style="margin-top: 10px">Diagnostikaga yozilish</a>
+<div style="font-size: 14px; color: #8a8478; margin-top: 20px">@kodiyusufbay</div>
+</div>
+</section>
+
+</div>
+<script>
+const SHEET_ENDPOINT = '';
+const leadForm = document.getElementById('lead-form');
+const formStatus = document.getElementById('form-status');
+if (!SHEET_ENDPOINT) {
+  leadForm.hidden = true;
+  document.getElementById('contact-fallback').hidden = false;
+}
+leadForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  formStatus.className = '';
+  if (!leadForm.reportValidity()) return;
+  if (!SHEET_ENDPOINT) {
+    formStatus.textContent = 'Ariza yuborish tez orada ishga tushadi. Hozir Telegram orqali bog‘laning: @kodiyusufbay.';
+    formStatus.className = 'error';
+    return;
+  }
+  const button = leadForm.querySelector('button[type="submit"]');
+  button.disabled = true;
+  button.textContent = 'Yuborilmoqda…';
+  try {
+    const data = Object.fromEntries(new FormData(leadForm));
+    data.submittedAt = new Date().toISOString();
+    const response = await fetch(SHEET_ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type': 'text/plain;charset=utf-8'},
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    if (!response.ok || result.ok !== true) throw new Error('Submission failed');
+    leadForm.reset();
+    formStatus.textContent = 'Arizangiz qabul qilindi. Tez orada siz bilan bog‘lanamiz.';
+    formStatus.className = 'success';
+  } catch {
+    formStatus.textContent = 'Ariza yuborilmadi. Iltimos, qayta urinib ko‘ring yoki @kodiyusufbay ga yozing.';
+    formStatus.className = 'error';
+  } finally {
+    button.disabled = false;
+    button.textContent = 'Ariza yuborish';
+  }
+});
+</script>
+</body>
+</html>
