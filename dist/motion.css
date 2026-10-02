@@ -22,7 +22,7 @@
 /* Planet stage */
 .hero-stage{height:560px}
 .orbit-glow{display:none}
-.planet{position:absolute;left:50%;top:-70px;z-index:0;width:100vw;height:720px;transform:translateX(-50%);pointer-events:none;-webkit-mask-image:linear-gradient(#000 72%,transparent 98%);mask-image:linear-gradient(#000 72%,transparent 98%)}
+.planet{position:absolute;left:50%;top:-70px;z-index:0;width:100vw;height:720px;transform:translateX(-50%);pointer-events:none;-webkit-mask-image:linear-gradient(transparent 0,#000 16%,#000 72%,transparent 98%);mask-image:linear-gradient(transparent 0,#000 16%,#000 72%,transparent 98%)}
 .planet-flare{position:absolute;left:50%;top:-30px;z-index:0;width:min(1100px,110vw);height:260px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(ellipse 34% 40% at var(--fx,62%) 32%,rgba(227,192,112,.2),transparent 70%);filter:blur(10px);transition:background .6s ease}
 .preview-panel{z-index:2;top:150px;height:440px;transform-style:preserve-3d;transform:perspective(1400px) rotateX(calc(4deg + var(--rx,0deg))) rotateY(var(--ry,0deg));transition:transform .5s cubic-bezier(.2,.7,.2,1);background:linear-gradient(180deg,rgba(18,17,14,.94),rgba(11,11,10,.98));backdrop-filter:blur(6px)}
 .preview-panel:before{content:"";position:absolute;inset:-1px;z-index:3;border-radius:inherit;padding:1px;pointer-events:none;background:conic-gradient(from var(--ang),transparent 0 62%,rgba(227,192,112,.9) 72%,transparent 82%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin-ang 7s linear infinite}
