@@ -262,3 +262,21 @@
 /* hero now has a single quiet link */
 .hero-actions{justify-content:center}
 @media(max-width:700px){.hero-actions{align-items:flex-start;margin-top:22px}.hero-link{align-self:flex-start}}
+
+/* Mobile hero: no dead gap, dashboard pulled up, link centered */
+@media(max-width:700px){
+ .site-hero>.hero-wrap{justify-content:flex-start;gap:0!important}
+ .hero-copy{padding-top:34px}
+ .hero-actions{align-items:center;margin-top:18px}
+ .hero-link{align-self:center}
+ .hero-stage{margin-top:26px}
+}
+@media(max-width:700px){
+ .hero-stage{height:auto;padding:72px 0 0}
+ .preview-panel{top:0;height:auto;border-radius:12px 12px 0 0}
+ .preview-body{padding-bottom:14px}
+ .preview-lower{display:grid;grid-template-columns:1fr;margin-top:8px}
+ .preview-feed{display:none}
+ .preview-chart{padding:10px 12px}
+ .chart-bars{height:84px}
+}
