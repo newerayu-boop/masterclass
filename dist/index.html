@@ -41,20 +41,10 @@ a{color:#c9a84c}a:hover{color:#e0c46c}
 .wkc.hot{border-color:#4a3f1f;background:#1a170f}
 .wk-eb{font-size:12px;font-weight:700;letter-spacing:.18em;color:#c9a84c}
 .wk-t{margin:8px 0 12px;color:#fff;font-size:clamp(21px,2.4vw,27px);font-weight:800;letter-spacing:-.02em;line-height:1.15}
-.promise{margin:0 0 16px;padding:12px 14px;border-radius:12px;background:#221e14;color:#efe3bf;font-size:15px;line-height:1.5}
-.promise b{color:#c9a84c}
+.wk-brief{margin:0;color:#bcb7ad;font-size:15px;line-height:1.55}
 .ls{margin:0 0 14px;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
 .ls li{font-size:15px;line-height:1.55}
 .ls b{color:#fff}
-.res{margin:0;font-size:15px;line-height:1.55;padding-top:14px;border-top:1px solid #292928}
-.res b{color:#fff}
-.cp{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:7px 12px;border-radius:10px;background:#263026;color:#8fcaa9;font-size:13px;font-weight:700}
-details.hw{margin-top:12px}
-details.hw summary{cursor:pointer;list-style:none;color:#c9a84c;font-size:14px;font-weight:700}
-details.hw summary::-webkit-details-marker{display:none}
-details.hw summary:after{content:" +"}
-details.hw[open] summary:after{content:" –"}
-details.hw p{margin:10px 0 0;font-size:14px;line-height:1.6}
 .row{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid #292928;font-size:15px;line-height:1.45}
 .row b{color:#fff;white-space:nowrap}
 .tl{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
@@ -201,68 +191,46 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 <div style="display: flex; flex-direction: column; gap: 18px">
 <div class="eb">Yo‘l xaritasi</div>
 <h2 class="h2" style="max-width: 16ch">Transformatsiya: <span class="gold">6 haftalik zavod</span></h2>
-<p class="lead">12 jonli dars, 0-hafta va bootcamp. Har haftaning o‘z mini-va’dasi va aniq natijasi bor.</p>
+<p class="lead">6 hafta, 12 jonli dars va har bosqichda amaliy natija.</p>
 </div>
 
 <div class="road">
 
 <div class="wk"><div class="node big"></div>
-<div class="wkc"><div class="wk-eb">0-HAFTA</div><h3 class="wk-t">Prabucheniye</h3><p class="lead" style="font-size: 15px">Tayyorgarlik: kursga kirish va ish muhitini sozlash.</p></div></div>
+<div class="wkc"><div class="wk-eb">0-HAFTA</div><h3 class="wk-t">Tayyorgarlik</h3><p class="wk-brief">Ish muhitini sozlaysiz va kursga tayyorlanasiz.</p></div></div>
 
 <div class="wk"><div class="node"></div>
-<div class="wkc"><div class="wk-eb">1-HAFTA</div><h3 class="wk-t">Biznes rentgeni va aqlli fundament</h3>
-<p class="promise"><b>Mini-va’da:</b> analitik yollamasdan — biznesingizning to‘liq tahlilini olasiz (90 daqiqada).</p>
-<ul class="ls"><li><b>1-dars. Biznes rentgeni</b> — 5 bloknot: marketing, moliya, sotuv, mijozlar, raqobat.</li><li><b>2-dars. Aqlli fundament</b> — Claude proyekti yaratish va bilim bazasini ulash.</li></ul>
-<p class="res"><b>Natija:</b> biznes tahlili fayli + 3 gem + 1 rasm. Ishlaydigan Claude proyekti (bilim bazasi ulangan).</p>
-<details class="hw"><summary>Uyga vazifa</summary><p>Biznesmen avatari: deep research → 5 bloknot → 3 tasi Gemini’ga → tahlil → Gem-bot’da rasm. O‘z Claude proyektingizni yarating.</p></details>
+<div class="wkc"><div class="wk-eb">1-HAFTA</div><h3 class="wk-t">Biznes tahlili</h3>
+<p class="wk-brief">Biznesingizni tahlil qilib, AI uchun bilim bazasini yaratasiz.</p>
 </div></div>
 
 <div class="wk"><div class="node"></div>
-<div class="wkc"><div class="wk-eb">2-HAFTA</div><h3 class="wk-t">Birinchi AI-xodim va AI-otdel yig‘ilishi</h3>
-<p class="promise"><b>Mini-va’da:</b> birinchi AI-xodimlaringiz ishga tushadi — oyliksiz, 24/7.</p>
-<ul class="ls"><li><b>3-dars.</b> Ekspert bilimi bilan assistent yaratish (agent = xodim).</li><li><b>4-dars. AI-otdel yig‘ilishi</b> — 5 ta agent 5 xil vazifa turini yopadi, real vazifalar topshiriladi.</li></ul>
-<p class="res"><b>Natija:</b> 5 ta ishlaydigan agent — dialog loglari va linklari.</p>
-<div class="cp">✓ Chekpoint: 5 AI-agent</div>
-<details class="hw"><summary>Uyga vazifa</summary><p>O‘z bilimingiz bilan 2–3 agent quring. Real vazifani agentlarga topshirib, jami 5 agentga yetkazing.</p></details>
+<div class="wkc"><div class="wk-eb">2-HAFTA</div><h3 class="wk-t">AI-agentlar jamoasi</h3>
+<p class="wk-brief">Takroriy vazifalar uchun 5 ta ishlaydigan AI-agent yaratasiz.</p>
 </div></div>
 
 <div class="wk"><div class="node"></div>
-<div class="wkc"><div class="wk-eb">3-HAFTA</div><h3 class="wk-t">Boshqaruv paneli va raqamlar bilan gapirish</h3>
-<p class="promise"><b>Mini-va’da:</b> biznesingizni ekranda ko‘rasiz — hisobot kutmasdan.</p>
-<ul class="ls"><li><b>5-dars.</b> Claude Code bilan jonli dashboard qurish (dasturchisiz).</li><li><b>6-dars. Himoya</b> — guruh oldida raqamlar bilan gapirish.</li></ul>
-<p class="res"><b>Natija:</b> jonli dashboard linki + Jarvis o‘rnatilgani skrini.</p>
-<div class="cp">✓ Chekpoint: jonli dashboard</div>
-<details class="hw"><summary>Uyga vazifa</summary><p>O‘z dashboardingizni quring, guruh oldida namoyish eting. Orqada qolganlarni yopib, Jarvis bazasini o‘rnating.</p></details>
+<div class="wkc"><div class="wk-eb">3-HAFTA</div><h3 class="wk-t">Boshqaruv paneli</h3>
+<p class="wk-brief">Biznesingizning muhim raqamlarini jonli dashboardga yig‘asiz.</p>
 </div></div>
 
 <div class="wk"><div class="node big"></div>
-<div class="wkc hot"><div class="wk-eb">BOOTCAMP</div><h3 class="wk-t">Buster kun — intensiv</h3>
-<p class="lead" style="font-size: 15px">4 soatlik buster kun: qarzlarni yopish va Jarvis bazasini o‘rnatish.</p></div></div>
+<div class="wkc hot"><div class="wk-eb">BOOTCAMP</div><h3 class="wk-t">Amaliy intensiv</h3>
+<p class="wk-brief">Vazifalarni yakunlab, Jarvis uchun asos tayyorlaysiz.</p></div></div>
 
 <div class="wk"><div class="node"></div>
 <div class="wkc"><div class="wk-eb">4-HAFTA</div><h3 class="wk-t">Shaxsiy «Jarvis»</h3>
-<p class="promise"><b>Mini-va’da:</b> kompyuteringizda 24/7 ishlaydigan yordamchi — siz uxlaganda ham.</p>
-<ul class="ls"><li><b>7-dars. Shaxsiy Jarvis</b> — bu shunchaki chat emas, kompyuterda o‘zi ishlaydigan agent. Sozlash va real vazifada ishlatish.</li></ul>
-<p class="res"><b>Natija:</b> sozlangan Jarvis (video-dalil).</p>
-<div class="cp">✓ Chekpoint: shaxsiy Jarvis</div>
-<details class="hw"><summary>Uyga vazifa</summary><p>Jarvisga real vazifa toping va ishlab turganini ko‘rsating.</p></details>
+<p class="wk-brief">Kompyuteringizda real vazifalarni bajaradigan yordamchini sozlaysiz.</p>
 </div></div>
 
 <div class="wk"><div class="node"></div>
-<div class="wkc"><div class="wk-eb">5-HAFTA</div><h3 class="wk-t">Vibe coding va AI yo‘l xaritasi</h3>
-<p class="promise"><b>Mini-va’da:</b> o‘z g‘oyangizdan ilova yaratasiz + kompaniyangizga AI strategiyasini tuzasiz.</p>
-<ul class="ls"><li><b>8–9-dars.</b> Vibe coding orqali g‘oyadan ilovagacha. Dasturchisiz, ovoz yordamida ishlaydigan mahsulot.</li><li><b>10-dars. AI yo‘l xaritasi</b> — «Bir qadam orqaga» metodikasi orqali joriy etish strategiyasi.</li></ul>
-<p class="res"><b>Natija:</b> ishlaydigan ilova + strategiya hujjati.</p>
-<details class="hw"><summary>Uyga vazifa</summary><p>O‘z g‘oyangizdan ilova yarating + AI joriy etish strategiyangizni yozing (shablon bo‘yicha).</p></details>
+<div class="wkc"><div class="wk-eb">5-HAFTA</div><h3 class="wk-t">Ilova va AI strategiyasi</h3>
+<p class="wk-brief">O‘z ilovangizni yaratib, biznesga AI joriy etish rejasini tuzasiz.</p>
 </div></div>
 
 <div class="wk" style="padding-bottom: 0"><div class="node big"></div>
-<div class="wkc hot"><div class="wk-eb">6-HAFTA</div><h3 class="wk-t">Strateg maqomi va bitiruv</h3>
-<p class="promise"><b>Mini-va’da:</b> strategiyangizni himoya qilasiz — endi boshqacha boshqarasiz.</p>
-<ul class="ls"><li><b>11-dars. Strateg maqomi</b> — komissiya oldida AI joriy etish strategiyasini himoya qilish.</li><li><b>12-dars. Bitiruv</b> — sertifikatlar, klubga o‘tish.</li></ul>
-<p class="res"><b>Natija:</b> kurs tugallandi → klubga 1 oy bepul a’zolik.</p>
-<div class="cp">✓ Chekpoint: strategiya</div>
-<details class="hw"><summary>Yakuniy vazifa</summary><p>Strategiyangizni komissiya oldida himoya qiling. 4 artefaktni to‘liq topshiring.</p></details>
+<div class="wkc hot"><div class="wk-eb">6-HAFTA</div><h3 class="wk-t">Strategiya himoyasi</h3>
+<p class="wk-brief">AI strategiyangizni taqdim etib, kursni yakunlaysiz.</p>
 </div></div>
 
 </div>
