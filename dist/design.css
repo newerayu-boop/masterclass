@@ -84,11 +84,6 @@ a{color:var(--gold-light)}a:hover{color:#efe3bf}
 .section-artifacts .card .num{font-family:Inter,Arial,sans-serif;font-style:normal;font-weight:800;letter-spacing:-.06em}
 .section-artifacts .wrap>div:last-child{border-color:#6b592d!important;background:linear-gradient(100deg,#221e14,#1a171a)!important;color:#efe3bf!important}
 .section-roadmap{background:radial-gradient(circle at 12% 45%,rgba(201,168,76,.06),transparent 39%)}
-.road:before{background:#16140f;box-shadow:7px 5px 0 #6b592d,0 0 35px rgba(201,168,76,.19)}
-.node,.node.big{background:#e3c070;box-shadow:0 0 20px 5px rgba(201,168,76,.4)}
-.wkc,.wkc.hot{border-color:#2d2b27;background:linear-gradient(140deg,#16140f,#0b0b0a)}
-.wkc.hot{border-color:#6b592d;background:linear-gradient(120deg,#221e14,#0b0b0a 70%);box-shadow:0 0 32px rgba(201,168,76,.08)}
-.wk-eb{color:var(--gold-light)}.wk-brief{color:#b4b2ac}
 .section-skills .card:after{content:"↗";position:absolute;right:22px;top:19px;color:#e3c070;font-size:20px;font-weight:700}
 .section-skills .card{padding-top:55px;min-height:186px}
 .section-cases{background:radial-gradient(circle at 65% 0,rgba(201,168,76,.06),transparent 43%)}

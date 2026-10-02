@@ -32,16 +32,6 @@ a{color:#c9a84c}a:hover{color:#e0c46c}
 .t-fakt{background:#263026;color:#8fcaa9}
 .t-hisob{background:#332b17;color:#e3c070}
 .num{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:700;color:#c9a84c}
-.road{position:relative}
-.road:before{content:"";position:absolute;left:14px;top:10px;bottom:10px;width:26px;background:#1d1a14;border-radius:6px;box-shadow:7px 5px 0 #b8953f,0 0 30px rgba(201,168,76,.18)}
-.wk{position:relative;padding-left:76px;padding-bottom:22px}
-.node{position:absolute;left:8px;top:26px;width:38px;height:15px;border-radius:50%;background:#e3c070;box-shadow:0 0 22px 6px rgba(246,220,140,.45)}
-.node.big{left:4px;width:46px;height:18px;background:#f6dc8c;box-shadow:0 0 30px 10px rgba(246,220,140,.5)}
-.wkc{background:#16140f;border:1.5px solid #2d2b27;border-radius:20px;padding:24px;box-sizing:border-box}
-.wkc.hot{border-color:#4a3f1f;background:#1a170f}
-.wk-eb{font-size:12px;font-weight:700;letter-spacing:.18em;color:#c9a84c}
-.wk-t{margin:8px 0 12px;color:#fff;font-size:clamp(21px,2.4vw,27px);font-weight:800;letter-spacing:-.02em;line-height:1.15}
-.wk-brief{margin:0;color:#bcb7ad;font-size:15px;line-height:1.55}
 .ls{margin:0 0 14px;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
 .ls li{font-size:15px;line-height:1.55}
 .ls b{color:#fff}
@@ -51,7 +41,7 @@ a{color:#c9a84c}a:hover{color:#e0c46c}
 .tl li{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #26241f;font-size:14px;line-height:1.45}
 .tl li span:last-child{color:#8a8478;white-space:nowrap}
 
-html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-decoration-skip-ink:auto}.btn{transition:background .18s ease,border-color .18s ease,transform .18s ease}.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0)}:focus-visible{outline:2px solid #e3c070;outline-offset:3px}.wrap,.card,.wkc{min-width:0}.tl li span:first-child{min-width:0}.tl li span:last-child{text-align:right}@media(max-width:640px){.sec{padding:58px 0}header{padding-bottom:58px!important}header .wrap{gap:42px!important}.card,.wkc{padding:21px}.wk{padding-left:48px}.road:before{left:8px;width:19px}.node{left:1px;width:33px}.node.big{left:0;width:37px}.tl li{flex-wrap:wrap}.tl li span:last-child{white-space:normal}.row b{white-space:normal;text-align:right}.btn{width:100%}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-decoration-skip-ink:auto}.btn{transition:background .18s ease,border-color .18s ease,transform .18s ease}.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0)}:focus-visible{outline:2px solid #e3c070;outline-offset:3px}.wrap,.card{min-width:0}.tl li span:first-child{min-width:0}.tl li span:last-child{text-align:right}@media(max-width:640px){.sec{padding:58px 0}header{padding-bottom:58px!important}header .wrap{gap:42px!important}.card{padding:21px}.tl li{flex-wrap:wrap}.tl li span:last-child{white-space:normal}.row b{white-space:normal;text-align:right}.btn{width:100%}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
 .lead-form{display:grid;gap:15px}.lead-form label{display:grid;gap:8px;color:#e8e6df;font-size:14px;font-weight:600}.lead-form input,.lead-form select{width:100%;min-height:50px;padding:12px 14px;border:1.5px solid #3a362c;border-radius:12px;background:#0f0e0c;color:#fff;font:inherit}.lead-form input::placeholder{color:#8a8478}.lead-form input:focus,.lead-form select:focus{outline:2px solid #c9a84c;outline-offset:2px}.lead-form button{cursor:pointer;border:0;width:100%;margin-top:2px}.lead-form p{margin:0;min-height:1.5em;font-size:14px;line-height:1.5}.lead-form p.error{color:#ffb8ae}.lead-form p.success{color:#8fcaa9}[hidden]{display:none!important}
 .brand-marquee{width:100vw;margin-left:calc(50% - 50vw);overflow:hidden;mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent)}
 .brand-marquee__track{display:flex;width:max-content;animation:brand-scroll 32s linear infinite;will-change:transform}
@@ -218,52 +208,25 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 
 <!-- ROADMAP -->
 <section id="dastur" class="sec section-roadmap">
-<div class="wrap" style="display: flex; flex-direction: column; gap: 40px; max-width: 860px">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-direction: column; gap: 18px">
 <div class="eb">Yo‘l xaritasi</div>
 <h2 class="h2" style="max-width: 16ch">Transformatsiya: <span class="gold">6 haftalik zavod</span></h2>
 <p class="lead">6 hafta, 12 jonli dars va har bosqichda amaliy natija.</p>
 </div>
 
-<div class="road">
-
-<div class="wk"><div class="node big"></div>
-<div class="wkc"><div class="wk-eb">0-HAFTA</div><h3 class="wk-t">Tayyorgarlik</h3><p class="wk-brief">Ish muhitini sozlaysiz va kursga tayyorlanasiz.</p></div></div>
-
-<div class="wk"><div class="node"></div>
-<div class="wkc"><div class="wk-eb">1-HAFTA</div><h3 class="wk-t">Biznes tahlili</h3>
-<p class="wk-brief">Biznesingizni tahlil qilib, AI uchun bilim bazasini yaratasiz.</p>
-</div></div>
-
-<div class="wk"><div class="node"></div>
-<div class="wkc"><div class="wk-eb">2-HAFTA</div><h3 class="wk-t">AI-agentlar jamoasi</h3>
-<p class="wk-brief">Takroriy vazifalar uchun 5 ta ishlaydigan AI-agent yaratasiz.</p>
-</div></div>
-
-<div class="wk"><div class="node"></div>
-<div class="wkc"><div class="wk-eb">3-HAFTA</div><h3 class="wk-t">Boshqaruv paneli</h3>
-<p class="wk-brief">Biznesingizning muhim raqamlarini jonli dashboardga yig‘asiz.</p>
-</div></div>
-
-<div class="wk"><div class="node big"></div>
-<div class="wkc hot"><div class="wk-eb">BOOTCAMP</div><h3 class="wk-t">Amaliy intensiv</h3>
-<p class="wk-brief">Vazifalarni yakunlab, Jarvis uchun asos tayyorlaysiz.</p></div></div>
-
-<div class="wk"><div class="node"></div>
-<div class="wkc"><div class="wk-eb">4-HAFTA</div><h3 class="wk-t">Shaxsiy «Jarvis»</h3>
-<p class="wk-brief">Kompyuteringizda real vazifalarni bajaradigan yordamchini sozlaysiz.</p>
-</div></div>
-
-<div class="wk"><div class="node"></div>
-<div class="wkc"><div class="wk-eb">5-HAFTA</div><h3 class="wk-t">Ilova va AI strategiyasi</h3>
-<p class="wk-brief">O‘z ilovangizni yaratib, biznesga AI joriy etish rejasini tuzasiz.</p>
-</div></div>
-
-<div class="wk" style="padding-bottom: 0"><div class="node big"></div>
-<div class="wkc hot"><div class="wk-eb">6-HAFTA</div><h3 class="wk-t">Strategiya himoyasi</h3>
-<p class="wk-brief">AI strategiyangizni taqdim etib, kursni yakunlaysiz.</p>
-</div></div>
-
+<div class="rm" id="roadmap">
+<div class="rm-line" aria-hidden="true"><i class="rm-fill"></i><b class="rm-comet"></b></div>
+<ol class="rm-list">
+<li class="rm-step"><div class="rm-node" aria-hidden="true"><span>00</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">00</span><div class="rm-meta"><span class="rm-week">0-HAFTA</span><span class="rm-tag">Start</span></div><h3>Tayyorgarlik</h3><p>Ish muhitini sozlaysiz va kursga tayyorlanasiz.</p></div></li>
+<li class="rm-step"><div class="rm-node" aria-hidden="true"><span>01</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">01</span><div class="rm-meta"><span class="rm-week">1-HAFTA</span><span class="rm-tag">Bilim bazasi</span></div><h3>Biznes tahlili</h3><p>Biznesingizni tahlil qilib, AI uchun bilim bazasini yaratasiz.</p></div></li>
+<li class="rm-step"><div class="rm-node" aria-hidden="true"><span>02</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">02</span><div class="rm-meta"><span class="rm-week">2-HAFTA</span><span class="rm-tag">5 ta agent</span></div><h3>AI-agentlar jamoasi</h3><p>Takroriy vazifalar uchun 5 ta ishlaydigan AI-agent yaratasiz.</p></div></li>
+<li class="rm-step"><div class="rm-node" aria-hidden="true"><span>03</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">03</span><div class="rm-meta"><span class="rm-week">3-HAFTA</span><span class="rm-tag">Dashboard</span></div><h3>Boshqaruv paneli</h3><p>Biznesingizning muhim raqamlarini jonli dashboardga yig‘asiz.</p></div></li>
+<li class="rm-step rm-step--key"><div class="rm-node" aria-hidden="true"><span>★</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">B</span><div class="rm-meta"><span class="rm-week">BOOTCAMP</span><span class="rm-tag">Intensiv</span></div><h3>Amaliy intensiv</h3><p>Vazifalarni yakunlab, Jarvis uchun asos tayyorlaysiz.</p></div></li>
+<li class="rm-step"><div class="rm-node" aria-hidden="true"><span>04</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">04</span><div class="rm-meta"><span class="rm-week">4-HAFTA</span><span class="rm-tag">Jarvis</span></div><h3>Shaxsiy «Jarvis»</h3><p>Kompyuteringizda real vazifalarni bajaradigan yordamchini sozlaysiz.</p></div></li>
+<li class="rm-step"><div class="rm-node" aria-hidden="true"><span>05</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">05</span><div class="rm-meta"><span class="rm-week">5-HAFTA</span><span class="rm-tag">Ilova</span></div><h3>Ilova va AI strategiyasi</h3><p>O‘z ilovangizni yaratib, biznesga AI joriy etish rejasini tuzasiz.</p></div></li>
+<li class="rm-step rm-step--key"><div class="rm-node" aria-hidden="true"><span>06</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">06</span><div class="rm-meta"><span class="rm-week">6-HAFTA</span><span class="rm-tag">Finish</span></div><h3>Strategiya himoyasi</h3><p>AI strategiyangizni taqdim etib, kursni yakunlaysiz.</p></div></li>
+</ol>
 </div>
 </div>
 </section>

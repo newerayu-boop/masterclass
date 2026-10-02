@@ -260,7 +260,7 @@
 
   /* ---------- Scroll reveal ---------- */
   const revealTargets = document.querySelectorAll(
-    '.sec .wrap > div, .sec .wrap > p, .sec .wrap > h2, .card, .wk, .case-card, .row, .brand-caption'
+    '.sec .wrap > div, .sec .wrap > p, .sec .wrap > h2, .card, .case-card, .row, .brand-caption'
   );
   if ('IntersectionObserver' in window && !reduced) {
     const io = new IntersectionObserver((entries) => {
@@ -269,10 +269,10 @@
       });
     }, {rootMargin: '0px 0px -8% 0px', threshold: 0.08});
     revealTargets.forEach((el) => {
-      if (el.closest('.reveal')) return; // parent already animates
-      if (el.querySelector(':scope > .card, :scope > .wk, :scope > .case-card, :scope > .row')) return; // children animate instead
+      if (el.closest('.reveal') || el.matches('.rm')) return; // parent already animates; roadmap has its own motion
+      if (el.querySelector(':scope > .card, :scope > .case-card, :scope > .row')) return; // children animate instead
       el.classList.add('reveal');
-      const sibs = [...el.parentElement.children].filter((c) => c.matches('.card, .wk, .case-card, .row'));
+      const sibs = [...el.parentElement.children].filter((c) => c.matches('.card, .case-card, .row'));
       const idx = sibs.indexOf(el);
       if (idx > 0) el.style.setProperty('--d', `${Math.min(idx, 6) * 0.08}s`);
       io.observe(el);
@@ -282,7 +282,7 @@
   /* ---------- Cursor spotlight on cards ---------- */
   if (finePointer) {
     document.addEventListener('pointermove', (e) => {
-      const el = e.target.closest && e.target.closest('.card, .case-card, .wkc');
+      const el = e.target.closest && e.target.closest('.card, .case-card, .rm-card');
       if (!el) return;
       const r = el.getBoundingClientRect();
       el.style.setProperty('--mx', `${e.clientX - r.left}px`);
@@ -290,19 +290,35 @@
     }, {passive: true});
   }
 
-  /* ---------- Roadmap fills while scrolling ---------- */
-  const road = document.querySelector('.road');
-  if (road) {
-    const weeks = [...road.querySelectorAll('.wk')];
+  /* ---------- Roadmap: rail fills, comet travels, steps light up ---------- */
+  const rm = document.getElementById('roadmap');
+  if (rm) {
+    const steps = [...rm.querySelectorAll('.rm-step')];
+    const nodes = steps.map((st) => st.querySelector('.rm-node'));
+    let queued = false;
+    const centerY = (el) => { const r = el.getBoundingClientRect(); return r.top + r.height / 2; };
     const update = () => {
-      const r = road.getBoundingClientRect();
-      const mark = window.innerHeight * 0.62;
-      const p = Math.min(1, Math.max(0, (mark - r.top) / r.height));
-      road.style.setProperty('--p', p.toFixed(3));
-      weeks.forEach((wk) => wk.classList.toggle('is-lit', wk.getBoundingClientRect().top + 30 < mark));
+      queued = false;
+      const top = rm.getBoundingClientRect().top;
+      const first = centerY(nodes[0]) - top;
+      const last = centerY(nodes[nodes.length - 1]) - top;
+      rm.style.setProperty('--lt', `${first}px`);
+      rm.style.setProperty('--lh', `${last - first}px`);
+      const mark = window.innerHeight * 0.55;
+      const fill = Math.min(last - first, Math.max(0, mark - top - first));
+      rm.style.setProperty('--fill', `${fill}px`);
+      let current = -1;
+      steps.forEach((st, i) => {
+        const lit = centerY(nodes[i]) <= mark + 1;
+        st.classList.toggle('is-lit', lit);
+        if (lit) current = i;
+        if (st.getBoundingClientRect().top < window.innerHeight * 0.9) st.classList.add('is-in');
+      });
+      steps.forEach((st, i) => st.classList.toggle('is-current', i === current));
     };
-    window.addEventListener('scroll', update, {passive: true});
-    window.addEventListener('resize', update);
+    const request = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', request, {passive: true});
+    window.addEventListener('resize', request);
     update();
   }
 })();
