@@ -84,8 +84,6 @@ a{color:var(--gold-light)}a:hover{color:#efe3bf}
 .section-artifacts .card .num{font-family:Inter,Arial,sans-serif;font-style:normal;font-weight:800;letter-spacing:-.06em}
 .section-artifacts .wrap>div:last-child{border-color:#6b592d!important;background:linear-gradient(100deg,#221e14,#1a171a)!important;color:#efe3bf!important}
 .section-roadmap{background:radial-gradient(circle at 12% 45%,rgba(201,168,76,.06),transparent 39%)}
-.section-skills .card:after{content:"↗";position:absolute;right:22px;top:19px;color:#e3c070;font-size:20px;font-weight:700}
-.section-skills .card{padding-top:55px;min-height:186px}
 .section-cases{background:radial-gradient(circle at 65% 0,rgba(201,168,76,.06),transparent 43%)}
 .case-card{border-color:#2d2b27;background:radial-gradient(circle at 95% 0,rgba(201,168,76,.16),transparent 40%),linear-gradient(145deg,#16140f,#0b0b0a 75%);box-shadow:inset 0 1px rgba(255,255,255,.04)}
 .case-card__top,.case-card__metric,.case-position{color:var(--gold-light)}
