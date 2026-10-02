@@ -207,3 +207,24 @@
 .hero-copy h1 span{display:inline-block;padding-right:.1em;margin-right:-.1em}
 @media(max-width:700px){.hero-copy h1{max-width:none;font-size:clamp(28px,10.6vw,60px)}}
 @media(max-width:380px){.hero-copy h1{font-size:10.6vw}}
+
+/* Hero: one gold CTA, secondary as a quiet link */
+.hero-actions{align-items:center;gap:26px}
+.hero-link{display:inline-flex;align-items:center;gap:10px;color:#d9d5ca;font-size:15px;font-weight:700;text-decoration:none;transition:color .2s ease}
+.hero-link span{display:inline-grid;place-items:center;width:30px;height:30px;border:1px solid #3a362c;border-radius:50%;color:#e3c070;transition:border-color .2s ease,transform .2s ease}
+.hero-link:hover{color:#fff}.hero-link:hover span{border-color:#c9a84c;transform:translateY(2px)}
+.nav-action,.nav-action:hover{background:rgba(201,168,76,.08);border:1px solid #6b592d;color:#efe3bf;box-shadow:none}
+.nav-action:hover{border-color:#c9a84c;color:#fff}
+@media(max-width:700px){.hero-actions{gap:16px}.hero-link{align-self:center;font-size:14px}}
+
+/* Final statement: centered, gold phrase on its own middle line */
+.final-title{text-align:center;text-wrap:balance}
+.final-title .gold{display:block;margin:.08em 0}
+
+/* Cases on phones: swipe only, neighbours peek in */
+@media(max-width:620px){
+ .case-nav{display:none}
+ .case-controls{width:auto}
+ .case-carousel{margin:0 -22px;padding:4px 22px 6px;gap:12px;scroll-padding:0 22px}
+ .case-card{flex:0 0 86%;scroll-snap-align:center;scroll-snap-stop:always}
+}
