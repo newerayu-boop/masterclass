@@ -234,22 +234,6 @@
 .rm-tools span{padding:5px 10px;border:1px solid #2d2b27;border-radius:8px;background:rgba(11,11,10,.6);color:#d8d3c6;font-size:12px;font-weight:700}
 .rm-step.is-lit .rm-tools span{border-color:#3a362c}
 
-/* Content factory strip under the roadmap */
-.rm-extra{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);align-items:center;gap:28px;padding:26px 28px;border:1px solid #4a3f1f;border-radius:20px;background:radial-gradient(circle at 0 0,rgba(201,168,76,.14),transparent 50%),linear-gradient(140deg,#1a170f,#0b0b0a 75%)}
-.rm-extra:after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;background:conic-gradient(from var(--ang),transparent 0 70%,#e3c070 82%,transparent 94%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin-ang 8s linear infinite}
-.rm-extra__eb{color:#e3c070;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
-.rm-extra h3{margin:8px 0 6px;color:#fff;font-size:clamp(22px,2.4vw,28px);font-weight:800;letter-spacing:-.03em;line-height:1.15}
-.rm-extra p{margin:0;color:#b4b0a6;font-size:15px;line-height:1.5}
-.rm-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0;padding:0;list-style:none;counter-reset:none}
-.rm-flow li{position:relative;display:flex;flex-direction:column;gap:4px;padding:14px 16px;border:1px solid #2d2b27;border-radius:14px;background:rgba(11,11,10,.65)}
-.rm-flow li:not(:last-child):after{content:"→";position:absolute;right:-12px;top:50%;z-index:1;display:grid;place-items:center;width:22px;height:22px;margin-top:-11px;border-radius:50%;background:#221e14;color:#e3c070;font-size:12px;font-weight:800}
-.rm-flow b{color:#c9a84c;font-size:11px;letter-spacing:.14em}
-.rm-flow span{color:#fff;font-size:15px;font-weight:800}
-.rm-flow small{color:#a9a497;font-size:12px;font-weight:600}
-@media(max-width:900px){.rm-extra{grid-template-columns:1fr;gap:18px;padding:22px 20px}}
-@media(max-width:560px){.rm-flow{grid-template-columns:1fr}.rm-flow li:not(:last-child):after{content:"↓";right:auto;left:50%;top:auto;bottom:-15px;margin:0 0 0 -11px}}
-@media(prefers-reduced-motion:reduce){.rm-extra:after{animation:none}}
-
 /* Floating CTA: appears after the first screen, hides at the contact section */
 .float-cta{position:fixed;right:24px;bottom:24px;z-index:60;display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:54px;padding:0 26px;border-radius:999px;background:linear-gradient(100deg,#c9a84c,#e3c070);color:#15130f;font-size:16px;font-weight:800;letter-spacing:-.01em;text-decoration:none;box-shadow:0 12px 34px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.12) inset,0 0 36px rgba(201,168,76,.35);opacity:0;visibility:hidden;transform:translateY(24px) scale(.96);transition:opacity .35s ease,transform .45s cubic-bezier(.2,.8,.2,1),visibility 0s linear .45s;overflow:hidden;isolation:isolate}
 .float-cta.is-visible{opacity:1;visibility:visible;transform:none;transition:opacity .35s ease,transform .45s cubic-bezier(.2,.8,.2,1),visibility 0s}
