@@ -280,3 +280,10 @@
  .preview-chart{padding:10px 12px}
  .chart-bars{height:84px}
 }
+/* Mobile hero balance: copy sits lower, dashboard is cropped by the screen edge */
+@media(max-width:700px){
+ .site-hero{height:100svh;min-height:600px}
+ .hero-copy{padding-top:78px}
+ .hero-stage{margin-top:40px}
+ .site-hero:after{content:"";position:absolute;left:0;right:0;bottom:0;z-index:4;height:110px;pointer-events:none;background:linear-gradient(transparent,#0b0b0a 85%)}
+}
