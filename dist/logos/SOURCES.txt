@@ -1,0 +1,2 @@
+OpenAI, Claude, Gemini, NotebookLM, Claude Code icons: @lobehub/icons 5.22.0 (MIT) — https://github.com/lobehub/lobe-icons
+HeyGen symbol: official HeyGen brand kit — https://www.heygen.com/brand-kit
