@@ -307,6 +307,7 @@
       const mark = window.innerHeight * 0.55;
       const fill = Math.min(last - first, Math.max(0, mark - top - first));
       rm.style.setProperty('--fill', `${fill}px`);
+      rm.classList.toggle('has-fill', fill > 2);
       let current = -1;
       steps.forEach((st, i) => {
         const lit = centerY(nodes[i]) <= mark + 1;
