@@ -321,4 +321,31 @@
     window.addEventListener('resize', request);
     update();
   }
+
+  /* ---------- Pricing carousel (phones) ---------- */
+  const priceGrid = document.getElementById('price-grid');
+  const priceTabs = document.getElementById('price-tabs');
+  if (priceGrid && priceTabs) {
+    const cards = [...priceGrid.children];
+    const tabs = [...priceTabs.querySelectorAll('button')];
+    const isCarousel = () => getComputedStyle(priceGrid).overflowX === 'auto';
+    const offsetFor = (card) => card.offsetLeft - (priceGrid.clientWidth - card.offsetWidth) / 2;
+    const setActive = () => {
+      const mid = priceGrid.scrollLeft + priceGrid.clientWidth / 2;
+      let best = 0, dist = Infinity;
+      cards.forEach((c, i) => {
+        const d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid);
+        if (d < dist) { dist = d; best = i; }
+      });
+      tabs.forEach((t, i) => { t.classList.toggle('is-active', i === best); t.setAttribute('aria-pressed', String(i === best)); });
+    };
+    tabs.forEach((t, i) => t.addEventListener('click', () => {
+      priceGrid.scrollTo({left: offsetFor(cards[i]), behavior: reduced ? 'auto' : 'smooth'});
+    }));
+    priceGrid.addEventListener('scroll', () => requestAnimationFrame(setActive), {passive: true});
+    // Open on the recommended plan.
+    const center = () => { if (isCarousel()) { priceGrid.scrollLeft = offsetFor(cards[1]); setActive(); } };
+    window.addEventListener('resize', setActive);
+    if (document.readyState === 'complete') center(); else window.addEventListener('load', center);
+  }
 })();

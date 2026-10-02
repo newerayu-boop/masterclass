@@ -182,3 +182,17 @@
  .js .reveal{opacity:1;transform:none;transition:none}
  .preview-panel{transition:none}
 }
+
+/* Pricing: swipe carousel on phones */
+.price-tabs{display:none}
+@media(max-width:700px){
+ .section-pricing .price-grid{display:flex!important;gap:12px!important;margin:0 -22px;padding:14px 22px 8px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 22px;scrollbar-width:none;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+ .section-pricing .price-grid::-webkit-scrollbar{display:none}
+ .section-pricing .price-grid>.card{flex:0 0 86%;scroll-snap-align:center;scroll-snap-stop:always}
+ .js .section-pricing .price-grid>.card.reveal{transform:none;opacity:1}
+ .price-tabs{display:flex;align-self:center;gap:4px;margin:-8px 0 -22px;padding:4px;border:1px solid #2d2b27;border-radius:999px;background:#12110d}
+ .price-tabs button{position:relative;min-height:38px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:#8f8b82;font:700 13px Inter,Arial,sans-serif;cursor:pointer;transition:background .3s ease,color .3s ease}
+ .price-tabs button.is-active{background:linear-gradient(100deg,#c9a84c,#e3c070);color:#15130f;box-shadow:0 4px 18px rgba(201,168,76,.3)}
+ .price-tabs button:nth-child(2):after{content:"";position:absolute;top:6px;right:7px;width:5px;height:5px;border-radius:50%;background:#e3c070;box-shadow:0 0 6px #e3c070}
+ .price-tabs button:nth-child(2).is-active:after{background:#15130f;box-shadow:none}
+}
