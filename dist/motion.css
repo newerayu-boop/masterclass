@@ -196,3 +196,9 @@
  .price-tabs button:nth-child(2):after{content:"";position:absolute;top:6px;right:7px;width:5px;height:5px;border-radius:50%;background:#e3c070;box-shadow:0 0 6px #e3c070}
  .price-tabs button:nth-child(2).is-active:after{background:#15130f;box-shadow:none}
 }
+
+/* Hero tagline */
+.hero-copy h1{margin-bottom:14px}
+.hero-tagline{margin:0 0 16px;color:#f2efe6;font-size:clamp(20px,2.3vw,30px);font-weight:700;letter-spacing:-.03em;line-height:1.2}
+.hero-tagline span{background:linear-gradient(110deg,#efe3bf,#c9a84c 60%,#e3c070);-webkit-background-clip:text;background-clip:text;color:transparent}
+@media(max-width:700px){.hero-copy h1{margin-bottom:10px}.hero-tagline{margin-bottom:12px;font-size:21px}}
