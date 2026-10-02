@@ -8,7 +8,8 @@
 <title>AI Mentorship 3.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=Playfair+Display:ital,wght@1,700&amp;display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap"></noscript>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0a'/%3E%3Cpath d='M14 45 30 15l7 14 5-9 9 25H14Zm12-8h11l-6-11-5 11Z' fill='%23c9a84c'/%3E%3C/svg%3E">
 <style>
 body{margin:0;background:#0b0b0a;color:#bbbbba;font-family:Inter,"Helvetica Neue",Arial,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -31,17 +32,6 @@ a{color:#c9a84c}a:hover{color:#e0c46c}
 .tag{display:inline-block;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:700;letter-spacing:.12em}
 .t-fakt{background:#263026;color:#8fcaa9}
 .t-hisob{background:#332b17;color:#e3c070}
-.num{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:700;color:#c9a84c}
-.road{position:relative}
-.road:before{content:"";position:absolute;left:14px;top:10px;bottom:10px;width:26px;background:#1d1a14;border-radius:6px;box-shadow:7px 5px 0 #b8953f,0 0 30px rgba(201,168,76,.18)}
-.wk{position:relative;padding-left:76px;padding-bottom:22px}
-.node{position:absolute;left:8px;top:26px;width:38px;height:15px;border-radius:50%;background:#e3c070;box-shadow:0 0 22px 6px rgba(246,220,140,.45)}
-.node.big{left:4px;width:46px;height:18px;background:#f6dc8c;box-shadow:0 0 30px 10px rgba(246,220,140,.5)}
-.wkc{background:#16140f;border:1.5px solid #2d2b27;border-radius:20px;padding:24px;box-sizing:border-box}
-.wkc.hot{border-color:#4a3f1f;background:#1a170f}
-.wk-eb{font-size:12px;font-weight:700;letter-spacing:.18em;color:#c9a84c}
-.wk-t{margin:8px 0 12px;color:#fff;font-size:clamp(21px,2.4vw,27px);font-weight:800;letter-spacing:-.02em;line-height:1.15}
-.wk-brief{margin:0;color:#bcb7ad;font-size:15px;line-height:1.55}
 .ls{margin:0 0 14px;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
 .ls li{font-size:15px;line-height:1.55}
 .ls b{color:#fff}
@@ -51,7 +41,7 @@ a{color:#c9a84c}a:hover{color:#e0c46c}
 .tl li{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #26241f;font-size:14px;line-height:1.45}
 .tl li span:last-child{color:#8a8478;white-space:nowrap}
 
-html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-decoration-skip-ink:auto}.btn{transition:background .18s ease,border-color .18s ease,transform .18s ease}.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0)}:focus-visible{outline:2px solid #e3c070;outline-offset:3px}.wrap,.card,.wkc{min-width:0}.tl li span:first-child{min-width:0}.tl li span:last-child{text-align:right}@media(max-width:640px){.sec{padding:58px 0}header{padding-bottom:58px!important}header .wrap{gap:42px!important}.card,.wkc{padding:21px}.wk{padding-left:48px}.road:before{left:8px;width:19px}.node{left:1px;width:33px}.node.big{left:0;width:37px}.tl li{flex-wrap:wrap}.tl li span:last-child{white-space:normal}.row b{white-space:normal;text-align:right}.btn{width:100%}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-decoration-skip-ink:auto}.btn{transition:background .18s ease,border-color .18s ease,transform .18s ease}.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0)}:focus-visible{outline:2px solid #e3c070;outline-offset:3px}.wrap,.card{min-width:0}.tl li span:first-child{min-width:0}.tl li span:last-child{text-align:right}@media(max-width:640px){.sec{padding:58px 0}header{padding-bottom:58px!important}header .wrap{gap:42px!important}.card{padding:21px}.tl li{flex-wrap:wrap}.tl li span:last-child{white-space:normal}.row b{white-space:normal;text-align:right}.btn{width:100%}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
 .lead-form{display:grid;gap:15px}.lead-form label{display:grid;gap:8px;color:#e8e6df;font-size:14px;font-weight:600}.lead-form input,.lead-form select{width:100%;min-height:50px;padding:12px 14px;border:1.5px solid #3a362c;border-radius:12px;background:#0f0e0c;color:#fff;font:inherit}.lead-form input::placeholder{color:#8a8478}.lead-form input:focus,.lead-form select:focus{outline:2px solid #c9a84c;outline-offset:2px}.lead-form button{cursor:pointer;border:0;width:100%;margin-top:2px}.lead-form p{margin:0;min-height:1.5em;font-size:14px;line-height:1.5}.lead-form p.error{color:#ffb8ae}.lead-form p.success{color:#8fcaa9}[hidden]{display:none!important}
 .brand-marquee{width:100vw;margin-left:calc(50% - 50vw);overflow:hidden;mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent)}
 .brand-marquee__track{display:flex;width:max-content;animation:brand-scroll 32s linear infinite;will-change:transform}
@@ -102,15 +92,15 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 <div class="hero-copy">
 <div class="hero-kicker"><span class="pulse-dot"></span> AI bilan strategik boshqaruv · 6 hafta</div>
 <h1>AI Mentorship <span>3.0</span></h1>
-<p><strong>From operator to strategist.</strong> 6 haftada operatorlikdan strategik boshqaruvga.</p>
-<div class="hero-actions"><a class="btn btn-gold" href="#diagnostika">Diagnostikaga yozilish <span aria-hidden="true">↗</span></a><a class="btn btn-ghost" href="#dastur">Dasturni ko‘rish <span aria-hidden="true">↓</span></a></div>
+<p><strong>Ijrochidan strategga.</strong> 6 hafta ichida rutinadan strategik boshqaruvga o‘tasiz.</p>
 </div>
-<div class="hero-stage" aria-hidden="true">
-<canvas class="planet" id="planet"></canvas>
-<div class="planet-flare"></div>
-<div class="float-chip float-chip--a"><b class="fc-dot"></b><span id="ticker">Jarvis: kunlik hisobot tayyor</span></div>
-<div class="float-chip float-chip--b"><span class="fc-num">−40</span> soat / hafta rutina</div>
-<div class="preview-panel" id="preview-panel">
+<div class="hero-stage">
+<canvas class="planet" id="planet" aria-hidden="true"></canvas>
+<div class="planet-flare" aria-hidden="true"></div>
+<div class="stage-caption">Biznesingizni <span>bitta joyda</span> boshqaring</div>
+<div class="float-chip float-chip--a" aria-hidden="true"><b class="fc-dot"></b><span id="ticker">Jarvis: kunlik hisobot tayyor</span></div>
+<div class="float-chip float-chip--b" aria-hidden="true"><span class="fc-num">−40</span> soat / hafta rutina</div>
+<div class="preview-panel" id="preview-panel" aria-hidden="true">
 <div class="preview-shine"></div>
 <div class="preview-top"><span class="preview-logo">AI <span>Mentorship</span> <small>3.0</small><i></i></span>
 <span class="preview-tabs"><em class="is-active">▥ Analitika</em><em>◎ Agentlar</em><em>☰ Mijozlar</em><em>✦ Kontent</em><em>⚙ Sozlamalar</em></span>
@@ -139,34 +129,34 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 <div class="brand-marquee" role="group" aria-label="Dasturda ishlatiladigan AI vositalar">
 <div class="brand-marquee__track">
 <div class="brand-marquee__group">
-<span class="brand-pill"><img src="./logos/chatgpt.svg" alt="" width="25" height="25">ChatGPT</span>
-<span class="brand-pill"><img src="./logos/claude.svg" alt="" width="25" height="25">Claude</span>
-<span class="brand-pill"><img src="./logos/gemini.svg" alt="" width="25" height="25">Gemini</span>
-<span class="brand-pill"><img src="./logos/notebooklm.svg" alt="" width="25" height="25">NotebookLM</span>
-<span class="brand-pill"><img src="./logos/claude-code.svg" alt="" width="25" height="25">Claude Code</span>
-<span class="brand-pill"><img src="./logos/heygen.svg" alt="" width="25" height="25">HeyGen</span>
+<span class="brand-pill"><img src="./logos/chatgpt.svg" alt="" width="25" height="25" decoding="async">ChatGPT</span>
+<span class="brand-pill"><img src="./logos/claude.svg" alt="" width="25" height="25" decoding="async">Claude</span>
+<span class="brand-pill"><img src="./logos/gemini.svg" alt="" width="25" height="25" decoding="async">Gemini</span>
+<span class="brand-pill"><img src="./logos/notebooklm.svg" alt="" width="25" height="25" decoding="async">NotebookLM</span>
+<span class="brand-pill"><img src="./logos/claude-code.svg" alt="" width="25" height="25" decoding="async">Claude Code</span>
+<span class="brand-pill"><img src="./logos/heygen.png" alt="" width="25" height="25" decoding="async">HeyGen</span>
 </div>
 <div class="brand-marquee__group" aria-hidden="true">
-<span class="brand-pill"><img src="./logos/chatgpt.svg" alt="" width="25" height="25">ChatGPT</span>
-<span class="brand-pill"><img src="./logos/claude.svg" alt="" width="25" height="25">Claude</span>
-<span class="brand-pill"><img src="./logos/gemini.svg" alt="" width="25" height="25">Gemini</span>
-<span class="brand-pill"><img src="./logos/notebooklm.svg" alt="" width="25" height="25">NotebookLM</span>
-<span class="brand-pill"><img src="./logos/claude-code.svg" alt="" width="25" height="25">Claude Code</span>
-<span class="brand-pill"><img src="./logos/heygen.svg" alt="" width="25" height="25">HeyGen</span>
+<span class="brand-pill"><img src="./logos/chatgpt.svg" alt="" width="25" height="25" decoding="async">ChatGPT</span>
+<span class="brand-pill"><img src="./logos/claude.svg" alt="" width="25" height="25" decoding="async">Claude</span>
+<span class="brand-pill"><img src="./logos/gemini.svg" alt="" width="25" height="25" decoding="async">Gemini</span>
+<span class="brand-pill"><img src="./logos/notebooklm.svg" alt="" width="25" height="25" decoding="async">NotebookLM</span>
+<span class="brand-pill"><img src="./logos/claude-code.svg" alt="" width="25" height="25" decoding="async">Claude Code</span>
+<span class="brand-pill"><img src="./logos/heygen.png" alt="" width="25" height="25" decoding="async">HeyGen</span>
 </div><div class="brand-marquee__group" aria-hidden="true">
-<span class="brand-pill"><img src="./logos/chatgpt.svg" alt="" width="25" height="25">ChatGPT</span>
-<span class="brand-pill"><img src="./logos/claude.svg" alt="" width="25" height="25">Claude</span>
-<span class="brand-pill"><img src="./logos/gemini.svg" alt="" width="25" height="25">Gemini</span>
-<span class="brand-pill"><img src="./logos/notebooklm.svg" alt="" width="25" height="25">NotebookLM</span>
-<span class="brand-pill"><img src="./logos/claude-code.svg" alt="" width="25" height="25">Claude Code</span>
-<span class="brand-pill"><img src="./logos/heygen.svg" alt="" width="25" height="25">HeyGen</span>
+<span class="brand-pill"><img src="./logos/chatgpt.svg" alt="" width="25" height="25" decoding="async">ChatGPT</span>
+<span class="brand-pill"><img src="./logos/claude.svg" alt="" width="25" height="25" decoding="async">Claude</span>
+<span class="brand-pill"><img src="./logos/gemini.svg" alt="" width="25" height="25" decoding="async">Gemini</span>
+<span class="brand-pill"><img src="./logos/notebooklm.svg" alt="" width="25" height="25" decoding="async">NotebookLM</span>
+<span class="brand-pill"><img src="./logos/claude-code.svg" alt="" width="25" height="25" decoding="async">Claude Code</span>
+<span class="brand-pill"><img src="./logos/heygen.png" alt="" width="25" height="25" decoding="async">HeyGen</span>
 </div><div class="brand-marquee__group" aria-hidden="true">
-<span class="brand-pill"><img src="./logos/chatgpt.svg" alt="" width="25" height="25">ChatGPT</span>
-<span class="brand-pill"><img src="./logos/claude.svg" alt="" width="25" height="25">Claude</span>
-<span class="brand-pill"><img src="./logos/gemini.svg" alt="" width="25" height="25">Gemini</span>
-<span class="brand-pill"><img src="./logos/notebooklm.svg" alt="" width="25" height="25">NotebookLM</span>
-<span class="brand-pill"><img src="./logos/claude-code.svg" alt="" width="25" height="25">Claude Code</span>
-<span class="brand-pill"><img src="./logos/heygen.svg" alt="" width="25" height="25">HeyGen</span>
+<span class="brand-pill"><img src="./logos/chatgpt.svg" alt="" width="25" height="25" decoding="async">ChatGPT</span>
+<span class="brand-pill"><img src="./logos/claude.svg" alt="" width="25" height="25" decoding="async">Claude</span>
+<span class="brand-pill"><img src="./logos/gemini.svg" alt="" width="25" height="25" decoding="async">Gemini</span>
+<span class="brand-pill"><img src="./logos/notebooklm.svg" alt="" width="25" height="25" decoding="async">NotebookLM</span>
+<span class="brand-pill"><img src="./logos/claude-code.svg" alt="" width="25" height="25" decoding="async">Claude Code</span>
+<span class="brand-pill"><img src="./logos/heygen.png" alt="" width="25" height="25" decoding="async">HeyGen</span>
 </div>
 </div>
 </div>
@@ -181,7 +171,7 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 16px">
 <div class="card">
-<div style="color: #8a8478; font-size: 13px; font-weight: 700; letter-spacing: .16em; margin-bottom: 16px">OPERATOR</div>
+<div style="color: #8a8478; font-size: 13px; font-weight: 700; letter-spacing: .16em; margin-bottom: 16px">ESKI USUL</div>
 <ul class="ls" style="margin: 0">
 <li>✕ Rutinaga botgan, har bir qadam uchun kadr kutadi</li>
 <li>✕ Oylik to‘laydi, hisobotlarni haftalab kutadi</li>
@@ -195,93 +185,31 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 </ul>
 </div>
 </div>
-<p style="margin: 0; color: #fff; font-size: clamp(19px, 2.2vw, 26px); font-weight: 700; line-height: 1.35; max-width: 34ch">6 haftadan keyin — bitta xodim oyligidan kam pulga butun AI-otdel. <span class="gold">Operator emas, strateg bo‘lib chiqasiz.</span></p>
-</div>
-</section>
-
-<!-- 4 ARTEFAKT -->
-<section class="sec section-artifacts">
-<div class="wrap" style="display: flex; flex-direction: column; gap: 36px">
-<div style="display: flex; flex-direction: column; gap: 18px">
-<div class="eb">Kutilayotgan natija</div>
-<h2 class="h2" style="max-width: 16ch">Kurs oxirida qo‘lingizda <span class="gold">4 ta artefakt</span></h2>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 16px">
-<div class="card" style="display: flex; flex-direction: column; gap: 12px"><div class="num" style="font-size: 32px">01</div><div style="color: #fff; font-size: 21px; font-weight: 800">5 ta oddiy agent</div><div style="font-size: 15px; margin-top: auto; padding-top: 12px; border-top: 1px solid #292928"><b style="color: #c9a84c">Kalit:</b> 5 agent ishlayapti</div></div>
-<div class="card" style="display: flex; flex-direction: column; gap: 12px"><div class="num" style="font-size: 32px">02</div><div style="color: #fff; font-size: 21px; font-weight: 800">Mukammal agent «Jarvis»</div><div style="font-size: 15px; margin-top: auto; padding-top: 12px; border-top: 1px solid #292928"><b style="color: #c9a84c">Kalit:</b> Jarvis sozlangan</div></div>
-<div class="card" style="display: flex; flex-direction: column; gap: 12px"><div class="num" style="font-size: 32px">03</div><div style="color: #fff; font-size: 21px; font-weight: 800">Jonli dashboard</div><div style="font-size: 15px; margin-top: auto; padding-top: 12px; border-top: 1px solid #292928"><b style="color: #c9a84c">Kalit:</b> Ma’lumotlar ekranda</div></div>
-<div class="card" style="display: flex; flex-direction: column; gap: 12px"><div class="num" style="font-size: 32px">04</div><div style="color: #fff; font-size: 21px; font-weight: 800">AI strategiyasi</div><div style="font-size: 15px; margin-top: auto; padding-top: 12px; border-top: 1px solid #292928"><b style="color: #c9a84c">Kalit:</b> Strategiya himoyasi</div></div>
-</div>
-<div style="padding: 16px 20px; border-radius: 14px; border: 1.5px solid #4a3f1f; background: #1a170f; color: #efe3bf; font-size: 16px; line-height: 1.5"><b class="gold">BONUS:</b> 4 artefaktni to‘liq topshirganlarga klubga 1 oy bepul a’zolik.</div>
+<p style="margin: 0; color: #fff; font-size: clamp(19px, 2.2vw, 26px); font-weight: 700; line-height: 1.35; max-width: 34ch">6 haftadan keyin — bitta xodim oyligidan kam pulga butun AI-otdel. <span class="gold">Ijrochi emas, strateg bo‘lib chiqasiz.</span></p>
 </div>
 </section>
 
 <!-- ROADMAP -->
 <section id="dastur" class="sec section-roadmap">
-<div class="wrap" style="display: flex; flex-direction: column; gap: 40px; max-width: 860px">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-direction: column; gap: 18px">
 <div class="eb">Yo‘l xaritasi</div>
-<h2 class="h2" style="max-width: 16ch">Transformatsiya: <span class="gold">6 haftalik zavod</span></h2>
+<h2 class="h2 rm-title">Transformatsiya: <span class="gold">6&nbsp;haftalik zavod</span></h2>
 <p class="lead">6 hafta, 12 jonli dars va har bosqichda amaliy natija.</p>
 </div>
 
-<div class="road">
-
-<div class="wk"><div class="node big"></div>
-<div class="wkc"><div class="wk-eb">0-HAFTA</div><h3 class="wk-t">Tayyorgarlik</h3><p class="wk-brief">Ish muhitini sozlaysiz va kursga tayyorlanasiz.</p></div></div>
-
-<div class="wk"><div class="node"></div>
-<div class="wkc"><div class="wk-eb">1-HAFTA</div><h3 class="wk-t">Biznes tahlili</h3>
-<p class="wk-brief">Biznesingizni tahlil qilib, AI uchun bilim bazasini yaratasiz.</p>
-</div></div>
-
-<div class="wk"><div class="node"></div>
-<div class="wkc"><div class="wk-eb">2-HAFTA</div><h3 class="wk-t">AI-agentlar jamoasi</h3>
-<p class="wk-brief">Takroriy vazifalar uchun 5 ta ishlaydigan AI-agent yaratasiz.</p>
-</div></div>
-
-<div class="wk"><div class="node"></div>
-<div class="wkc"><div class="wk-eb">3-HAFTA</div><h3 class="wk-t">Boshqaruv paneli</h3>
-<p class="wk-brief">Biznesingizning muhim raqamlarini jonli dashboardga yig‘asiz.</p>
-</div></div>
-
-<div class="wk"><div class="node big"></div>
-<div class="wkc hot"><div class="wk-eb">BOOTCAMP</div><h3 class="wk-t">Amaliy intensiv</h3>
-<p class="wk-brief">Vazifalarni yakunlab, Jarvis uchun asos tayyorlaysiz.</p></div></div>
-
-<div class="wk"><div class="node"></div>
-<div class="wkc"><div class="wk-eb">4-HAFTA</div><h3 class="wk-t">Shaxsiy «Jarvis»</h3>
-<p class="wk-brief">Kompyuteringizda real vazifalarni bajaradigan yordamchini sozlaysiz.</p>
-</div></div>
-
-<div class="wk"><div class="node"></div>
-<div class="wkc"><div class="wk-eb">5-HAFTA</div><h3 class="wk-t">Ilova va AI strategiyasi</h3>
-<p class="wk-brief">O‘z ilovangizni yaratib, biznesga AI joriy etish rejasini tuzasiz.</p>
-</div></div>
-
-<div class="wk" style="padding-bottom: 0"><div class="node big"></div>
-<div class="wkc hot"><div class="wk-eb">6-HAFTA</div><h3 class="wk-t">Strategiya himoyasi</h3>
-<p class="wk-brief">AI strategiyangizni taqdim etib, kursni yakunlaysiz.</p>
-</div></div>
-
-</div>
-</div>
-</section>
-
-<!-- SKILLS -->
-<section class="sec section-skills">
-<div class="wrap" style="display: flex; flex-direction: column; gap: 36px">
-<div style="display: flex; flex-direction: column; gap: 18px">
-<div class="eb">Nimalarni o‘rganasiz</div>
-<h2 class="h2" style="max-width: 20ch">Turli vositalarni bog‘lab, <span class="gold">noldan tizim</span> yaratish</h2>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px">
-<div class="card"><div style="color: #fff; font-size: 19px; font-weight: 800; margin-bottom: 8px">Oddiy AI agentlar</div><div style="font-size: 15px; line-height: 1.55">Takrorlanuvchi vazifalar uchun. Gemini Gems, Claude Project.</div></div>
-<div class="card"><div style="color: #fff; font-size: 19px; font-weight: 800; margin-bottom: 8px">Murakkab AI agentlar</div><div style="font-size: 15px; line-height: 1.55">Jarayonlarni optimallashtirish, orkestratsiya va rejalashtirish. Claude Cowork, OpenClaw + Claude Code.</div></div>
-<div class="card"><div style="color: #fff; font-size: 19px; font-weight: 800; margin-bottom: 8px">Dashboardlar</div><div style="font-size: 15px; line-height: 1.55">Turli bo‘limlar ma’lumotlarini bir joyga yig‘uvchi va tahlil qiluvchi panellar.</div></div>
-<div class="card"><div style="color: #fff; font-size: 19px; font-weight: 800; margin-bottom: 8px">Murakkab dasturlar va saytlar</div><div style="font-size: 15px; line-height: 1.55">Biznes uchun to‘liq ishlaydigan saytlar va ilovalar — Claude Code orqali yaratish va deploy qilish.</div></div>
-<div class="card"><div style="color: #fff; font-size: 19px; font-weight: 800; margin-bottom: 8px">Shaxsiy «Jarvis» assistenti</div><div style="font-size: 15px; line-height: 1.55">Shaxsiy va biznes vazifalarni boshqaruvchi bosh agent. Siz strategiya bilan shug‘ullanasiz — Jarvis operatsion ishlarni bajaradi.</div></div>
-<div class="card"><div style="color: #fff; font-size: 19px; font-weight: 800; margin-bottom: 8px">Ekspertsiz kontent zavodi</div><div style="font-size: 15px; line-height: 1.55">Haftasiga 100+ kontent: tahlil (Gemini, NotebookLM) → avatar va video (HeyGen) → avtomontaj (Submagic).</div></div>
+<div class="rm" id="roadmap">
+<div class="rm-line" aria-hidden="true"><i class="rm-fill"></i><b class="rm-comet"></b></div>
+<ol class="rm-list">
+<li class="rm-step"><div class="rm-node" aria-hidden="true"><span>00</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">00</span><div class="rm-meta"><span class="rm-week">0-HAFTA</span><span class="rm-tag">Start</span></div><h3>Tayyorgarlik</h3><p>Ish muhitini sozlaysiz va kursga tayyorlanasiz.</p></div></li>
+<li class="rm-step"><div class="rm-node" aria-hidden="true"><span>01</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">01</span><div class="rm-meta"><span class="rm-week">1-HAFTA</span><span class="rm-tag">Bilim bazasi</span></div><h3>Biznes tahlili</h3><p>Biznesingizni tahlil qilib, AI uchun bilim bazasini yaratasiz.</p></div></li>
+<li class="rm-step"><div class="rm-node" aria-hidden="true"><span>02</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">02</span><div class="rm-meta"><span class="rm-week">2-HAFTA</span><span class="rm-tag">5 ta agent</span></div><h3>AI-agentlar jamoasi</h3><p>Takroriy vazifalar uchun 5 ta ishlaydigan AI-agent yaratasiz.</p><div class="rm-tools"><span>Gemini Gems</span><span>Claude Project</span></div></div></li>
+<li class="rm-step"><div class="rm-node" aria-hidden="true"><span>03</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">03</span><div class="rm-meta"><span class="rm-week">3-HAFTA</span><span class="rm-tag">Dashboard</span></div><h3>Boshqaruv paneli</h3><p>Biznesingizning muhim raqamlarini jonli dashboardga yig‘asiz.</p></div></li>
+<li class="rm-step rm-step--key"><div class="rm-node" aria-hidden="true"><span>★</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">B</span><div class="rm-meta"><span class="rm-week">BOOTCAMP</span><span class="rm-tag">Intensiv</span></div><h3>Amaliy intensiv</h3><p>Vazifalarni yakunlab, Jarvis uchun asos tayyorlaysiz.</p></div></li>
+<li class="rm-step"><div class="rm-node" aria-hidden="true"><span>04</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">04</span><div class="rm-meta"><span class="rm-week">4-HAFTA</span><span class="rm-tag">Jarvis</span></div><h3>Shaxsiy «Jarvis»</h3><p>Kompyuteringizda real vazifalarni bajaradigan yordamchini sozlaysiz.</p><div class="rm-tools"><span>Claude Cowork</span><span>OpenClaw</span><span>Claude Code</span></div></div></li>
+<li class="rm-step"><div class="rm-node" aria-hidden="true"><span>05</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">05</span><div class="rm-meta"><span class="rm-week">5-HAFTA</span><span class="rm-tag">Ilova</span></div><h3>Ilova va AI strategiyasi</h3><p>O‘z ilovangizni yaratib, biznesga AI joriy etish rejasini tuzasiz.</p><div class="rm-tools"><span>Claude Code</span></div></div></li>
+<li class="rm-step rm-step--key"><div class="rm-node" aria-hidden="true"><span>06</span></div><div class="rm-card"><span class="rm-num" aria-hidden="true">06</span><div class="rm-meta"><span class="rm-week">6-HAFTA</span><span class="rm-tag">Finish</span></div><h3>Strategiya himoyasi</h3><p>AI strategiyangizni taqdim etib, kursni yakunlaysiz.</p></div></li>
+</ol>
 </div>
 </div>
 </section>
@@ -394,7 +322,8 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 <div style="display: flex; flex-wrap: wrap; gap: 10px">
 <span class="chip">6 hafta</span><span class="chip">12 jonli dars + 0-hafta + bootcamp</span><span class="chip">Payshanba kurator-zoom</span><span class="chip">Yangi oqim — faqat 20 ishtirokchi</span>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 16px; align-items: stretch">
+<div class="price-tabs" id="price-tabs" role="group" aria-label="Tariflar"><button type="button" aria-label="AI — Strateg tarifi">Strateg</button><button type="button" aria-label="AI — Team tarifi">Team</button><button type="button" aria-label="AI — Tizim tarifi">Tizim</button></div>
+<div class="price-grid" id="price-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 16px; align-items: stretch">
 
 <div class="card" style="display: flex; flex-direction: column; gap: 16px">
 <div><div style="font-size: 13px; font-weight: 700; letter-spacing: .16em; color: #8a8478">TARIF 01</div><div style="color: #fff; font-size: 24px; font-weight: 800; margin-top: 6px">AI — Strateg</div></div>
@@ -406,7 +335,6 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 <li><span>Yopiq chat + payshanba kurator-zoom</span><span>$300</span></li>
 <li><span>Darslar yozuvi abadiy + vositalar yangilanishi 6 oy</span><span>$800</span></li>
 </ul>
-<div style="font-size: 14px; line-height: 1.5; padding: 12px 14px; border-radius: 12px; background: #221e14; color: #efe3bf"><b class="gold">Bugun band qilsangiz:</b> shaxsiy strategik sessiya BEPUL (+$500).</div>
 <div style="font-size: 14px"><b style="color: #fff">Natija:</b> 6 haftada 4 artefakt.</div>
 <div style="margin-top: auto; display: flex; align-items: baseline; gap: 12px"><span style="color: #8a8478; text-decoration: line-through; font-size: 20px">$5,000</span><span style="color: #fff; font-size: 42px; font-weight: 800; letter-spacing: -0.03em">$2,500</span></div>
 </div>
@@ -421,7 +349,6 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 <li><span>Alohida kurator va yopiq chat</span><span>$500</span></li>
 <li><span>2 ta guruhiy razbor</span><span>$400</span></li>
 </ul>
-<div style="font-size: 14px; line-height: 1.5; padding: 12px 14px; border-radius: 12px; background: #2a2413; color: #efe3bf"><b class="gold">Bugun band qilsangiz:</b> jamoa uchun qo‘shimcha razbor BEPUL (+$200).</div>
 <div style="font-size: 14px; line-height: 1.5"><b style="color: #fff">Natija:</b> jamoangiz AI bilan mustaqil ishlaydi, raqamlar dashboardda, rutina agentlarda.</div>
 <div style="margin-top: auto; display: flex; align-items: baseline; gap: 12px"><span style="color: #8a8478; text-decoration: line-through; font-size: 20px">$9,900</span><span style="color: #fff; font-size: 42px; font-weight: 800; letter-spacing: -0.03em">$5,000</span></div>
 </div>
@@ -436,7 +363,6 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 <li><span>Kontent + sotuv + analitika tizimi</span><span>$2,000</span></li>
 <li><span>Jamoa o‘qitish + 3 oy aktiv nazorat</span><span>$3,000</span></li>
 </ul>
-<div style="font-size: 14px; line-height: 1.5; padding: 12px 14px; border-radius: 12px; background: #221e14; color: #efe3bf"><b class="gold">Bugun band qilsangiz:</b> birinchi oylik nazorat BEPUL (+$500).</div>
 <div style="font-size: 14px; line-height: 1.5"><b style="color: #fff">Natija:</b> 90 kunda marketing, kontent va sotuv jarayonlarining asosiy qismi avtomatlashtiriladi — tizim sizsiz ishlaydi.</div>
 <div style="margin-top: auto; display: flex; align-items: baseline; gap: 12px"><span style="color: #8a8478; text-decoration: line-through; font-size: 20px">$16,000+</span><span style="color: #fff; font-size: 42px; font-weight: 800; letter-spacing: -0.03em">$10,000</span></div>
 </div>
@@ -482,12 +408,13 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 <div class="final-horizon" aria-hidden="true"><i></i></div>
 <div class="wrap" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; max-width: 860px">
 <p style="margin: 0; font-size: clamp(16px, 1.7vw, 19px); line-height: 1.6; max-width: 46ch">«Qanday qilishni» emas — «nima qilishni» bilish muhimroq. Vositalar o‘zgaradi, to‘g‘ri qaror esa qoladi.</p>
-<h2 class="h2" style="font-size: clamp(26px, 3.6vw, 44px)">AI sizni ishsiz qoldirmaydi. <span class="gold">Bugun AI’ni joriy qilgan inson</span> sizni ishsiz qoldiradi.</h2>
+<h2 class="h2 final-title" style="font-size: clamp(26px, 3.6vw, 44px)">AI sizni ishsiz qoldirmaydi. <span class="gold">Bugun AI’ni joriy qilgan raqobatchi</span> sizni ishsiz qoldiradi.</h2>
 <div style="font-size: 14px; color: #8a8478; margin-top: 20px">@kodiyusufbay</div>
 </div>
 </section>
 
 </div>
+<a class="float-cta" id="float-cta" href="#diagnostika">Diagnostikaga yozilish <span aria-hidden="true">↗</span></a>
 <script>
 const caseCarousel = document.getElementById('case-carousel');
 const caseCards = [...caseCarousel.querySelectorAll('.case-card')];

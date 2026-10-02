@@ -23,7 +23,8 @@
       Math.sin(lon * 5.3 + 1.7) * Math.sin(lat * 4.1 + 0.6) * 0.6 +
       Math.cos(lon * 1.7 - lat * 3.3) * 0.45;
     const points = [];
-    const N = 6500;
+    const small = window.matchMedia('(max-width: 700px)').matches;
+    const N = small ? 3200 : 6500; // fewer surface dots on phones
     const golden = Math.PI * (3 - Math.sqrt(5));
     for (let i = 0; i < N; i++) {
       const y = 1 - (i / (N - 1)) * 2;
@@ -40,7 +41,7 @@
     const stars = Array.from({length: 120}, () => [Math.random(), Math.random() * 0.75, Math.random() * 1.2 + 0.2, Math.random() * Math.PI * 2]);
 
     function resize() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, small ? 1.5 : 2);
       w = canvas.clientWidth;
       h = canvas.clientHeight;
       canvas.width = Math.round(w * dpr);
@@ -165,19 +166,24 @@
       ring(t, true);
     }
 
+    // ~30fps on phones; the loop stops entirely while the planet is off screen.
+    const frameGap = small ? 32 : 0;
+    let last = 0, running = false;
     function loop(time) {
-      if (visible) draw(time);
-      if (!reduced) requestAnimationFrame(loop);
+      if (!visible || reduced) { running = false; return; }
+      if (time - last >= frameGap) { last = time; draw(time); }
+      requestAnimationFrame(loop);
     }
+    const start = () => { if (!running && !reduced) { running = true; requestAnimationFrame(loop); } };
     resize();
     window.addEventListener('resize', () => { resize(); if (reduced) draw(0); });
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(canvas);
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) start(); }).observe(canvas);
     }
     if (finePointer) {
       window.addEventListener('pointermove', (e) => { mouseX = (e.clientX / window.innerWidth) * 2 - 1; }, {passive: true});
     }
-    requestAnimationFrame(loop);
+    if (reduced) draw(0); else start();
   }
 
   /* ---------- Live dashboard ---------- */
@@ -229,8 +235,13 @@
     };
     shuffleBars();
     metrics[0] && metrics[0].classList.add('is-hot');
+    let panelVisible = true;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => { panelVisible = e.isIntersecting; }).observe(panel);
+    }
     if (!reduced) {
       setInterval(() => {
+        if (!panelVisible || document.hidden) return;
         step++;
         shuffleBars();
         agents.forEach((a) => a.style.setProperty('--w', `${35 + Math.round(Math.random() * 62)}%`));
@@ -260,7 +271,7 @@
 
   /* ---------- Scroll reveal ---------- */
   const revealTargets = document.querySelectorAll(
-    '.sec .wrap > div, .sec .wrap > p, .sec .wrap > h2, .card, .wk, .case-card, .row, .brand-caption'
+    '.sec .wrap > div, .sec .wrap > p, .sec .wrap > h2, .card, .case-card, .row, .brand-caption'
   );
   if ('IntersectionObserver' in window && !reduced) {
     const io = new IntersectionObserver((entries) => {
@@ -269,10 +280,10 @@
       });
     }, {rootMargin: '0px 0px -8% 0px', threshold: 0.08});
     revealTargets.forEach((el) => {
-      if (el.closest('.reveal')) return; // parent already animates
-      if (el.querySelector(':scope > .card, :scope > .wk, :scope > .case-card, :scope > .row')) return; // children animate instead
+      if (el.closest('.reveal') || el.matches('.rm')) return; // parent already animates; roadmap has its own motion
+      if (el.querySelector(':scope > .card, :scope > .case-card, :scope > .row')) return; // children animate instead
       el.classList.add('reveal');
-      const sibs = [...el.parentElement.children].filter((c) => c.matches('.card, .wk, .case-card, .row'));
+      const sibs = [...el.parentElement.children].filter((c) => c.matches('.card, .case-card, .row'));
       const idx = sibs.indexOf(el);
       if (idx > 0) el.style.setProperty('--d', `${Math.min(idx, 6) * 0.08}s`);
       io.observe(el);
@@ -282,7 +293,7 @@
   /* ---------- Cursor spotlight on cards ---------- */
   if (finePointer) {
     document.addEventListener('pointermove', (e) => {
-      const el = e.target.closest && e.target.closest('.card, .case-card, .wkc');
+      const el = e.target.closest && e.target.closest('.card, .case-card, .rm-card');
       if (!el) return;
       const r = el.getBoundingClientRect();
       el.style.setProperty('--mx', `${e.clientX - r.left}px`);
@@ -290,19 +301,85 @@
     }, {passive: true});
   }
 
-  /* ---------- Roadmap fills while scrolling ---------- */
-  const road = document.querySelector('.road');
-  if (road) {
-    const weeks = [...road.querySelectorAll('.wk')];
+  /* ---------- Roadmap: rail fills, comet travels, steps light up ---------- */
+  const rm = document.getElementById('roadmap');
+  if (rm) {
+    const steps = [...rm.querySelectorAll('.rm-step')];
+    const nodes = steps.map((st) => st.querySelector('.rm-node'));
+    let queued = false;
+    const centerY = (el) => { const r = el.getBoundingClientRect(); return r.top + r.height / 2; };
     const update = () => {
-      const r = road.getBoundingClientRect();
-      const mark = window.innerHeight * 0.62;
-      const p = Math.min(1, Math.max(0, (mark - r.top) / r.height));
-      road.style.setProperty('--p', p.toFixed(3));
-      weeks.forEach((wk) => wk.classList.toggle('is-lit', wk.getBoundingClientRect().top + 30 < mark));
+      queued = false;
+      const top = rm.getBoundingClientRect().top;
+      const first = centerY(nodes[0]) - top;
+      const last = centerY(nodes[nodes.length - 1]) - top;
+      rm.style.setProperty('--lt', `${first}px`);
+      rm.style.setProperty('--lh', `${last - first}px`);
+      const mark = window.innerHeight * 0.55;
+      const fill = Math.min(last - first, Math.max(0, mark - top - first));
+      rm.style.setProperty('--fill', `${fill}px`);
+      rm.classList.toggle('has-fill', fill > 2);
+      let current = -1;
+      steps.forEach((st, i) => {
+        const lit = centerY(nodes[i]) <= mark + 1;
+        st.classList.toggle('is-lit', lit);
+        if (lit) current = i;
+        if (st.getBoundingClientRect().top < window.innerHeight * 0.9) st.classList.add('is-in');
+      });
+      steps.forEach((st, i) => st.classList.toggle('is-current', i === current));
     };
-    window.addEventListener('scroll', update, {passive: true});
-    window.addEventListener('resize', update);
+    const request = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', request, {passive: true});
+    window.addEventListener('resize', request);
     update();
+  }
+
+  /* ---------- Pricing carousel (phones) ---------- */
+  const priceGrid = document.getElementById('price-grid');
+  const priceTabs = document.getElementById('price-tabs');
+  if (priceGrid && priceTabs) {
+    const cards = [...priceGrid.children];
+    const tabs = [...priceTabs.querySelectorAll('button')];
+    const isCarousel = () => getComputedStyle(priceGrid).overflowX === 'auto';
+    const offsetFor = (card) => card.offsetLeft - (priceGrid.clientWidth - card.offsetWidth) / 2;
+    const setActive = () => {
+      const mid = priceGrid.scrollLeft + priceGrid.clientWidth / 2;
+      let best = 0, dist = Infinity;
+      cards.forEach((c, i) => {
+        const d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid);
+        if (d < dist) { dist = d; best = i; }
+      });
+      tabs.forEach((t, i) => { t.classList.toggle('is-active', i === best); t.setAttribute('aria-pressed', String(i === best)); });
+    };
+    tabs.forEach((t, i) => t.addEventListener('click', () => {
+      priceGrid.scrollTo({left: offsetFor(cards[i]), behavior: reduced ? 'auto' : 'smooth'});
+    }));
+    priceGrid.addEventListener('scroll', () => requestAnimationFrame(setActive), {passive: true});
+    // Open on the recommended plan.
+    const center = () => { if (isCarousel()) { priceGrid.scrollLeft = offsetFor(cards[1]); setActive(); } };
+    window.addEventListener('resize', setActive);
+    if (document.readyState === 'complete') center(); else window.addEventListener('load', center);
+  }
+
+  /* ---------- Floating CTA ---------- */
+  const floatCta = document.getElementById('float-cta');
+  const hero = document.querySelector('.site-hero');
+  const contact = document.getElementById('diagnostika');
+  if (floatCta && hero && 'IntersectionObserver' in window) {
+    let pastHero = false, atContact = false;
+    const sync = () => floatCta.classList.toggle('is-visible', pastHero && !atContact);
+    new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; sync(); }, {threshold: 0}).observe(hero);
+    if (contact) new IntersectionObserver(([e]) => { atContact = e.isIntersecting; sync(); }, {threshold: 0.25}).observe(contact);
+  } else if (floatCta) {
+    floatCta.classList.add('is-visible');
+  }
+
+  /* ---------- Pause paint-heavy CSS loops while off screen ---------- */
+  if ('IntersectionObserver' in window) {
+    const loops = document.querySelectorAll('.preview-panel, .section-pricing .card:nth-child(2), .section-contact .card, .rm-step--key .rm-card, .final-horizon, .float-chip, .hero-kicker');
+    const pauser = new IntersectionObserver((entries) => {
+      entries.forEach((e) => e.target.classList.toggle('anim-off', !e.isIntersecting));
+    }, {rootMargin: '100px 0px'});
+    loops.forEach((el) => { el.classList.add('anim-off'); pauser.observe(el); });
   }
 })();
