@@ -23,7 +23,8 @@
       Math.sin(lon * 5.3 + 1.7) * Math.sin(lat * 4.1 + 0.6) * 0.6 +
       Math.cos(lon * 1.7 - lat * 3.3) * 0.45;
     const points = [];
-    const N = 6500;
+    const small = window.matchMedia('(max-width: 700px)').matches;
+    const N = small ? 3200 : 6500; // fewer surface dots on phones
     const golden = Math.PI * (3 - Math.sqrt(5));
     for (let i = 0; i < N; i++) {
       const y = 1 - (i / (N - 1)) * 2;
@@ -40,7 +41,7 @@
     const stars = Array.from({length: 120}, () => [Math.random(), Math.random() * 0.75, Math.random() * 1.2 + 0.2, Math.random() * Math.PI * 2]);
 
     function resize() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, small ? 1.5 : 2);
       w = canvas.clientWidth;
       h = canvas.clientHeight;
       canvas.width = Math.round(w * dpr);
@@ -165,19 +166,24 @@
       ring(t, true);
     }
 
+    // ~30fps on phones; the loop stops entirely while the planet is off screen.
+    const frameGap = small ? 32 : 0;
+    let last = 0, running = false;
     function loop(time) {
-      if (visible) draw(time);
-      if (!reduced) requestAnimationFrame(loop);
+      if (!visible || reduced) { running = false; return; }
+      if (time - last >= frameGap) { last = time; draw(time); }
+      requestAnimationFrame(loop);
     }
+    const start = () => { if (!running && !reduced) { running = true; requestAnimationFrame(loop); } };
     resize();
     window.addEventListener('resize', () => { resize(); if (reduced) draw(0); });
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(canvas);
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) start(); }).observe(canvas);
     }
     if (finePointer) {
       window.addEventListener('pointermove', (e) => { mouseX = (e.clientX / window.innerWidth) * 2 - 1; }, {passive: true});
     }
-    requestAnimationFrame(loop);
+    if (reduced) draw(0); else start();
   }
 
   /* ---------- Live dashboard ---------- */
@@ -229,8 +235,13 @@
     };
     shuffleBars();
     metrics[0] && metrics[0].classList.add('is-hot');
+    let panelVisible = true;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => { panelVisible = e.isIntersecting; }).observe(panel);
+    }
     if (!reduced) {
       setInterval(() => {
+        if (!panelVisible || document.hidden) return;
         step++;
         shuffleBars();
         agents.forEach((a) => a.style.setProperty('--w', `${35 + Math.round(Math.random() * 62)}%`));
@@ -361,5 +372,14 @@
     if (contact) new IntersectionObserver(([e]) => { atContact = e.isIntersecting; sync(); }, {threshold: 0.25}).observe(contact);
   } else if (floatCta) {
     floatCta.classList.add('is-visible');
+  }
+
+  /* ---------- Pause paint-heavy CSS loops while off screen ---------- */
+  if ('IntersectionObserver' in window) {
+    const loops = document.querySelectorAll('.preview-panel, .section-pricing .card:nth-child(2), .section-contact .card, .rm-step--key .rm-card, .final-horizon, .float-chip, .hero-kicker');
+    const pauser = new IntersectionObserver((entries) => {
+      entries.forEach((e) => e.target.classList.toggle('anim-off', !e.isIntersecting));
+    }, {rootMargin: '100px 0px'});
+    loops.forEach((el) => { el.classList.add('anim-off'); pauser.observe(el); });
   }
 })();

@@ -3,7 +3,7 @@
 
 /* Film grain over the whole page */
 .site-shell{position:relative}
-.site-shell:after{content:"";position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.site-shell:after{content:"";position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* Hero headline shimmer */
 .hero-copy h1 span{background-size:220% 100%;animation:gold-sheen 7s ease-in-out infinite}
@@ -21,7 +21,6 @@
 
 /* Planet stage */
 .hero-stage{height:560px}
-.orbit-glow{display:none}
 .planet{position:absolute;left:50%;top:-70px;z-index:0;width:100vw;height:720px;transform:translateX(-50%);pointer-events:none;-webkit-mask-image:linear-gradient(transparent 0,#000 16%,#000 72%,transparent 98%);mask-image:linear-gradient(transparent 0,#000 16%,#000 72%,transparent 98%)}
 .planet-flare{position:absolute;left:50%;top:-30px;z-index:0;width:min(1100px,110vw);height:260px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(ellipse 34% 40% at var(--fx,62%) 32%,rgba(227,192,112,.2),transparent 70%);filter:blur(10px);transition:background .6s ease}
 .preview-panel{z-index:2;top:150px;height:440px;transform-style:preserve-3d;transform:perspective(1400px) rotateX(calc(4deg + var(--rx,0deg))) rotateY(var(--ry,0deg));transition:transform .5s cubic-bezier(.2,.7,.2,1);background:linear-gradient(180deg,rgba(18,17,14,.94),rgba(11,11,10,.98));backdrop-filter:blur(6px)}
@@ -282,3 +281,7 @@
 /* Hero without action row: keep the dashboard where it was */
 .hero-stage{margin-top:64px}
 @media(max-width:700px){.hero-stage{margin-top:72px}}
+
+/* Performance: paint-heavy loops pause while their element is off screen */
+.anim-off,.anim-off:before,.anim-off:after,.anim-off *,.anim-off *:before,.anim-off *:after{animation-play-state:paused!important}
+@media(max-width:700px){.site-shell:after{display:none}}
