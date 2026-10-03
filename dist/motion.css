@@ -386,9 +386,9 @@
 .rm-step{pointer-events:none}
 .rm-step .rm-card,.rm-step .rm-node{pointer-events:auto}
 
-/* Header brand: AI Strateg logo */
-.site-logo--brand{gap:10px}
+/* Header brand: AI Strateg logo, stacked like the original (mark above, wordmark below) */
+.site-logo--brand{flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:2px 0}
 .site-logo--brand img{display:block;height:auto}
-.brand-mark{width:45px;filter:drop-shadow(0 0 10px rgba(227,192,112,.18))}
-.brand-word{width:158px}
-@media(max-width:700px){.brand-mark{width:36px}.brand-word{width:128px}.site-logo--brand{gap:8px}}
+.brand-mark{width:50px;filter:drop-shadow(0 0 10px rgba(227,192,112,.18))}
+.brand-word{width:96px}
+@media(max-width:700px){.site-logo--brand{gap:4px}.brand-mark{width:40px}.brand-word{width:80px}}
