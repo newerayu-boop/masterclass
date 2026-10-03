@@ -337,7 +337,27 @@
     const request = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
     window.addEventListener('scroll', request, {passive: true});
     window.addEventListener('resize', request);
+    if ('ResizeObserver' in window) new ResizeObserver(request).observe(rm); // cards grow when opened
     update();
+
+    // Click a stage to reveal its materials; one stage open at a time.
+    const setOpen = (step, open) => {
+      step.classList.toggle('is-open', open);
+      const btn = step.querySelector('.rm-toggle');
+      if (btn) {
+        btn.setAttribute('aria-expanded', String(open));
+        btn.querySelector('span').textContent = open ? 'Yopish' : 'Materiallarni ko‘rish';
+      }
+    };
+    rm.addEventListener('click', (e) => {
+      const card = e.target.closest('.rm-card');
+      if (!card || e.target.closest('a')) return;
+      if (!e.target.closest('.rm-toggle') && String(window.getSelection && window.getSelection()).length) return; // let people select text
+      const step = card.closest('.rm-step');
+      const open = !step.classList.contains('is-open');
+      steps.forEach((st) => { if (st !== step && st.classList.contains('is-open')) setOpen(st, false); });
+      setOpen(step, open);
+    });
   }
 
   /* ---------- Pricing carousel (phones) ---------- */
