@@ -385,3 +385,10 @@
 /* zigzag rows overlap: only the card and node take clicks, the empty half lets them through */
 .rm-step{pointer-events:none}
 .rm-step .rm-card,.rm-step .rm-node{pointer-events:auto}
+
+/* Header brand: AI Strateg logo */
+.site-logo--brand{gap:10px}
+.site-logo--brand img{display:block;height:auto}
+.brand-mark{width:45px;filter:drop-shadow(0 0 10px rgba(227,192,112,.18))}
+.brand-word{width:158px}
+@media(max-width:700px){.brand-mark{width:36px}.brand-word{width:128px}.site-logo--brand{gap:8px}}
