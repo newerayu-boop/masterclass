@@ -285,3 +285,27 @@
 /* Performance: paint-heavy loops pause while their element is off screen */
 .anim-off,.anim-off:before,.anim-off:after,.anim-off *,.anim-off *:before,.anim-off *:after{animation-play-state:paused!important}
 @media(max-width:700px){.site-shell:after{display:none}}
+
+/* Hero dashboard: every part stays visible on smaller screens */
+@media(max-width:900px){
+ .preview-tabs{gap:16px}
+ .preview-tabs em:nth-child(n){display:inline}
+}
+@media(max-width:700px){
+ .site-hero{height:auto;min-height:100svh}
+ .site-hero:after{display:none}
+ .preview-top{flex-wrap:wrap;height:auto;row-gap:0;column-gap:10px;padding:10px 12px 0}
+ .preview-top .preview-logo{order:1}
+ .preview-top .preview-live{order:2;margin-left:auto}
+ .preview-top>.preview-avatar{order:3;display:grid;width:22px;height:22px;font-size:10px}
+ .preview-top>.preview-tabs:nth-child(2){order:4;display:flex;flex:0 0 calc(100% + 24px);gap:4px;margin:10px -12px 0;padding:0 12px 10px;overflow-x:auto;scrollbar-width:none}
+ .preview-top .preview-tabs::-webkit-scrollbar{display:none}
+ .preview-tabs em{flex:none;padding:5px 6px;border:1px solid #2d2b27;border-radius:999px;font-size:8.5px;white-space:nowrap}
+ .preview-tabs em.is-active{border-color:#6b592d;background:rgba(201,168,76,.1)}
+ .preview-head{align-items:flex-start}
+ .preview-invite{display:inline-block;padding:6px 8px;font-size:8px}
+ .preview-lower{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px}
+ .preview-feed{display:block;padding:10px 12px}
+ .preview-feed p{grid-template-columns:auto 1fr 56px;gap:8px;margin-top:7px;padding:6px 8px}
+ .ag-ic{width:20px;height:20px;font-size:9px}
+}

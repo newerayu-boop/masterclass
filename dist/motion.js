@@ -247,6 +247,12 @@
         agents.forEach((a) => a.style.setProperty('--w', `${35 + Math.round(Math.random() * 62)}%`));
         metrics.forEach((m, i) => m.classList.toggle('is-hot', i === step % metrics.length));
         tabs.forEach((t, i) => t.classList.toggle('is-active', i === step % tabs.length));
+        // On narrow screens the tab strip scrolls; keep the active tab in view.
+        const strip = tabs[0] && tabs[0].parentElement;
+        const active = tabs[step % tabs.length];
+        if (strip && active && strip.scrollWidth > strip.clientWidth + 2) {
+          strip.scrollTo({left: active.offsetLeft - (strip.clientWidth - active.offsetWidth) / 2, behavior: 'smooth'});
+        }
         if (ticker) {
           ticker.classList.add('is-out');
           setTimeout(() => { ticker.textContent = events[step % events.length]; ticker.classList.remove('is-out'); }, 350);
