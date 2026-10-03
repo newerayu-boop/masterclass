@@ -386,9 +386,11 @@
 .rm-step{pointer-events:none}
 .rm-step .rm-card,.rm-step .rm-node{pointer-events:auto}
 
-/* Header brand: AI Strateg logo, stacked like the original (mark above, wordmark below) */
+/* Header brand: AI Strateg logo, stacked like the original (mark above, wordmark below).
+   The logo is a mask filled with the same moving gold gradient as the "3.0" in the hero title. */
 .site-logo--brand{flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:2px 0}
-.site-logo--brand img{display:block;height:auto}
-.brand-mark{width:50px;filter:drop-shadow(0 0 10px rgba(227,192,112,.18))}
-.brand-word{width:96px}
+.brand-mark,.brand-word{display:block;background:linear-gradient(110deg,#fff 8%,#efe3bf 49%,#c9a84c 88%);background-size:220% 100%;animation:gold-sheen 7s ease-in-out infinite;-webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat}
+.brand-mark{--logo:url(./logos/ai-strateg-mark.png);width:50px;aspect-ratio:126/112}
+.brand-word{--logo:url(./logos/ai-strateg-wordmark.png);width:96px;aspect-ratio:439/36}
 @media(max-width:700px){.site-logo--brand{gap:4px}.brand-mark{width:40px}.brand-word{width:80px}}
+@media(prefers-reduced-motion:reduce){.brand-mark,.brand-word{animation:none}}
