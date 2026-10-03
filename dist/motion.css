@@ -402,3 +402,7 @@
 @media(max-width:700px){.hero-copy{padding-top:60px}}
 .hero-stage{margin-top:22px}
 @media(max-width:700px){.hero-stage{margin-top:52px}}
+
+/* First screen: +5% of the viewport height on top */
+.site-hero{padding-top:calc(22px + 5vh)!important;padding-top:calc(22px + 5svh)!important}
+@media(max-width:700px){.site-hero{padding-top:calc(15px + 5vh)!important;padding-top:calc(15px + 5svh)!important}}
