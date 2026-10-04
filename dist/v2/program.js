@@ -62,11 +62,11 @@
       const cx = (sx + tx) / 2 + (Math.random() - 0.5) * W * 0.5;
       const cy = (sy + ty) / 2 + (Math.random() - 0.5) * H * 0.9;
       const along = f.fromRight ? (W - tx) / W : tx / W; // nearer side arrives first
-      const boost = 1.25; // lift colours so light slide art glows on the dark frame
+      const boost = 1.25; // lift colours (dark UI screenshots too) so particles glow on the dark frame
       return {
         tx, ty, sx, sy, cx, cy, px: sx, py: sy,
         d: along * 320 + Math.random() * 200,
-        r: Math.min(255, r * boost), g: Math.min(255, g2 * boost), b: Math.min(255, b * boost),
+        r: Math.min(255, r * boost + 30), g: Math.min(255, g2 * boost + 26), b: Math.min(255, b * boost + 18),
         s: 1.2 + Math.random() * 1.4,
       };
     });
