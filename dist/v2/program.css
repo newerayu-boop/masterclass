@@ -8,14 +8,14 @@
 
 /* visual frame: dark until the particles assemble, then it lights up into the slide */
 .pg-viz{--bg:#eef2f8;position:relative;margin:0;aspect-ratio:4/3;border-radius:24px;overflow:hidden;background:var(--bg);box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 1px rgba(201,168,76,.18);transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .6s ease}
-.pg-viz:before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 50% 45%,#1d1910,#0b0b0a 70%);transition:opacity .9s ease .1s;pointer-events:none}
+.pg-viz:before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 50% 45%,#1d1910,#0b0b0a 70%);transition:opacity .45s ease;pointer-events:none}
 .pg-viz:after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.55) 48%,transparent 62%);transform:translateX(-120%)}
-.pg-img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:contain;opacity:0;transform:scale(1.04);transition:opacity .9s ease .1s,transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.pg-img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:contain;opacity:0;transform:scale(1.04);transition:opacity .45s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
 .pg-canvas{position:absolute;inset:0;z-index:2;width:100%;height:100%;display:block;pointer-events:none}
 .pg-num{position:absolute;right:16px;bottom:4px;z-index:2;color:transparent;font-size:84px;font-weight:800;letter-spacing:-.06em;line-height:1;-webkit-text-stroke:1px rgba(201,168,76,.35);pointer-events:none;transition:-webkit-text-stroke-color .8s ease}
 .pg-viz.is-lit:before{opacity:0}
 .pg-viz.is-lit .pg-img{opacity:1;transform:none}
-.pg-viz.is-lit:after{animation:pg-shine 1.3s ease .35s 1 both}
+.pg-viz.is-lit:after{animation:pg-shine .9s ease .15s 1 both}
 .pg-viz.is-lit .pg-num{-webkit-text-stroke-color:rgba(11,11,10,.12)}
 .pg-viz.is-lit{box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 1px rgba(227,192,112,.45),0 0 70px rgba(201,168,76,.18)}
 @keyframes pg-shine{to{transform:translateX(120%)}}

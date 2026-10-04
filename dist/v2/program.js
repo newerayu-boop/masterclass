@@ -9,9 +9,9 @@
   const small = window.matchMedia('(max-width: 820px)').matches;
   const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const TARGET = small ? 1300 : 2600;   // particles per visual
-  const FLY = 900;                      // ms for the bulk of the flight
-  const LIGHT_AT = 1600;                // ms when the real image fades in
-  const END = 2350;                     // ms when the particle layer is cleared
+  const FLY = 520;                      // ms each particle takes to settle
+  const LIGHT_AT = 760;                 // ms when the real image fades in
+  const END = 1250;                     // ms when the particle layer is cleared
 
   const fields = vizzes.map((viz) => {
     const img = viz.querySelector('.pg-img');
@@ -56,16 +56,18 @@
     const W = f.w, H = f.h;
     f.parts = pick.map(([tx, ty, r, g2, b]) => {
       // start beyond the edge on the side the visual sits on, sweep inwards
-      const sx = f.fromRight ? W + 40 + Math.random() * W * 0.6 : -40 - Math.random() * W * 0.6;
-      const sy = H * 0.5 + (Math.random() - 0.5) * H * 1.6;
+      // start as a scattered cloud inside the frame itself, around the spot each particle belongs to
+      const a0 = Math.random() * Math.PI * 2, r0 = Math.min(W, H) * (0.12 + Math.random() * 0.38);
+      const sx = Math.min(W, Math.max(0, tx + Math.cos(a0) * r0));
+      const sy = Math.min(H, Math.max(0, ty + Math.sin(a0) * r0));
       // bend each path through a random control point for a swirling stream
-      const cx = (sx + tx) / 2 + (Math.random() - 0.5) * W * 0.5;
-      const cy = (sy + ty) / 2 + (Math.random() - 0.5) * H * 0.9;
-      const along = f.fromRight ? (W - tx) / W : tx / W; // nearer side arrives first
+      // slight curve so the cloud swirls into place instead of moving in straight lines
+      const cx = (sx + tx) / 2 + (Math.random() - 0.5) * W * 0.12;
+      const cy = (sy + ty) / 2 + (Math.random() - 0.5) * H * 0.12;
       const boost = 1.25; // lift colours (dark UI screenshots too) so particles glow on the dark frame
       return {
         tx, ty, sx, sy, cx, cy, px: sx, py: sy,
-        d: along * 320 + Math.random() * 200,
+        d: Math.random() * 220,
         r: Math.min(255, r * boost + 30), g: Math.min(255, g2 * boost + 26), b: Math.min(255, b * boost + 18),
         s: 1.2 + Math.random() * 1.4,
       };
