@@ -470,3 +470,11 @@
  .rm-overview__support{display:grid;padding:13px 17px;font-size:11px}
  .rm-outcome{padding:10px 12px}.rm-outcome strong{font-size:13px}
 }
+
+/* Departments strip stays visible in the mobile dashboard */
+@media(max-width:700px){
+ .preview-top{flex-wrap:wrap}
+ .preview-top>.preview-tabs:nth-child(2){order:4;display:flex;flex:0 0 100%;gap:4px;margin:10px 0 0;padding:0;overflow-x:auto;scrollbar-width:none}
+ .preview-top>.preview-tabs:nth-child(2)::-webkit-scrollbar{display:none}
+ .preview-top>.preview-tabs em{flex:1 0 auto;padding:6px 5px;text-align:center;font-size:9px;letter-spacing:-.01em}
+}

@@ -1,6 +1,6 @@
-# AI Mentorship 3.0
+# AI Strateg 3.0
 
-Лендинг программы AI Mentorship 3.0 на узбекском языке.
+Лендинг программы AI Strateg 3.0 на узбекском языке.
 
 Сайт: https://ai-strateg-ten.vercel.app/
 
