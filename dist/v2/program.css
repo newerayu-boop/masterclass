@@ -1,32 +1,60 @@
-/* Design v2: course program with particle visualizations */
+/* Design v2: course program — real course visuals assembled from particles */
 .section-program{background:radial-gradient(circle at 12% 30%,rgba(201,168,76,.06),transparent 40%),radial-gradient(circle at 90% 75%,rgba(201,168,76,.05),transparent 40%)}
 .pg-title{max-width:none}
-.pg-list{display:flex;flex-direction:column;gap:34px}
-.pg-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:56px}
+.pg-list{display:flex;flex-direction:column;gap:56px}
+.pg-row{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);align-items:center;gap:56px}
+.pg-row--rev{grid-template-columns:minmax(0,1fr) minmax(0,1.08fr)}
 .pg-row--rev .pg-viz{order:2}
-.pg-viz{position:relative;aspect-ratio:4/3;border:1px solid #2d2b27;border-radius:24px;background:radial-gradient(circle at 50% 45%,rgba(201,168,76,.12),transparent 62%),linear-gradient(160deg,#16140f,#0b0b0a 75%);overflow:hidden}
-.pg-viz:before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:32px 32px;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000,transparent 75%);mask-image:radial-gradient(circle at 50% 50%,#000,transparent 75%)}
-.pg-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.pg-num{position:absolute;right:18px;bottom:6px;color:transparent;font-size:88px;font-weight:800;letter-spacing:-.06em;line-height:1;-webkit-text-stroke:1px rgba(201,168,76,.16);pointer-events:none}
-.pg-eb{color:#c9a84c;font-size:12px;font-weight:800;letter-spacing:.2em}
-.pg-copy h3{margin:10px 0 14px;color:#fff;font-size:clamp(26px,3vw,38px);font-weight:800;letter-spacing:-.04em;line-height:1.1}
-.pg-copy p{margin:0;max-width:46ch;color:#b4b0a6;font-size:16px;line-height:1.65}
-.pg-tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
-.pg-tools span{padding:6px 11px;border:1px solid #3a362c;border-radius:8px;background:rgba(11,11,10,.6);color:#d8d3c6;font-size:12px;font-weight:700}
-.pg-result{display:inline-flex;align-items:center;gap:12px;margin-top:22px;padding:12px 16px;border:1px solid #4a3f1f;border-radius:14px;background:linear-gradient(120deg,rgba(201,168,76,.12),rgba(11,11,10,.4))}
+
+/* visual frame: dark until the particles assemble, then it lights up into the slide */
+.pg-viz{--bg:#eef2f8;position:relative;margin:0;aspect-ratio:4/3;border-radius:24px;overflow:hidden;background:var(--bg);box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 1px rgba(201,168,76,.18);transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .6s ease}
+.pg-viz:before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 50% 45%,#1d1910,#0b0b0a 70%);transition:opacity .9s ease .1s;pointer-events:none}
+.pg-viz:after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.55) 48%,transparent 62%);transform:translateX(-120%)}
+.pg-img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:contain;opacity:0;transform:scale(1.04);transition:opacity .9s ease .1s,transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.pg-canvas{position:absolute;inset:0;z-index:2;width:100%;height:100%;display:block;pointer-events:none}
+.pg-num{position:absolute;right:16px;bottom:4px;z-index:2;color:transparent;font-size:84px;font-weight:800;letter-spacing:-.06em;line-height:1;-webkit-text-stroke:1px rgba(201,168,76,.35);pointer-events:none;transition:-webkit-text-stroke-color .8s ease}
+.pg-viz.is-lit:before{opacity:0}
+.pg-viz.is-lit .pg-img{opacity:1;transform:none}
+.pg-viz.is-lit:after{animation:pg-shine 1.3s ease .35s 1 both}
+.pg-viz.is-lit .pg-num{-webkit-text-stroke-color:rgba(11,11,10,.12)}
+.pg-viz.is-lit{box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 1px rgba(227,192,112,.45),0 0 70px rgba(201,168,76,.18)}
+@keyframes pg-shine{to{transform:translateX(120%)}}
+.no-js .pg-viz:before{opacity:0}.no-js .pg-img{opacity:1;transform:none}
+
+/* copy */
+.pg-top{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.pg-eb{color:#c9a84c;font-size:13px;font-weight:800;letter-spacing:.2em}
+.pg-cp{padding:5px 10px;border:1px solid #2f4a39;border-radius:999px;background:rgba(107,207,150,.08);color:#9ecab2;font-size:11px;font-weight:800;letter-spacing:.04em}
+.pg-copy h3{margin:12px 0 12px;color:#fff;font-size:clamp(26px,3vw,38px);font-weight:800;letter-spacing:-.04em;line-height:1.1}
+.pg-promise{margin:0;max-width:44ch;color:#efe3bf;font-size:17px;font-weight:600;line-height:1.5}
+.pg-lessons{display:grid;gap:10px;margin:20px 0 0;padding:0;list-style:none}
+.pg-lessons li{display:grid;grid-template-columns:84px 1fr;gap:12px;align-items:baseline;padding:12px 14px;border:1px solid #2d2b27;border-radius:14px;background:linear-gradient(140deg,rgba(28,25,18,.8),rgba(11,11,10,.8))}
+.pg-lessons b{color:#e3c070;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.pg-lessons span{color:#c9c5bb;font-size:15px;line-height:1.5}
+.pg-result{display:inline-flex;align-items:center;gap:12px;margin-top:18px;padding:12px 16px;border:1px solid #4a3f1f;border-radius:14px;background:linear-gradient(120deg,rgba(201,168,76,.14),rgba(11,11,10,.4))}
 .pg-result small{color:#c9a84c;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
 .pg-result b{color:#fff;font-size:15px}
-/* copy slides in from the side opposite the visualization */
-.js .pg-copy{opacity:0;transform:translateX(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1) .15s,transform .8s cubic-bezier(.2,.7,.2,1) .15s}
-.js .pg-row--rev .pg-copy{transform:translateX(-34px)}
-.js .pg-row.is-in .pg-copy{opacity:1;transform:none}
-.js .pg-viz{opacity:0;transform:scale(.97);transition:opacity .7s ease,transform .7s ease}
-.js .pg-row.is-in .pg-viz{opacity:1;transform:none}
+
+/* copy slides in from the side opposite the visual, items stagger */
+.js .pg-copy>*{opacity:0;transform:translateX(30px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .pg-row--rev .pg-copy>*{transform:translateX(-30px)}
+.js .pg-row.is-in .pg-copy>*{opacity:1;transform:none}
+.js .pg-row.is-in .pg-copy>:nth-child(2){transition-delay:.08s}
+.js .pg-row.is-in .pg-copy>:nth-child(3){transition-delay:.16s}
+.js .pg-row.is-in .pg-copy>:nth-child(4){transition-delay:.26s}
+.js .pg-row.is-in .pg-copy>:nth-child(5){transition-delay:.38s}
+
 @media(max-width:820px){
- .pg-row,.pg-row--rev{grid-template-columns:1fr;gap:20px}
+ .pg-row,.pg-row--rev{grid-template-columns:1fr;gap:22px}
  .pg-row--rev .pg-viz{order:0}
- .pg-list{gap:48px}
- .js .pg-copy,.js .pg-row--rev .pg-copy{transform:translateY(20px)}
- .pg-num{font-size:64px}
+ .pg-list{gap:60px}
+ .js .pg-copy>*,.js .pg-row--rev .pg-copy>*{transform:translateY(18px)}
+ .pg-num{font-size:60px}
+ .pg-lessons li{grid-template-columns:1fr;gap:4px}
 }
-@media(prefers-reduced-motion:reduce){.js .pg-copy,.js .pg-viz{opacity:1;transform:none;transition:none}}
+@media(prefers-reduced-motion:reduce){
+ .pg-viz,.pg-img,.pg-viz:before{transition:none}.pg-viz.is-lit:after{animation:none}
+ .js .pg-copy>*{opacity:1;transform:none;transition:none}
+}
+/* frame takes the image's own proportions (set inline); keep it from getting too tall on desktop */
+@media(min-width:821px){.pg-viz{max-height:560px;justify-self:center;width:100%}}
