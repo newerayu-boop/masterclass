@@ -1,0 +1,32 @@
+/* Design v2: course program with particle visualizations */
+.section-program{background:radial-gradient(circle at 12% 30%,rgba(201,168,76,.06),transparent 40%),radial-gradient(circle at 90% 75%,rgba(201,168,76,.05),transparent 40%)}
+.pg-title{max-width:none}
+.pg-list{display:flex;flex-direction:column;gap:34px}
+.pg-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:56px}
+.pg-row--rev .pg-viz{order:2}
+.pg-viz{position:relative;aspect-ratio:4/3;border:1px solid #2d2b27;border-radius:24px;background:radial-gradient(circle at 50% 45%,rgba(201,168,76,.12),transparent 62%),linear-gradient(160deg,#16140f,#0b0b0a 75%);overflow:hidden}
+.pg-viz:before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:32px 32px;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000,transparent 75%);mask-image:radial-gradient(circle at 50% 50%,#000,transparent 75%)}
+.pg-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.pg-num{position:absolute;right:18px;bottom:6px;color:transparent;font-size:88px;font-weight:800;letter-spacing:-.06em;line-height:1;-webkit-text-stroke:1px rgba(201,168,76,.16);pointer-events:none}
+.pg-eb{color:#c9a84c;font-size:12px;font-weight:800;letter-spacing:.2em}
+.pg-copy h3{margin:10px 0 14px;color:#fff;font-size:clamp(26px,3vw,38px);font-weight:800;letter-spacing:-.04em;line-height:1.1}
+.pg-copy p{margin:0;max-width:46ch;color:#b4b0a6;font-size:16px;line-height:1.65}
+.pg-tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.pg-tools span{padding:6px 11px;border:1px solid #3a362c;border-radius:8px;background:rgba(11,11,10,.6);color:#d8d3c6;font-size:12px;font-weight:700}
+.pg-result{display:inline-flex;align-items:center;gap:12px;margin-top:22px;padding:12px 16px;border:1px solid #4a3f1f;border-radius:14px;background:linear-gradient(120deg,rgba(201,168,76,.12),rgba(11,11,10,.4))}
+.pg-result small{color:#c9a84c;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.pg-result b{color:#fff;font-size:15px}
+/* copy slides in from the side opposite the visualization */
+.js .pg-copy{opacity:0;transform:translateX(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1) .15s,transform .8s cubic-bezier(.2,.7,.2,1) .15s}
+.js .pg-row--rev .pg-copy{transform:translateX(-34px)}
+.js .pg-row.is-in .pg-copy{opacity:1;transform:none}
+.js .pg-viz{opacity:0;transform:scale(.97);transition:opacity .7s ease,transform .7s ease}
+.js .pg-row.is-in .pg-viz{opacity:1;transform:none}
+@media(max-width:820px){
+ .pg-row,.pg-row--rev{grid-template-columns:1fr;gap:20px}
+ .pg-row--rev .pg-viz{order:0}
+ .pg-list{gap:48px}
+ .js .pg-copy,.js .pg-row--rev .pg-copy{transform:translateY(20px)}
+ .pg-num{font-size:64px}
+}
+@media(prefers-reduced-motion:reduce){.js .pg-copy,.js .pg-viz{opacity:1;transform:none;transition:none}}
