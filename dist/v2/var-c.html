@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Kurs dasturi — C: kurs paneli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="./var.css">
+<style>
+.c-win{border:1px solid #3a352a;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,#14120e,#0b0b0a);box-shadow:0 50px 120px rgba(0,0,0,.6),0 0 0 7px rgba(255,255,255,.015),0 0 100px rgba(201,168,76,.1)}
+.c-bar{display:flex;align-items:center;gap:14px;height:50px;padding:0 20px;border-bottom:1px solid #26231c;background:rgba(255,255,255,.015)}
+.c-dots{display:flex;gap:7px}.c-dots i{width:11px;height:11px;border-radius:50%;background:#2d2a22}.c-dots i:first-child{background:#6b4a22}
+.c-title{color:#d9d4c7;font-size:13px;font-weight:700;letter-spacing:.02em}
+.c-live{margin-left:auto;display:inline-flex;align-items:center;gap:8px;padding:6px 11px;border:1px solid #323c35;border-radius:9px;background:#142019;color:#9ecab2;font-size:11px;font-weight:700}
+.c-live b{width:6px;height:6px;border-radius:50%;background:#6bcf96;box-shadow:0 0 8px #6bcf96;animation:c-blink 1.6s ease-in-out infinite}
+@keyframes c-blink{50%{opacity:.25}}
+.c-body{display:grid;grid-template-columns:270px 1fr;min-height:560px}
+.c-side{padding:16px 12px;border-right:1px solid #26231c;display:flex;flex-direction:column;gap:6px;background:rgba(0,0,0,.18)}
+.c-tab{position:relative;display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:center;padding:12px 12px;border:1px solid transparent;border-radius:13px;background:transparent;color:#9a968c;text-align:left;font:inherit;cursor:pointer;overflow:hidden;transition:background .3s ease,border-color .3s ease,color .3s ease}
+.c-tab:hover{background:rgba(255,255,255,.03)}
+.c-tab .n{display:grid;place-items:center;width:34px;height:34px;border:1px solid #302c23;border-radius:10px;font-size:12px;font-weight:800;color:#8f8b82;transition:all .3s ease}
+.c-tab .t small{display:block;color:#7b776e;font-size:10.5px;font-weight:800;letter-spacing:.16em}
+.c-tab .t span{display:block;margin-top:2px;font-size:14px;font-weight:700}
+.c-tab.on{background:rgba(201,168,76,.1);border-color:#4a3f1f;color:#fff}
+.c-tab.on .n{background:linear-gradient(135deg,#e3c070,#8b6f2c);border-color:transparent;color:#15130f}
+.c-tab.done .n{background:#1c2a20;border-color:#2f4a39;color:#9ecab2}
+.c-tab .p{position:absolute;left:12px;right:12px;bottom:0;height:2px;background:transparent}
+.c-tab.on .p:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#8b6f2c,#f0d48a);transform-origin:left;transform:scaleX(0);animation:c-fill var(--dur,8000ms) linear forwards}
+.c-win.paused .c-tab.on .p:after{animation-play-state:paused}
+.c-win:not(.ready) .c-tab.on .p:after{animation-play-state:paused}
+@keyframes c-fill{to{transform:scaleX(1)}}
+.c-main{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:26px;padding:26px 28px}
+.c-shot{position:relative;align-self:start;aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:#0d0c0a;box-shadow:0 0 0 1px rgba(227,192,112,.3),0 20px 60px rgba(0,0,0,.5)}
+.c-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.c-shot img.bg{object-fit:cover;filter:blur(24px) brightness(.65);transform:scale(1.15)}
+.c-shot img.fg{transition:opacity .45s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.c-shot.swap img.fg{opacity:0;transform:scale(1.05)}
+.c-shot:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px);mix-blend-mode:overlay}
+.c-sweep{position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,transparent 35%,rgba(255,236,190,.55) 50%,transparent 65%);transform:translateX(-120%)}
+.c-sweep.go{animation:c-sweep .9s ease both}
+@keyframes c-sweep{to{transform:translateX(120%)}}
+.c-info{display:flex;flex-direction:column;gap:14px;min-width:0}
+.c-info h3{margin:0;color:#fff;font-size:clamp(24px,2.5vw,32px);font-weight:800;letter-spacing:-.04em;line-height:1.1}
+.c-wk{display:flex;align-items:center;flex-wrap:wrap;gap:10px;color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.2em}
+.c-promise{margin:0;min-height:3em;color:var(--pale);font-size:16.5px;font-weight:600;line-height:1.5}
+.c-promise:after{content:"▍";color:var(--gold2);margin-left:2px;animation:c-blink 1s steps(2) infinite}
+.c-promise.done:after{display:none}
+.c-info .ls li{opacity:0;transform:translateX(18px)}
+.c-info .ls li.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1)}
+.c-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:16px 28px;border-top:1px solid #26231c;background:rgba(0,0,0,.2)}
+.c-foot small{color:#7b776e;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-right:6px}
+.c-art{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px dashed #3a352a;border-radius:11px;color:#6f6a62;font-size:13px;font-weight:700;transition:all .5s ease}
+.c-art i{font-style:normal;display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#221e14;font-size:10px}
+.c-art.on{border:1px solid #2f4a39;border-style:solid;background:rgba(107,207,150,.1);color:#bfe6cf;box-shadow:0 0 24px rgba(107,207,150,.18)}
+.c-art.on i{background:#2f6b4a;color:#fff}
+.c-art.pop{animation:c-pop .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes c-pop{0%{transform:scale(.8)}60%{transform:scale(1.12)}100%{transform:none}}
+.c-hint{margin-top:14px;text-align:center;color:#6f6a62;font-size:13px}
+@media(max-width:980px){
+ .c-body{grid-template-columns:1fr}
+ .c-side{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid #26231c;padding:12px;scrollbar-width:none}
+ .c-side::-webkit-scrollbar{display:none}
+ .c-tab{flex:0 0 auto;grid-template-columns:30px auto;padding:10px 14px 12px}
+ .c-tab .t small{display:none}.c-tab .n{width:30px;height:30px}
+ .c-main{grid-template-columns:1fr;padding:18px 16px}
+ .c-foot{padding:14px 16px}
+}
+@media(prefers-reduced-motion:reduce){.c-tab.on .p:after{animation:none;transform:scaleX(1)}.c-promise:after{display:none}.c-info .ls li{opacity:1;transform:none}.c-sweep{display:none}}
+</style>
+</head>
+<body>
+<div class="vtag">C · Kurs paneli</div>
+<header class="wrap head">
+ <div class="eb">Kurs dasturi</div>
+ <h2 class="h2">Kurs — <span class="gold">sizning boshqaruv panelingiz</span></h2>
+ <p class="lead">6 hafta, 12 jonli dars. Hafta tanlang yoki avtomatik o‘tishini kuting: pastda 4 ta artefakt kurs davomida birin-ketin «ochiladi».</p>
+</header>
+<main class="wrap">
+ <div class="c-win" id="win">
+  <div class="c-bar"><div class="c-dots"><i></i><i></i><i></i></div><span class="c-title">AI Strateg · Kurs paneli</span><span class="c-live"><b></b> <span id="live">1 / 6 hafta</span></span></div>
+  <div class="c-body">
+   <div class="c-side" id="side" role="tablist" aria-label="Haftalar"></div>
+   <div class="c-main" id="main">
+    <div class="c-shot" id="shot"><img class="bg" id="bg" alt=""><img class="fg" id="fg" alt=""><div class="c-sweep" id="sweep"></div></div>
+    <div class="c-info"><div class="c-wk" id="wk"></div><h3 id="ttl"></h3><p class="c-promise" id="prm"></p><ul class="ls" id="lss"></ul><div><div class="res" id="res"></div></div></div>
+   </div>
+  </div>
+  <div class="c-foot" id="foot"><small>Artefaktlar</small></div>
+ </div>
+ <p class="c-hint">Ustiga olib borsangiz o‘tish to‘xtaydi. Hafta ustini bosing.</p>
+</main>
+<div class="end">Variant C — kurs paneli</div>
+<script src="./weeks.js"></script>
+<script>
+(() => {
+  const W = window.WEEKS, reduced = matchMedia('(prefers-reduced-motion: reduce)').matches, DUR = 8000;
+  const $ = (id) => document.getElementById(id);
+  const side = $('side'), win = $('win'), foot = $('foot');
+  win.style.setProperty('--dur', DUR + 'ms');
+  const tabs = W.map((w, i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'c-tab'; b.setAttribute('role', 'tab');
+    b.innerHTML = `<span class="n">${w.n}</span><span class="t"><small>${w.wk}</small><span>${w.short}</span></span><span class="p"></span>`; b.onclick = () => show(i, true); side.appendChild(b); return b; });
+  // artefacts: unlocked in order of the week that delivers them
+  const arts = W.filter((w) => w.cp).map((w) => ({cp: w.cp, n: w.n, num: +w.cp[0]})).sort((a, b) => a.num - b.num);
+  const artEls = arts.map((a) => { const e = document.createElement('span'); e.className = 'c-art'; e.innerHTML = `<i>○</i>${a.num}-artefakt`; foot.appendChild(e); return e; });
+  const NAMES = {1: '5 ta AI-agent', 2: 'Shaxsiy Jarvis', 3: 'Jonli dashboard', 4: 'AI strategiya'};
+  arts.forEach((a, k) => { artEls[k].innerHTML = `<i>○</i>${a.num}-artefakt · ${NAMES[a.num]}`; });
+  let cur = -1, typeT = 0, paused = false, visible = false;
+  function type(el, text) { clearInterval(typeT); el.classList.remove('done'); if (reduced) { el.textContent = text; el.classList.add('done'); return; } el.textContent = ''; let k = 0; typeT = setInterval(() => { el.textContent = text.slice(0, ++k); if (k >= text.length) { clearInterval(typeT); el.classList.add('done'); } }, 16); }
+  function show(i, user) {
+    if (i === cur) return; const w = W[i], first = cur < 0; cur = i;
+    tabs.forEach((t, k) => { t.classList.toggle('on', k === i); t.classList.toggle('done', k < i); t.setAttribute('aria-selected', k === i); if (k === i) { const p = t.querySelector('.p'); p.replaceWith(p.cloneNode()); t.scrollIntoView({block: 'nearest', inline: 'nearest'}); } });
+    $('live').textContent = `${i + 1} / ${W.length} hafta`;
+    $('wk').innerHTML = `${w.wk}${w.cp ? `<span class="cp">✓ Checkpoint · ${w.cp}</span>` : ''}`;
+    $('ttl').textContent = w.title;
+    type($('prm'), w.promise);
+    const lss = $('lss'); lss.innerHTML = w.lessons.map(([d, t]) => `<li><b>${d}</b><span>${t}</span></li>`).join('');
+    [...lss.children].forEach((li, k) => setTimeout(() => li.classList.add('in'), reduced ? 0 : 260 + k * 160));
+    $('res').innerHTML = `<small>Natija</small><b>${w.result}</b>`;
+    const shot = $('shot'), fg = $('fg'), bg = $('bg'), sw = $('sweep');
+    const apply = () => { fg.src = bg.src = w.img; fg.alt = w.alt; shot.classList.remove('swap'); sw.classList.remove('go'); void sw.offsetWidth; if (!reduced) sw.classList.add('go'); };
+    if (first || reduced) apply(); else { shot.classList.add('swap'); setTimeout(apply, 260); }
+    // unlock artefacts delivered by weeks up to this one
+    arts.forEach((a, k) => { const on = a.n <= w.n, el = artEls[k], was = el.classList.contains('on'); el.classList.toggle('on', on); el.firstChild.textContent = on ? '✓' : '○'; if (on && !was && !first && !reduced) { el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); } });
+  }
+  // advance when the active tab's progress bar finishes (so pausing the bar pauses the autoplay)
+  side.addEventListener('animationend', (e) => { if (e.animationName === 'c-fill') show((cur + 1) % W.length); });
+  win.addEventListener('mouseenter', () => { paused = true; win.classList.add('paused'); });
+  win.addEventListener('mouseleave', () => { paused = false; win.classList.toggle('paused', !visible); });
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; win.classList.toggle('paused', !visible || paused); }, {threshold: 0.35}).observe(win);
+  show(0);
+  win.classList.add('ready');
+})();
+</script>
+</body>
+</html>
