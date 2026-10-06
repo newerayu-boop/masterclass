@@ -6,10 +6,12 @@
 <meta name="description" content="AI Strateg 3.0: 6 haftalik AI bilan strategik boshqaruv dasturi, amaliy loyihalar va natijalar.">
 <meta name="theme-color" content="#0b0b0a">
 <title>AI Strateg 3.0</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap"></noscript>
+<link rel="preload" href="./fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Inter, self-hosted (variable font: one file covers weights 400–800) */
+@font-face{font-family:Inter;font-style:normal;font-weight:400 800;font-display:swap;src:url(./fonts/inter-latin.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:Inter;font-style:normal;font-weight:400 800;font-display:swap;src:url(./fonts/inter-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+</style>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0a'/%3E%3Cpath d='M14 45 30 15l7 14 5-9 9 25H14Zm12-8h11l-6-11-5 11Z' fill='%23c9a84c'/%3E%3C/svg%3E">
 <style>
 body{margin:0;background:#0b0b0a;color:#bbbbba;font-family:Inter,"Helvetica Neue",Arial,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -76,12 +78,13 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 @media(max-width:640px){header{display:flex;min-height:100svh}header>.wrap{width:100%;flex:1;justify-content:space-between}}
 </style>
 <link rel="stylesheet" href="./design.css">
-<link rel="stylesheet" href="./motion.css?v=20261007-2">
+<link rel="stylesheet" href="./motion.css?v=20261007-3">
 <style>
 /* Cases with student photos (from suniyintellect.uz) */
 .case-card--v2{padding:0;gap:0;min-height:0;overflow:hidden}
 .case-card--v2>*:not(.cc-photo){margin-left:22px;margin-right:22px}
 .cc-photo{position:relative;aspect-ratio:5/4;overflow:hidden;background:#16140f}
+.cc-photo picture{display:block;width:100%;height:100%}
 .cc-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
 .cc-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(11,11,10,.85))}
 .case-card--v2:hover .cc-photo img{transform:scale(1.04)}
@@ -264,42 +267,42 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 </div>
 <div class="case-carousel" id="case-carousel" tabindex="0" role="region" aria-label="O‘quvchilar keyslari">
 <article class="case-card case-card--v2" aria-label="Feruz Ximmatov keysi">
-<div class="cc-photo"><img src="./cases/feruz.jpg" alt="Feruz Ximmatov" width="640" height="640" loading="lazy" decoding="async"><span class="cc-kind">Shaxsiy keys</span><span class="case-card__number">01 / 06</span></div>
+<div class="cc-photo"><picture><source srcset="./cases/feruz.webp" type="image/webp"><img src="./cases/feruz.jpg" alt="Feruz Ximmatov" width="640" height="640" loading="lazy" decoding="async"></picture><span class="cc-kind">Shaxsiy keys</span><span class="case-card__number">01 / 06</span></div>
 <div class="case-card__top"><span>Sanoat filtratsiyasi va ekologiya</span></div>
 <div class="case-card__metric">$10 000<small>dasturiga taklif qilishdi</small></div>
 <blockquote class="cc-quote">«CRM ishonasizmi — men ikki kun uxlamasdan yozdim. Telefon ishladi.»</blockquote>
 <div class="case-card__built"><strong>Feruz Ximmatov</strong>Phoenix Prime · zavod rahbari<a class="cc-more" href="https://suniyintellect.uz/masterclass/keys/phoenix/" target="_blank" rel="noopener noreferrer">Batafsil ↗</a></div>
 </article>
 <article class="case-card case-card--v2" aria-label="Texno Grand keysi">
-<div class="cc-photo"><img src="./cases/aliyor.jpg" alt="Texno Grand" width="640" height="640" loading="lazy" decoding="async"><span class="cc-kind">Jamoaviy keys · 4 o‘quvchi</span><span class="case-card__number">02 / 06</span></div>
+<div class="cc-photo"><picture><source srcset="./cases/aliyor.webp" type="image/webp"><img src="./cases/aliyor.jpg" alt="Texno Grand" width="640" height="640" loading="lazy" decoding="async"></picture><span class="cc-kind">Jamoaviy keys · 4 o‘quvchi</span><span class="case-card__number">02 / 06</span></div>
 <div class="case-card__top"><span>Maishiy texnika · 28 do‘kon · 300+ xodim</span></div>
 <div class="case-card__metric">$30 000+<small>yiliga tejaladi</small></div>
 <blockquote class="cc-quote">«Hisobotni operatordan 2 soat kutardik. Endi telefonda 30 soniyada ochaman.»</blockquote>
 <div class="case-card__built"><strong>Texno Grand</strong>Aliyor Djurabayev va jamoasi<a class="cc-more" href="https://suniyintellect.uz/masterclass/keys/texnogrand/" target="_blank" rel="noopener noreferrer">Batafsil ↗</a></div>
 </article>
 <article class="case-card case-card--v2" aria-label="Loyalty ELD keysi">
-<div class="cc-photo"><img src="./cases/mirodil.jpg" alt="Loyalty ELD" width="640" height="640" loading="lazy" decoding="async"><span class="cc-kind">Jamoaviy keys · 3 o‘quvchi</span><span class="case-card__number">03 / 06</span></div>
+<div class="cc-photo"><picture><source srcset="./cases/mirodil.webp" type="image/webp"><img src="./cases/mirodil.jpg" alt="Loyalty ELD" width="640" height="640" loading="lazy" decoding="async"></picture><span class="cc-kind">Jamoaviy keys · 3 o‘quvchi</span><span class="case-card__number">03 / 06</span></div>
 <div class="case-card__top"><span>Logistika · ELD · 700+ truck</span></div>
 <div class="case-card__metric">$23 900+<small>yiliga qo‘shimcha daromad</small></div>
 <blockquote class="cc-quote">«700 truck chatini o‘qib bo‘lmasdi. Endi hammasi bitta panelda — kimga qo‘ng‘iroq qilishni panel aytadi.»</blockquote>
 <div class="case-card__built"><strong>Loyalty ELD</strong>Mirodil Mirsadikov va jamoasi<a class="cc-more" href="https://suniyintellect.uz/masterclass/keys/loyalty/" target="_blank" rel="noopener noreferrer">Batafsil ↗</a></div>
 </article>
 <article class="case-card case-card--v2" aria-label="AZALY keysi">
-<div class="cc-photo"><img src="./cases/sanat.jpg" alt="AZALY" width="640" height="640" loading="lazy" decoding="async"><span class="cc-kind">Jamoaviy keys · 3 o‘quvchi</span><span class="case-card__number">04 / 06</span></div>
+<div class="cc-photo"><picture><source srcset="./cases/sanat.webp" type="image/webp"><img src="./cases/sanat.jpg" alt="AZALY" width="640" height="640" loading="lazy" decoding="async"></picture><span class="cc-kind">Jamoaviy keys · 3 o‘quvchi</span><span class="case-card__number">04 / 06</span></div>
 <div class="case-card__top"><span>Ayollar kiyimi · premium mebel · 31 xodim</span></div>
 <div class="case-card__metric">$7 000+<small>yiliga tejaladi</small></div>
 <blockquote class="cc-quote">«Odamlar va pul — bitta himoya. Endi qog‘oz yo‘q: HR kuniga 8 soat emas, 1 soat ishlaydi.»</blockquote>
 <div class="case-card__built"><strong>AZALY</strong>Sanat Ismailov va jamoasi<a class="cc-more" href="https://suniyintellect.uz/masterclass/keys/azaly/" target="_blank" rel="noopener noreferrer">Batafsil ↗</a></div>
 </article>
 <article class="case-card case-card--v2" aria-label="Abdurahmon keysi">
-<div class="cc-photo"><img src="./cases/abdurahmon.jpg" alt="Abdurahmon" width="640" height="640" loading="lazy" decoding="async"><span class="cc-kind">Shaxsiy keys</span><span class="case-card__number">05 / 06</span></div>
+<div class="cc-photo"><picture><source srcset="./cases/abdurahmon.webp" type="image/webp"><img src="./cases/abdurahmon.jpg" alt="Abdurahmon" width="640" height="640" loading="lazy" decoding="async"></picture><span class="cc-kind">Shaxsiy keys</span><span class="case-card__number">05 / 06</span></div>
 <div class="case-card__top"><span>Mebel savdosi va zavod · 150 usta</span></div>
 <div class="case-card__metric">$19 000+<small>yiliga tejaladi</small></div>
 <blockquote class="cc-quote">«AI faqat savol-javobga ishlatardim — bunchalik ko‘p funksiyasi borligini bilmasdim.»</blockquote>
 <div class="case-card__built"><strong>Abdurahmon</strong>Honor Furniture · zavod egasi<a class="cc-more" href="https://suniyintellect.uz/masterclass/keys/honor/" target="_blank" rel="noopener noreferrer">Batafsil ↗</a></div>
 </article>
 <article class="case-card case-card--v2" aria-label="Jamshid Norqulov keysi">
-<div class="cc-photo"><img src="./cases/jamshid.jpg" alt="Jamshid Norqulov" width="640" height="640" loading="lazy" decoding="async"><span class="cc-kind">Shaxsiy keys</span><span class="case-card__number">06 / 06</span></div>
+<div class="cc-photo"><picture><source srcset="./cases/jamshid.webp" type="image/webp"><img src="./cases/jamshid.jpg" alt="Jamshid Norqulov" width="640" height="640" loading="lazy" decoding="async"></picture><span class="cc-kind">Shaxsiy keys</span><span class="case-card__number">06 / 06</span></div>
 <div class="case-card__top"><span>Yevropaga ishga joylashtirish · 18 kishi</span></div>
 <div class="case-card__metric">+$4 000<small>oylik aylanmaga</small></div>
 <blockquote class="cc-quote">««Hujjatim qayerda?» — har kuni eshitardim. Endi mijoz hammasini botda o‘zi ko‘radi, javob 10 soniyada.»</blockquote>
@@ -456,6 +459,6 @@ leadForm.addEventListener('submit', async (event) => {
   }
 });
 </script>
-<script src="./motion.js?v=20261007-2" defer></script>
+<script src="./motion.js?v=20261007-3" defer></script>
 </body>
 </html>
