@@ -77,6 +77,26 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 </style>
 <link rel="stylesheet" href="./design.css">
 <link rel="stylesheet" href="./motion.css?v=20261004-2">
+<style>
+/* Cases with student photos (from suniyintellect.uz) */
+.case-card--v2{padding:0;gap:0;min-height:0;overflow:hidden}
+.case-card--v2>*:not(.cc-photo){margin-left:22px;margin-right:22px}
+.cc-photo{position:relative;aspect-ratio:5/4;overflow:hidden;background:#16140f}
+.cc-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.cc-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(11,11,10,.85))}
+.case-card--v2:hover .cc-photo img{transform:scale(1.04)}
+.cc-kind{position:absolute;left:14px;bottom:14px;z-index:1;padding:6px 10px;border:1px solid rgba(227,192,112,.5);border-radius:999px;background:rgba(11,11,10,.65);backdrop-filter:blur(6px);color:#efe3bf;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.cc-photo .case-card__number{position:absolute;right:14px;top:16px;z-index:1;color:#efe3bf;font-size:12px;font-weight:700}
+.case-card--v2 .case-card__top{margin-top:16px}
+.case-card--v2 .case-card__metric{margin-top:10px}
+.cc-quote{margin-top:14px;margin-bottom:0;color:#d5d0c5;font-size:15px;font-style:italic;line-height:1.55}
+.case-card--v2 .case-card__built{margin-top:auto;margin-bottom:22px;padding-top:14px;display:block}
+.case-card--v2 .case-card__built strong{font-size:15px}
+.cc-more{display:block;width:max-content;margin-top:10px;color:#e2c375;font-size:13px;font-weight:700;text-decoration:none}
+.cc-more:hover{color:#fff}
+.case-card--v2{display:flex;flex-direction:column}
+.case-card--v2 .cc-quote{flex:0 0 auto}
+</style>
 </head>
 <body>
 <div class="site-shell">
@@ -237,70 +257,56 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 <h2 class="h2" style="max-width:18ch">Oldingi oqimlar <span class="gold">nima qurdi</span></h2>
 </div>
 <div class="case-controls" aria-label="Keyslar navigatsiyasi">
-<span class="case-position" id="case-position" role="status" aria-live="polite">1–3 / 8</span>
+<span class="case-position" id="case-position" role="status" aria-live="polite">1–3 / 6</span>
 <button class="case-nav" id="case-prev" type="button" aria-label="Oldingi keyslar" disabled>Oldingi</button>
 <button class="case-nav" id="case-next" type="button" aria-label="Keyingi keyslar">Keyingi</button>
 </div>
 </div>
 <div class="case-carousel" id="case-carousel" tabindex="0" role="region" aria-label="O‘quvchilar keyslari">
-<article class="case-card" aria-label="Aloyorbek keysi">
-<div class="case-card__top"><span>Distribyutsiya</span><span class="case-card__number">01 / 08</span></div>
-<div class="case-card__metric">30 soniya<small>avval hisobotni ~2 soat kutardi</small></div>
-<h3>Aloyorbek</h3>
-<p>Savdo, qarzdorlik va rejani endi telefondagi dashboarddan ko‘radi. Hisobotlarni qo‘lda yig‘gan operatorlar onlayn savdoga o‘tdi.</p>
-<div class="case-card__built"><strong>Nima qurdi</strong>CRM ma’lumotlariga ulangan savdo dashboardi</div>
+<article class="case-card case-card--v2" aria-label="Feruz Ximmatov keysi">
+<div class="cc-photo"><img src="./cases/feruz.jpg" alt="Feruz Ximmatov" width="640" height="640" loading="lazy" decoding="async"><span class="cc-kind">Shaxsiy keys</span><span class="case-card__number">01 / 06</span></div>
+<div class="case-card__top"><span>Sanoat filtratsiyasi va ekologiya</span></div>
+<div class="case-card__metric">$10 000<small>dasturiga taklif qilishdi</small></div>
+<blockquote class="cc-quote">«CRM ishonasizmi — men ikki kun uxlamasdan yozdim. Telefon ishladi.»</blockquote>
+<div class="case-card__built"><strong>Feruz Ximmatov</strong>Phoenix Prime · zavod rahbari<a class="cc-more" href="https://suniyintellect.uz/masterclass/keys/phoenix/" target="_blank" rel="noopener noreferrer">Batafsil ↗</a></div>
 </article>
-<article class="case-card" aria-label="Feruz aka keysi">
-<div class="case-card__top"><span>Ishlab chiqarish</span><span class="case-card__number">02 / 08</span></div>
-<div class="case-card__metric">2 kun<small>CRM va IP-telefoniyani ishga tushirdi</small></div>
-<h3>Feruz aka</h3>
-<p>Uch pudratchi ishlata olmagan tizimni o‘zi qurdi. Sayt va tender agentlari bilan birga jami yettita tizim yaratdi.</p>
-<div class="case-card__built"><strong>Nima qurdi</strong>CRM, sayt va tender agentlari</div>
+<article class="case-card case-card--v2" aria-label="Texno Grand keysi">
+<div class="cc-photo"><img src="./cases/aliyor.jpg" alt="Texno Grand" width="640" height="640" loading="lazy" decoding="async"><span class="cc-kind">Jamoaviy keys · 4 o‘quvchi</span><span class="case-card__number">02 / 06</span></div>
+<div class="case-card__top"><span>Maishiy texnika · 28 do‘kon · 300+ xodim</span></div>
+<div class="case-card__metric">$30 000+<small>yiliga tejaladi</small></div>
+<blockquote class="cc-quote">«Hisobotni operatordan 2 soat kutardik. Endi telefonda 30 soniyada ochaman.»</blockquote>
+<div class="case-card__built"><strong>Texno Grand</strong>Aliyor Djurabayev va jamoasi<a class="cc-more" href="https://suniyintellect.uz/masterclass/keys/texnogrand/" target="_blank" rel="noopener noreferrer">Batafsil ↗</a></div>
 </article>
-<article class="case-card" aria-label="Ozod Abdumutaliev keysi">
-<div class="case-card__top"><span>Marketing</span><span class="case-card__number">03 / 08</span></div>
-<div class="case-card__metric">$600 / oy<small>ikki loyihadagi bot xarajatlari</small></div>
-<h3>Ozod Abdumutaliev</h3>
-<p>AI-agentlar Instagram va YouTube orqali mijozlar bilan gaplashadi, telefon raqamlarini olib, lidlarni AmoCRMga uzatadi.</p>
-<div class="case-card__built"><strong>Nima qurdi</strong>Mijozlar bilan ishlaydigan AI-agentlar</div>
+<article class="case-card case-card--v2" aria-label="Loyalty ELD keysi">
+<div class="cc-photo"><img src="./cases/mirodil.jpg" alt="Loyalty ELD" width="640" height="640" loading="lazy" decoding="async"><span class="cc-kind">Jamoaviy keys · 3 o‘quvchi</span><span class="case-card__number">03 / 06</span></div>
+<div class="case-card__top"><span>Logistika · ELD · 700+ truck</span></div>
+<div class="case-card__metric">$23 900+<small>yiliga qo‘shimcha daromad</small></div>
+<blockquote class="cc-quote">«700 truck chatini o‘qib bo‘lmasdi. Endi hammasi bitta panelda — kimga qo‘ng‘iroq qilishni panel aytadi.»</blockquote>
+<div class="case-card__built"><strong>Loyalty ELD</strong>Mirodil Mirsadikov va jamoasi<a class="cc-more" href="https://suniyintellect.uz/masterclass/keys/loyalty/" target="_blank" rel="noopener noreferrer">Batafsil ↗</a></div>
 </article>
-<article class="case-card" aria-label="Oybek Yuldoshbekov keysi">
-<div class="case-card__top"><span>Logistika</span><span class="case-card__number">04 / 08</span></div>
-<div class="case-card__metric">50%<small>boshqaruv yukidan, o‘z bahosiga ko‘ra</small></div>
-<h3>Oybek Yuldoshbekov</h3>
-<p>Agentlar boshqaruv ishining bir qismini oldi. Invois va buxgalteriya uchun alohida xodim yollashga hojat qolmadi.</p>
-<div class="case-card__built"><strong>Nima qurdi</strong>Buxgalteriya va monitoring agentlari</div>
+<article class="case-card case-card--v2" aria-label="AZALY keysi">
+<div class="cc-photo"><img src="./cases/sanat.jpg" alt="AZALY" width="640" height="640" loading="lazy" decoding="async"><span class="cc-kind">Jamoaviy keys · 3 o‘quvchi</span><span class="case-card__number">04 / 06</span></div>
+<div class="case-card__top"><span>Ayollar kiyimi · premium mebel · 31 xodim</span></div>
+<div class="case-card__metric">$7 000+<small>yiliga tejaladi</small></div>
+<blockquote class="cc-quote">«Odamlar va pul — bitta himoya. Endi qog‘oz yo‘q: HR kuniga 8 soat emas, 1 soat ishlaydi.»</blockquote>
+<div class="case-card__built"><strong>AZALY</strong>Sanat Ismailov va jamoasi<a class="cc-more" href="https://suniyintellect.uz/masterclass/keys/azaly/" target="_blank" rel="noopener noreferrer">Batafsil ↗</a></div>
 </article>
-<article class="case-card" aria-label="Mohinur keysi">
-<div class="case-card__top"><span>Poligrafiya</span><span class="case-card__number">05 / 08</span></div>
-<div class="case-card__metric">12–55 mln so‘m<small>sayt uchun olgan takliflari</small></div>
-<h3>Mohinur</h3>
-<p>IT tajribasi bo‘lmasa ham, ishlab chiqarish korxonasi saytini o‘zi yaratib ishga tushirdi.</p>
-<div class="case-card__built"><strong>Nima qurdi</strong>Kompaniyaning ishga tushgan sayti</div>
+<article class="case-card case-card--v2" aria-label="Abdurahmon keysi">
+<div class="cc-photo"><img src="./cases/abdurahmon.jpg" alt="Abdurahmon" width="640" height="640" loading="lazy" decoding="async"><span class="cc-kind">Shaxsiy keys</span><span class="case-card__number">05 / 06</span></div>
+<div class="case-card__top"><span>Mebel savdosi va zavod · 150 usta</span></div>
+<div class="case-card__metric">$19 000+<small>yiliga tejaladi</small></div>
+<blockquote class="cc-quote">«AI faqat savol-javobga ishlatardim — bunchalik ko‘p funksiyasi borligini bilmasdim.»</blockquote>
+<div class="case-card__built"><strong>Abdurahmon</strong>Honor Furniture · zavod egasi<a class="cc-more" href="https://suniyintellect.uz/masterclass/keys/honor/" target="_blank" rel="noopener noreferrer">Batafsil ↗</a></div>
 </article>
-<article class="case-card" aria-label="Axrorbek keysi">
-<div class="case-card__top"><span>Savdo va ta’minot</span><span class="case-card__number">06 / 08</span></div>
-<div class="case-card__metric">30 → 3 daqiqa<small>to‘lovlarni taqsimlash vaqti</small></div>
-<h3>Axrorbek</h3>
-<p>Bot 15–20 yetkazib beruvchi bo‘yicha qarz, savdo va qoldiqlarni solishtirib, kimga to‘lash kerakligini ko‘rsatadi.</p>
-<div class="case-card__built"><strong>Nima qurdi</strong>Ta’minot dashboardi va bot</div>
-</article>
-<article class="case-card" aria-label="Nigora Sultonova keysi">
-<div class="case-card__top"><span>Xizmatlar</span><span class="case-card__number">07 / 08</span></div>
-<div class="case-card__metric">$500<small>dashboardni sotgan narxi</small></div>
-<h3>Nigora Sultonova</h3>
-<p>Psixologiya markazining ko‘rsatkichlarini bitta dashboardga jamladi va shu yechimni mijozga sotdi.</p>
-<div class="case-card__built"><strong>Nima qurdi</strong>Markaz ko‘rsatkichlari dashboardi</div>
-</article>
-<article class="case-card" aria-label="Abdulaziz Abdujalilov keysi">
-<div class="case-card__top"><span>Farmatsevtika</span><span class="case-card__number">08 / 08</span></div>
-<div class="case-card__metric">Darhol<small>avval xatoni tuzatish 1–3 kun olardi</small></div>
-<h3>Abdulaziz Abdujalilov</h3>
-<p>Oilaviy zavod uchun o‘z boshqaruv tizimini qurdi: buyurtmalar dashboardda, kundalik vazifalar va zavod hisoboti bitta joyda.</p>
-<div class="case-card__built"><strong>Nima qurdi</strong>Zavod boshqaruv tizimi</div>
+<article class="case-card case-card--v2" aria-label="Jamshid Norqulov keysi">
+<div class="cc-photo"><img src="./cases/jamshid.jpg" alt="Jamshid Norqulov" width="640" height="640" loading="lazy" decoding="async"><span class="cc-kind">Shaxsiy keys</span><span class="case-card__number">06 / 06</span></div>
+<div class="case-card__top"><span>Yevropaga ishga joylashtirish · 18 kishi</span></div>
+<div class="case-card__metric">+$4 000<small>oylik aylanmaga</small></div>
+<blockquote class="cc-quote">««Hujjatim qayerda?» — har kuni eshitardim. Endi mijoz hammasini botda o‘zi ko‘radi, javob 10 soniyada.»</blockquote>
+<div class="case-card__built"><strong>Jamshid Norqulov</strong>VisaPro · asoschi<a class="cc-more" href="https://suniyintellect.uz/masterclass/keys/jamshid/" target="_blank" rel="noopener noreferrer">Batafsil ↗</a></div>
 </article>
 </div>
-<div class="case-footer"><p>Natijalar o‘quvchilar intervyularidan olingan.</p><a href="https://claude.ai/artifact/P9viQCraXJGQYCQNXeqZNk" target="_blank" rel="noopener noreferrer">43 ta to‘liq keysni ko‘rish</a></div>
+<div class="case-footer"><p>Natijalar o‘quvchilar intervyularidan olingan.</p></div>
 </div>
 </section>
 
