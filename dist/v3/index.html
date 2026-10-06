@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AI Strateg 3.0: 6 haftalik AI bilan strategik boshqaruv dasturi.">
+<meta name="theme-color" content="#050505">
+<meta name="robots" content="noindex">
+<title>AI Strateg 3.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Doto:wght@800;900&display=swap">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0a'/%3E%3Cpath d='M14 45 30 15l7 14 5-9 9 25H14Zm12-8h11l-6-11-5 11Z' fill='%23c9a84c'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./v3.css?v=1">
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero" id="top">
+ <canvas class="vortex" id="vortex" aria-hidden="true"></canvas>
+ <div class="hero-glow" aria-hidden="true"></div>
+
+ <div class="hchip hchip--1" aria-hidden="true"><span>ChatGPT</span><i><img src="../logos/chatgpt.svg" alt=""></i></div>
+ <div class="hchip hchip--2" aria-hidden="true"><span>Gemini</span><i><img src="../logos/gemini.svg" alt=""></i></div>
+ <div class="hchip hchip--3 r" aria-hidden="true"><i><img src="../logos/claude.svg" alt=""></i><span>Claude</span></div>
+ <div class="hchip hchip--4 r" aria-hidden="true"><i><img src="../logos/notebooklm.svg" alt=""></i><span>NotebookLM</span></div>
+
+ <div class="hero-copy">
+  <div class="kicker"><b></b> AI bilan strategik boshqaruv · 6 hafta</div>
+  <h1>Ijrochidan strategga:<br><span class="shine">AI Strateg 3.0</span></h1>
+  <p>6 hafta ichida rutinadan strategik boshqaruvga o‘tasiz — AI-xodimlar, jonli dashboard va shaxsiy Jarvis bilan.</p>
+  <a class="btn-gold" href="#diagnostika">Diagnostikaga yozilish <i aria-hidden="true">→</i></a>
+ </div>
+
+ <div class="hero-cards" aria-hidden="true">
+  <div class="dcard dcard--l">
+   <div class="dc-head"><b>AI-agentlar</b><a>Barchasi</a></div>
+   <div class="ag"><i class="ag-ic">◎</i><div><b>Sotuv agenti</b><small>Lidlar → CRM</small></div><svg viewBox="0 0 60 22"><path d="M0 18 L8 14 L16 16 L24 9 L32 12 L40 6 L48 8 L60 2"/></svg><div class="ag-v"><b>128</b><small>lid</small></div></div>
+   <div class="ag on"><i class="ag-ic">✦</i><div><b>Kontent agenti</b><small>Reels ssenariy</small></div><svg viewBox="0 0 60 22"><path d="M0 16 L10 18 L18 11 L28 13 L36 7 L46 10 L60 4"/></svg><div class="ag-v"><b>34</b><small>ssenariy</small></div></div>
+   <div class="ag"><i class="ag-ic">▥</i><div><b>Hisobot agenti</b><small>Kunlik raqamlar</small></div><svg viewBox="0 0 60 22"><path d="M0 12 L10 14 L20 9 L30 11 L40 8 L50 10 L60 5"/></svg><div class="ag-v"><b>30s</b><small>hisobot</small></div></div>
+  </div>
+  <div class="dcard dcard--c">
+   <div class="dc-top"><span>☰</span><span>◉ &nbsp;🔔</span></div>
+   <div class="dc-tabs" id="dc-tabs"><em class="on">Sotuv</em><em>Moliya</em><em>Marketing</em><em>Sklad</em></div>
+   <div class="dc-num"><b id="dc-num">$12,480</b><small id="dc-cap">Bugungi tushum</small></div>
+   <svg class="dc-chart" viewBox="0 0 300 110" preserveAspectRatio="none"><defs><linearGradient id="dca" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3c070" stop-opacity=".35"/><stop offset="1" stop-color="#e3c070" stop-opacity="0"/></linearGradient></defs><path id="dc-area" fill="url(#dca)"/><path id="dc-line" fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle id="dc-dot" r="5" fill="#0b0b0a" stroke="#e3c070" stroke-width="3"/></svg>
+   <div class="dc-foot"><span>Tejalgan vaqt</span><b>40+ soat <em>(+18%)</em></b></div>
+  </div>
+  <div class="dcard dcard--r">
+   <div class="dc-head"><b>Jarvis</b><span class="live"><i></i> Jonli</span></div>
+   <div class="jv"><small>Vazifa</small><div class="jv-row"><i>▥</i><b>Kunlik hisobot</b><span>08:00</span></div></div>
+   <div class="jv-swap">⇅</div>
+   <div class="jv"><small>Natija</small><div class="jv-row"><i>✈</i><b>Telegram’ga yuborildi</b><span class="ok">✓</span></div></div>
+   <div class="jv-tick" id="jv-tick">Qarzdorlar ro‘yxati CRM’ga yozildi</div>
+  </div>
+ </div>
+</header>
+
+<!-- LOGOS -->
+<section class="logos">
+ <p>Dasturda <b>6 ta AI vosita</b> bilan ishlaysiz</p>
+ <div class="logo-row">
+  <span><img src="../logos/chatgpt.svg" alt="">ChatGPT</span><span><img src="../logos/claude.svg" alt="">Claude</span><span><img src="../logos/gemini.svg" alt="">Gemini</span><span><img src="../logos/notebooklm.svg" alt="">NotebookLM</span><span><img src="../logos/claude-code.svg" alt="">Claude Code</span><span><img src="../logos/heygen.png" alt="">HeyGen</span>
+ </div>
+</section>
+
+<!-- TRUTH -->
+<section class="sec">
+ <div class="wrap">
+  <div class="shead"><h2>Siz hozir <span class="g">pul va vaqt</span><br>yo‘qotmoqdasiz</h2><p>Bitta xodim oyligidan kam pulga butun AI-otdel.</p></div>
+  <div class="truth">
+   <div class="gcard tcard"><small>Eski usul</small><ul><li>✕ Rutinaga botgan, har bir qadam uchun kadr kutadi</li><li>✕ Oylik to‘laydi, hisobotlarni haftalab kutadi</li></ul></div>
+   <div class="gcard tcard tcard--g"><small>Strateg</small><ul><li><b>✓</b> AI-xodimlarni boshqaradi — operatsion xarajat nolga teng</li><li><b>✓</b> Jonli boshqaruv paneliga ega</li></ul></div>
+  </div>
+ </div>
+</section>
+
+<!-- PROGRAM -->
+<section class="sec" id="dastur">
+ <div class="side-glow side-glow--r" aria-hidden="true"></div>
+ <div class="wrap">
+  <div class="shead"><h2>Kurs dasturi:<br><span class="g">6 hafta · 12 jonli dars</span></h2><p>Har hafta — aniq natija va qo‘lingizda qoladigan ishlaydigan vosita.</p></div>
+  <div class="bento" id="bento"></div>
+ </div>
+</section>
+
+<!-- CASES -->
+<section class="sec cases" id="natijalar">
+ <div class="wrap">
+  <div class="shead"><h2 class="dot">Oldingi oqimlar<br>nima qurdi</h2><p>O‘quvchilarimiz o‘z bizneslarida joriy qilgan real tizimlar.</p>
+   <a class="btn-ghost" href="#diagnostika">Siz ham qurasiz <i aria-hidden="true">→</i></a></div>
+ </div>
+ <div class="arc" id="arc" tabindex="0" role="region" aria-roledescription="karusel" aria-label="O‘quvchilar keyslari">
+  <div class="arc-stage" id="arc-stage"></div>
+  <div class="arc-floor" aria-hidden="true"></div>
+ </div>
+ <div class="wrap">
+  <div class="arc-nav"><button type="button" id="arc-prev" aria-label="Oldingi keys">←</button><span id="arc-pos">01 / 06</span><button type="button" id="arc-next" aria-label="Keyingi keys">→</button></div>
+  <div class="case-info" id="case-info" aria-live="polite"></div>
+ </div>
+</section>
+
+<!-- ECONOMICS -->
+<section class="sec">
+ <div class="side-glow side-glow--l" aria-hidden="true"></div>
+ <div class="wrap">
+  <div class="shead"><h2>Tez joriy etish qancha<br><span class="g">pul va vaqt</span> tejaydi?</h2><p>O‘quvchilar amaliyotidan — potensial hisob.</p></div>
+  <div class="econ">
+   <div class="gcard econ-list">
+    <div><span>Dizayner va vizual kontent</span><b>~$500/oy</b></div>
+    <div><span>Direct va mijozlar (yo‘qolgan tungi lidlar)</span><b>~$500/oy</b></div>
+    <div><span>Kopirayting va hisobotlar (frilanser)</span><b>~$300–500/oy</b></div>
+    <div><span>Har yangi g‘oya / MVP (podryadchiksiz)</span><b>$1,000+</b></div>
+    <div><span>Sizning vaqtingiz (rutina)</span><b>40+ soat/hafta</b></div>
+   </div>
+   <div class="gcard econ-total">
+    <small>Jami tejash potensiali</small>
+    <b><span data-count="2000">$2,000</span>+</b><em>har oy</em>
+    <div class="ring" aria-hidden="true"><i></i><span>✓</span></div>
+    <p>AI-Strateg tarifi shu tejashda 1–2 oyda o‘zini qoplaydi.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec" id="tariflar">
+ <div class="wrap">
+  <div class="shead"><h2>Uchta format —<br><span class="g">bitta natija</span></h2><p>Yangi oqim — faqat 20 ishtirokchi. 12 jonli dars + 0-hafta + bootcamp.</p></div>
+  <div class="prices">
+   <article class="gcard price">
+    <small>Tarif 01</small><h3>AI — Strateg</h3><p>O‘zi kirib, biznesiga AI joriy qilmoqchi bo‘lgan rahbar (1 kishi).</p>
+    <ul><li>12 jonli dars + 0-hafta + bootcamp</li><li>500+ tayyor prompt kutubxonasi</li><li>Agent va dashboard shablonlari</li><li>Yopiq chat + payshanba kurator-zoom</li><li>Darslar yozuvi abadiy</li></ul>
+    <div class="pp"><s>$5,000</s><b>$2,500</b></div>
+   </article>
+   <article class="gcard price price--hot">
+    <span class="badge">Sizga tavsiya</span>
+    <small>Tarif 02</small><h3>AI — Team</h3><p>Siz + 2 boshqaruvchingiz. Tizim bitta odamda emas, jamoada qoladi.</p>
+    <ul><li>Strateg paketi × 3 kishi</li><li>Jamoa uchun strategik sessiya</li><li>AI tizimini birgalikda qurish</li><li>Alohida kurator va yopiq chat</li><li>2 ta guruhiy razbor</li></ul>
+    <div class="pp"><s>$9,900</s><b>$5,000</b></div>
+   </article>
+   <article class="gcard price">
+    <small>Tarif 03</small><h3>AI — Tizim</h3><p>Butun biznesni birga avtomatlashtirish. Mentorlikka 2 kishi.</p>
+    <ul><li>Team formatida 2 ta o‘rin</li><li>Mac mini — shaxsiy AI-server, Jarvis 24/7</li><li>Jarayonlar tahlili + maxsus agentlar</li><li>Kontent + sotuv + analitika tizimi</li><li>Jamoa o‘qitish + 3 oy nazorat</li></ul>
+    <div class="pp"><s>$16,000+</s><b>$10,000</b></div>
+   </article>
+  </div>
+ </div>
+</section>
+
+<!-- DIAGNOSTIKA -->
+<section class="sec" id="diagnostika">
+ <div class="wrap">
+  <div class="gcard diag">
+   <div class="diag-glow" aria-hidden="true"></div>
+   <div class="diag-copy">
+    <h2>Qaror qilish uchun raqam kerakmi?<br><span class="g">Diagnostikadan boshlang.</span></h2>
+    <p>Birinchi qadam sotib olish emas. 30 daqiqada AI qayerda birinchi pulni berishini va sizga qaysi format mos ekanini halol aytamiz.</p>
+    <a class="btn-gold" href="https://t.me/kodiyusufbay" target="_blank" rel="noopener noreferrer">Telegram orqali yozilish <i aria-hidden="true">→</i></a>
+   </div>
+   <ol class="diag-steps"><li><b>01</b>Faqat sizning biznesingiz haqida gaplashamiz</li><li><b>02</b>AI qayerda birinchi pulni berishini ko‘rsatamiz</li><li><b>03</b>Qaysi format mos — yoki mos emasligini aytamiz</li></ol>
+  </div>
+ </div>
+</section>
+
+<footer class="final">
+ <h2>AI sizni ishsiz qoldirmaydi.<br><span class="g">Bugun AI’ni joriy qilgan raqobatchi</span> qoldiradi.</h2>
+ <p>@kodiyusufbay</p>
+</footer>
+
+<script src="../v2/weeks.js"></script>
+<script src="./v3.js?v=1"></script>
+</body>
+</html>
