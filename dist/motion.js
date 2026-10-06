@@ -222,7 +222,72 @@
       'Dashboard: savdo +18% bu hafta',
       'Hisobot agenti: qarzdorlik yangilandi'
     ];
-    let step = 0;
+    // Each department tab shows its own panel: title, metrics, agents, chart.
+    const DEPS = [
+      {title: 'Sotuv paneli', sub: 'Lidlar, bitimlar va menejerlar', chart: 'Haftalik bitimlar', unit: 'dona',
+        m: [['Yangi lidlar', 128, '', '', '↗ +24%'], ['Konversiya', 18, '', '%', '↗ +3%'], ['Tushum', 12480, '$', '', '↗ bugun'], ['O‘rtacha chek', 340, '$', '', '↗ +9%']],
+        a: [['◎', 'Sotuv agenti', 'Lidlar → CRM'], ['✦', 'Skript agenti', 'Javob shablonlari'], ['↺', 'Qayta aloqa agenti', 'Unutilgan mijozlar']]},
+      {title: 'Moliya paneli', sub: 'Foyda, xarajat va qarzdorlik', chart: 'Haftalik foyda', unit: 'ming $',
+        m: [['Sof foyda', 3920, '$', '', '↗ bu hafta'], ['Marja', 32, '', '%', '↗ +4%'], ['Qarzdorlik', 8100, '$', '', '↘ −12%'], ['Kassa', 21500, '$', '', '↗ bugun']],
+        a: [['▥', 'Hisobot agenti', 'Kunlik raqamlar'], ['$', 'Qarzdorlik agenti', 'Eslatmalar yuborildi'], ['⧉', 'Xarajat agenti', 'Chek → jadval']]},
+      {title: 'Marketing paneli', sub: 'Kontent, reklama va lidlar', chart: 'Haftalik qamrov', unit: 'ming',
+        m: [['Reels', 34, '', '', '↗ bu oy'], ['Qamrov', 182, '', 'K', '↗ +41%'], ['Lid narxi', 2.1, '$', '', '↘ −18%'], ['ER', 6.4, '', '%', '↗ +1.2%']],
+        a: [['✦', 'Kontent agenti', 'Reels ssenariylari'], ['◈', 'Reklama agenti', 'Kreativ tahlili'], ['◎', 'Raqobat agenti', 'Trend monitoringi']]},
+      {title: 'Boshqaruv paneli', sub: 'Siz kursda quradigan AI tizim', chart: 'Haftalik avtomatlashtirish', unit: 'soat',
+        m: [['AI-agentlar', 5, '', '', '↗ Ishlayapti', 2], ['Tejalgan vaqt', 40, '', '+ soat', '↗ har hafta'], ['Tejash potensiali', 2000, '$', '+', '↗ har oy'], ['Jarvis', '24/7', '', '', '↗ Onlayn']],
+        a: [['✦', 'Kontent agenti', 'Reels ssenariylari'], ['◎', 'Sotuv agenti', 'Lidlar → CRM'], ['▥', 'Hisobot agenti', 'Kunlik raqamlar']]},
+      {title: 'Sklad paneli', sub: 'Qoldiq, buyurtma va yetkazib berish', chart: 'Haftalik aylanma', unit: 'dona',
+        m: [['Pozitsiyalar', 1284, '', '', '↗ nazoratda'], ['To‘ldirilgan', 96, '', '%', '↗ +5%'], ['Kam qolgan', 12, '', '', '↘ buyurtma'], ['Yetkazish', 2.1, '', ' kun', '↘ −30%']],
+        a: [['▦', 'Ombor agenti', 'Qoldiq nazorati'], ['✉', 'Buyurtma agenti', 'Yetkazuvchiga xat'], ['≡', 'Inventar agenti', 'Kunlik sanoq']]},
+    ];
+    const q = (sel) => panel.querySelector(sel);
+    const title = q('.preview-title'), chartTitle = q('.preview-chart > span');
+    const feed = [...panel.querySelectorAll('.preview-feed > p')];
+    const pmTitle = q('.pm-heading strong'), pmFeat = q('.pm-feature > div'), pmStats = [...panel.querySelectorAll('.pm-stats > div')], pmAgent = q('.pm-agent > span:nth-child(2)');
+    const numText = (v, pre, suf, pad) => {
+      if (typeof v === 'string') return v;
+      let s = v % 1 ? v.toFixed(1) : Math.round(v).toLocaleString('en-US');
+      if (pad) s = s.padStart(pad, '0');
+      return pre + s + suf;
+    };
+    // animate a metric value from 0 so every switch feels "live"
+    const countTo = (el, [, v, pre, suf, , pad]) => {
+      if (typeof v === 'string' || reduced) { el.textContent = numText(v, pre, suf, pad); return; }
+      const t0 = performance.now(), dur = 700;
+      const tick = (now) => {
+        const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = numText(k < 1 ? (v % 1 ? v * e : Math.round(v * e)) : v, pre, suf, pad);
+        if (k < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    let unit = 'soat';
+    const applyDep = (i, animate) => {
+      const d = DEPS[i];
+      unit = d.unit;
+      if (title) title.innerHTML = `${d.title} <small>${d.sub}</small>`;
+      if (chartTitle) chartTitle.innerHTML = `${d.chart} <small>${d.unit}</small>`;
+      metrics.forEach((box, k) => {
+        const m = d.m[k]; if (!m) return;
+        box.querySelector('small').textContent = m[0];
+        const trend = box.querySelector(':scope > span'); if (trend) trend.textContent = m[4];
+        const strong = box.querySelector('strong');
+        if (animate) countTo(strong, m); else strong.textContent = numText(m[1], m[2], m[3], m[5]);
+      });
+      feed.forEach((p, k) => {
+        const ag = d.a[k]; if (!ag) return;
+        p.querySelector('.ag-ic').textContent = ag[0];
+        p.querySelector(':scope > span').innerHTML = `${ag[1]}<small>${ag[2]}</small>`;
+      });
+      if (pmTitle) pmTitle.textContent = d.title;
+      const pmFlow = q('.pm-flow span'); if (pmFlow) pmFlow.textContent = d.chart.replace('Haftalik ', '').replace(/^./, (c) => c.toUpperCase());
+      if (pmFeat) pmFeat.innerHTML = `<small>${d.m[1][0]}</small><strong>${numText(d.m[1][1], d.m[1][2], d.m[1][3], d.m[1][5])}</strong><span class="pm-trend">${d.m[1][4]}</span>`;
+      pmStats.forEach((box, k) => { const m = d.m[k ? 3 : 0]; box.innerHTML = `<small>${m[0]}</small><strong>${numText(m[1], m[2], m[3], m[5])}</strong><span>${m[4].replace(/^[↗↘] /, '')}</span>`; });
+      if (pmAgent) pmAgent.innerHTML = `<strong>${d.a[0][1]}</strong><small>${d.a[0][2]}</small>`;
+      panel.classList.remove('is-swap'); void panel.offsetWidth; panel.classList.add('is-swap');
+    };
+
+    let step = 3; // start on Boshqaruv: it matches the count-up numbers in the markup
     const shuffleBars = () => {
       let max = 0, peak = null;
       bars.forEach((b, i) => {
@@ -231,34 +296,43 @@
         b.classList.remove('is-peak');
         if (i % 2 === 0 && v > max) { max = v; peak = b; }
       });
-      if (peak) { peak.classList.add('is-peak'); peak.dataset.v = `${Math.round(max / 2)} soat`; }
+      if (peak) { peak.classList.add('is-peak'); peak.dataset.v = `${Math.round(max / 2)} ${unit}`; }
     };
     shuffleBars();
+    tabs.forEach((t, i) => t.classList.toggle('is-active', i === step));
     metrics[0] && metrics[0].classList.add('is-hot');
     let panelVisible = true;
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(([e]) => { panelVisible = e.isIntersecting; }).observe(panel);
     }
-    if (!reduced) {
-      setInterval(() => {
-        if (!panelVisible || document.hidden) return;
-        step++;
-        shuffleBars();
-        agents.forEach((a) => a.style.setProperty('--w', `${35 + Math.round(Math.random() * 62)}%`));
-        metrics.forEach((m, i) => m.classList.toggle('is-hot', i === step % metrics.length));
-        tabs.forEach((t, i) => t.classList.toggle('is-active', i === step % tabs.length));
-        // On narrow screens the tab strip scrolls; keep the active tab in view.
-        const strip = tabs[0] && tabs[0].parentElement;
-        const active = tabs[step % tabs.length];
-        if (strip && active && strip.scrollWidth > strip.clientWidth + 2) {
-          strip.scrollTo({left: active.offsetLeft - (strip.clientWidth - active.offsetWidth) / 2, behavior: 'smooth'});
-        }
-        if (ticker) {
-          ticker.classList.add('is-out');
-          setTimeout(() => { ticker.textContent = events[step % events.length]; ticker.classList.remove('is-out'); }, 350);
-        }
-      }, 2600);
-    }
+    const show = (i) => {
+      step = i;
+      const k = step % tabs.length;
+      applyDep(k, true);
+      shuffleBars();
+      agents.forEach((a) => a.style.setProperty('--w', `${35 + Math.round(Math.random() * 62)}%`));
+      metrics.forEach((m, j) => m.classList.toggle('is-hot', j === step % metrics.length));
+      tabs.forEach((t, j) => t.classList.toggle('is-active', j === k));
+      // On narrow screens the tab strip scrolls; keep the active tab in view.
+      const strip = tabs[0] && tabs[0].parentElement;
+      const active = tabs[k];
+      if (strip && active && strip.scrollWidth > strip.clientWidth + 2) {
+        strip.scrollTo({left: active.offsetLeft - (strip.clientWidth - active.offsetWidth) / 2, behavior: reduced ? 'auto' : 'smooth'});
+      }
+      if (ticker) {
+        ticker.classList.add('is-out');
+        setTimeout(() => { ticker.textContent = events[step % events.length]; ticker.classList.remove('is-out'); }, 350);
+      }
+    };
+    let timer = null;
+    const autoplay = () => {
+      clearInterval(timer);
+      if (reduced) return;
+      timer = setInterval(() => { if (panelVisible && !document.hidden) show(step + 1); }, 3200);
+    };
+    // tabs are clickable too; a click restarts the autoplay timer
+    tabs.forEach((t, i) => t.addEventListener('click', () => { show(i); autoplay(); }));
+    autoplay();
 
     // 3D tilt + shine following the cursor
     if (finePointer && !reduced) {
