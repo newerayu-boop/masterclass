@@ -242,3 +242,8 @@ a{color:inherit;text-decoration:none}
  *,*:before,*:after{animation:none!important;transition:none!important}
  .dcard,.wk,.reveal,.scr-in .fg{opacity:1;transform:none}
 }
+
+/* program visuals: no device/window frame — just the picture, softly rounded */
+.scr{border:0;background:none;padding:0;box-shadow:none}
+.scr-in{aspect-ratio:auto;border-radius:16px;background:none;box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 0 1px rgba(227,192,112,.14)}
+.scr-in .fg{position:relative;inset:auto;height:auto}

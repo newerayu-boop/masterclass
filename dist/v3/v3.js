@@ -84,8 +84,7 @@
         <ul class="wk-ls">${w.lessons.map(([d, t]) => `<li><b>${d}</b><span>${t}</span></li>`).join('')}</ul>
         <div class="wk-res"><i>✓</i>${w.result}</div>
       </div>
-      <div class="scr"><div class="scr-bar"><i></i><i></i><i></i><span>${w.short.toUpperCase()}</span></div>
-        <div class="scr-in"><img class="bg" src="${img}" alt="" loading="lazy"><img class="fg" src="${img}" alt="${w.alt}" loading="lazy"></div></div>`;
+      <div class="scr"><div class="scr-in"><img class="fg" src="${img}" alt="${w.alt}" loading="lazy"></div></div>`;
     bento.appendChild(el);
   });
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: 0.18});
