@@ -2,7 +2,7 @@
 window.WEEKS=[
  {n:1,wk:'1-HAFTA',short:'Biznes rentgeni',title:'Biznes rentgeni va aqlli fundament',promise:'Analitik yollamasdan — biznesingizning to‘liq tahlilini 90 daqiqada olasiz.',
   lessons:[['1-dars','Biznes rentgeni: marketing, moliya, sotuv, mijozlar va raqobat bo‘yicha 5 ta bloknot.'],['2-dars','Aqlli fundament: Claude proyekti yaratib, bilim bazasini ulash.']],
-  result:'Biznes tahlili fayli + ishlaydigan Claude proyekti',cp:null,img:'./program/week-1.jpg',alt:'Bilim bazasi grafi: marketing, moliya, sotuv, mijozlar, raqobat'},
+  result:'Biznes tahlili fayli + ishlaydigan Claude proyekti',cp:null,img:'./program/week-1.jpg',alt:'Turli AI vositalari Claude proyektiga, undan esa biznes yo‘nalishlariga olib boradi'},
  {n:2,wk:'2-HAFTA',short:'AI-xodim',title:'Birinchi AI-xodim va AI-otdel',promise:'Birinchi AI-xodimlaringiz ishga tushadi — oyliksiz, 24/7.',
   lessons:[['3-dars','Ekspert bilimi bilan assistent yaratish: agent = xodim.'],['4-dars','AI-otdel yig‘ilishi: 5 ta agent 5 xil vazifa turini yopadi.']],
   result:'5 ta ishlaydigan AI-agent',cp:'1-artefakt',img:'./program/week-2.jpg',alt:'AI sotuv agenti telefonda mijoz bilan yozishmoqda'},
