@@ -224,6 +224,9 @@
     ];
     // Each department tab shows its own panel: title, metrics, agents, chart.
     const DEPS = [
+      {title: 'Umumiy panel', sub: 'Siz kursda quradigan AI tizim', chart: 'Haftalik avtomatlashtirish', unit: 'soat',
+        m: [['AI-agentlar', 5, '', '', '↗ Ishlayapti', 2], ['Tejalgan vaqt', 40, '', '+ soat', '↗ har hafta'], ['Tejash potensiali', 2000, '$', '+', '↗ har oy'], ['Jarvis', '24/7', '', '', '↗ Onlayn']],
+        a: [['✦', 'Kontent agenti', 'Reels ssenariylari'], ['◎', 'Sotuv agenti', 'Lidlar → CRM'], ['▥', 'Hisobot agenti', 'Kunlik raqamlar']]},
       {title: 'Sotuv paneli', sub: 'Lidlar, bitimlar va menejerlar', chart: 'Haftalik bitimlar', unit: 'dona',
         m: [['Yangi lidlar', 128, '', '', '↗ +24%'], ['Konversiya', 18, '', '%', '↗ +3%'], ['Tushum', 12480, '$', '', '↗ bugun'], ['O‘rtacha chek', 340, '$', '', '↗ +9%']],
         a: [['◎', 'Sotuv agenti', 'Lidlar → CRM'], ['✦', 'Skript agenti', 'Javob shablonlari'], ['↺', 'Qayta aloqa agenti', 'Unutilgan mijozlar']]},
@@ -233,9 +236,9 @@
       {title: 'Marketing paneli', sub: 'Kontent, reklama va lidlar', chart: 'Haftalik qamrov', unit: 'ming',
         m: [['Reels', 34, '', '', '↗ bu oy'], ['Qamrov', 182, '', 'K', '↗ +41%'], ['Lid narxi', 2.1, '$', '', '↘ −18%'], ['ER', 6.4, '', '%', '↗ +1.2%']],
         a: [['✦', 'Kontent agenti', 'Reels ssenariylari'], ['◈', 'Reklama agenti', 'Kreativ tahlili'], ['◎', 'Raqobat agenti', 'Trend monitoringi']]},
-      {title: 'Boshqaruv paneli', sub: 'Siz kursda quradigan AI tizim', chart: 'Haftalik avtomatlashtirish', unit: 'soat',
-        m: [['AI-agentlar', 5, '', '', '↗ Ishlayapti', 2], ['Tejalgan vaqt', 40, '', '+ soat', '↗ har hafta'], ['Tejash potensiali', 2000, '$', '+', '↗ har oy'], ['Jarvis', '24/7', '', '', '↗ Onlayn']],
-        a: [['✦', 'Kontent agenti', 'Reels ssenariylari'], ['◎', 'Sotuv agenti', 'Lidlar → CRM'], ['▥', 'Hisobot agenti', 'Kunlik raqamlar']]},
+      {title: 'Boshqaruv paneli', sub: 'Vazifalar, jamoa va KPI', chart: 'Haftalik vazifalar', unit: 'dona',
+        m: [['Ochiq vazifalar', 23, '', '', '↘ −8 bu hafta'], ['KPI bajarilishi', 87, '', '%', '↗ +6%'], ['Jamoa', 31, '', ' kishi', '↗ faol'], ['Uchrashuvlar', 4, '', '', '↗ bugun']],
+        a: [['J', 'Jarvis', 'Kunlik brifing'], ['✓', 'Vazifa agenti', 'Topshiriqlar nazorati'], ['≡', 'Protokol agenti', 'Uchrashuv xulosasi']]},
       {title: 'Sklad paneli', sub: 'Qoldiq, buyurtma va yetkazib berish', chart: 'Haftalik aylanma', unit: 'dona',
         m: [['Pozitsiyalar', 1284, '', '', '↗ nazoratda'], ['To‘ldirilgan', 96, '', '%', '↗ +5%'], ['Kam qolgan', 12, '', '', '↘ buyurtma'], ['Yetkazish', 2.1, '', ' kun', '↘ −30%']],
         a: [['▦', 'Ombor agenti', 'Qoldiq nazorati'], ['✉', 'Buyurtma agenti', 'Yetkazuvchiga xat'], ['≡', 'Inventar agenti', 'Kunlik sanoq']]},
@@ -253,7 +256,7 @@
     // animate a metric value from 0 so every switch feels "live"
     const countTo = (el, [, v, pre, suf, , pad]) => {
       if (typeof v === 'string' || reduced) { el.textContent = numText(v, pre, suf, pad); return; }
-      const t0 = performance.now(), dur = 700;
+      const t0 = performance.now(), dur = 900;
       const tick = (now) => {
         const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
         el.textContent = numText(k < 1 ? (v % 1 ? v * e : Math.round(v * e)) : v, pre, suf, pad);
@@ -284,10 +287,9 @@
       if (pmFeat) pmFeat.innerHTML = `<small>${d.m[1][0]}</small><strong>${numText(d.m[1][1], d.m[1][2], d.m[1][3], d.m[1][5])}</strong><span class="pm-trend">${d.m[1][4]}</span>`;
       pmStats.forEach((box, k) => { const m = d.m[k ? 3 : 0]; box.innerHTML = `<small>${m[0]}</small><strong>${numText(m[1], m[2], m[3], m[5])}</strong><span>${m[4].replace(/^[↗↘] /, '')}</span>`; });
       if (pmAgent) pmAgent.innerHTML = `<strong>${d.a[0][1]}</strong><small>${d.a[0][2]}</small>`;
-      panel.classList.remove('is-swap'); void panel.offsetWidth; panel.classList.add('is-swap');
     };
 
-    let step = 3; // start on Boshqaruv: it matches the count-up numbers in the markup
+    let step = 0; // start on the general overview: it matches the count-up numbers in the markup
     const shuffleBars = () => {
       let max = 0, peak = null;
       bars.forEach((b, i) => {
@@ -308,7 +310,11 @@
     const show = (i) => {
       step = i;
       const k = step % tabs.length;
-      applyDep(k, true);
+      if (reduced) applyDep(k, false);
+      else {
+        panel.classList.add('is-fading');
+        setTimeout(() => { applyDep(k, true); panel.classList.remove('is-fading'); }, 380);
+      }
       shuffleBars();
       agents.forEach((a) => a.style.setProperty('--w', `${35 + Math.round(Math.random() * 62)}%`));
       metrics.forEach((m, j) => m.classList.toggle('is-hot', j === step % metrics.length));
@@ -328,11 +334,11 @@
     const autoplay = () => {
       clearInterval(timer);
       if (reduced) return;
-      timer = setInterval(() => { if (panelVisible && !document.hidden) show(step + 1); }, 3200);
+      timer = setInterval(() => { if (panelVisible && !document.hidden) show(step + 1); }, 4200);
     };
     // tabs are clickable too; a click restarts the autoplay timer
     tabs.forEach((t, i) => t.addEventListener('click', () => { show(i); autoplay(); }));
-    autoplay();
+    setTimeout(autoplay, reduced ? 0 : 3000);
 
     // 3D tilt + shine following the cursor
     if (finePointer && !reduced) {
