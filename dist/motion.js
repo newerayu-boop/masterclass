@@ -41,7 +41,8 @@
     const stars = Array.from({length: 120}, () => [Math.random(), Math.random() * 0.75, Math.random() * 1.2 + 0.2, Math.random() * Math.PI * 2]);
 
     function resize() {
-      dpr = Math.min(window.devicePixelRatio || 1, small ? 1.5 : 2);
+      // the dots are soft glows, so a 1.25–1.5 backing store looks the same and paints ~2× less
+      dpr = Math.min(window.devicePixelRatio || 1, small ? 1.25 : 1.5);
       w = canvas.clientWidth;
       h = canvas.clientHeight;
       canvas.width = Math.round(w * dpr);
@@ -55,6 +56,13 @@
     const tilt = -0.42; // lean the north pole toward the viewer
     const cosT = Math.cos(tilt), sinT = Math.sin(tilt);
     const mix = (a, b, k) => `${Math.round(a[0] + (b[0] - a[0]) * k)},${Math.round(a[1] + (b[1] - a[1]) * k)},${Math.round(a[2] + (b[2] - a[2]) * k)}`;
+
+    // colour buckets for the surface dots (brightness × alpha), styles built once
+    const LEVELS = 16, SEA = LEVELS * LEVELS;
+    const styles = [], buckets = [];
+    for (let k = 0; k < LEVELS; k++) for (let a = 0; a < LEVELS; a++) styles.push(`rgba(${mix(GOLD, PALE, ((k + 0.5) / LEVELS) * 0.8)},${((a + 0.5) / LEVELS).toFixed(3)})`);
+    for (let l = 0; l < LEVELS; l++) styles.push(`rgba(201,168,76,${(0.03 + ((l + 0.5) / LEVELS) * 0.12).toFixed(3)})`);
+    for (let i = 0; i < styles.length; i++) buckets.push([]);
 
     function project(x, y, z, rot) {
       const cr = Math.cos(rot), sr = Math.sin(rot);
@@ -122,29 +130,36 @@
 
       // Rotating dotted surface
       const rot = reduced ? 0.8 : t * 0.09;
+      const cr = Math.cos(rot), sr = Math.sin(rot);
+      for (const b of buckets) b.length = 0;
       for (const p of points) {
-        const q = project(p[0], p[1], p[2], rot);
-        if (q[2] <= 0) continue;
-        const sx = cx + q[0] * R, sy = cy - q[1] * R;
+        const x1 = p[0] * cr + p[2] * sr, z1 = -p[0] * sr + p[2] * cr;
+        const qy = p[1] * cosT - z1 * sinT, qz = p[1] * sinT + z1 * cosT;
+        if (qz <= 0) continue;
+        const sx = cx + x1 * R, sy = cy - qy * R;
         if (sy > h + 4) continue;
-        const lit = Math.max(0, q[0] * L[0] + q[1] * L[1] + q[2] * L[2]);
-        const edge = q[2];
+        const lit = Math.max(0, x1 * L[0] + qy * L[1] + qz * L[2]);
         if (p[3]) {
           const k = Math.pow(lit, 1.6);
-          ctx.fillStyle = `rgba(${mix(GOLD, PALE, k * 0.8)},${0.07 + k * 0.85 * (0.4 + edge * 0.6)})`;
-          const s = 0.8 + edge * 1.3;
-          ctx.fillRect(sx - s / 2, sy - s / 2, s, s);
+          const a = 0.07 + k * 0.85 * (0.4 + qz * 0.6);
+          const s = 0.8 + qz * 1.3;
+          buckets[Math.min(LEVELS - 1, (k * LEVELS) | 0) * LEVELS + Math.min(LEVELS - 1, (a * LEVELS) | 0)].push(sx - s / 2, sy - s / 2, s);
         } else {
-          ctx.fillStyle = `rgba(201,168,76,${0.03 + lit * 0.12})`;
-          ctx.fillRect(sx - 0.5, sy - 0.5, 1, 1);
+          buckets[SEA + Math.min(LEVELS - 1, (lit * LEVELS) | 0)].push(sx - 0.5, sy - 0.5, 1);
         }
+      }
+      for (let i = 0; i < buckets.length; i++) {
+        const b = buckets[i];
+        if (!b.length) continue;
+        ctx.fillStyle = styles[i];
+        for (let j = 0; j < b.length; j += 3) ctx.fillRect(b[j], b[j + 1], b[j + 2], b[j + 2]);
       }
 
       // Rim light: strongest on the lit side
       const rimAng = Math.atan2(-L[1], L[0]);
       ctx.save();
       ctx.lineCap = 'round';
-      for (const [width, alpha, blur] of [[10, 0.18, 24], [3, 0.55, 10], [1.4, 0.95, 0]]) {
+      for (const [width, alpha] of [[26, 0.05], [14, 0.1], [6, 0.22], [3, 0.5], [1.4, 0.95]]) {
         ctx.beginPath();
         ctx.arc(cx, cy, R, rimAng - 1.25, rimAng + 1.25);
         const g = ctx.createLinearGradient(cx + Math.cos(rimAng - 1.25) * R, cy + Math.sin(rimAng - 1.25) * R, cx + Math.cos(rimAng + 1.25) * R, cy + Math.sin(rimAng + 1.25) * R);
@@ -153,8 +168,6 @@
         g.addColorStop(1, 'rgba(227,192,112,0)');
         ctx.strokeStyle = g;
         ctx.lineWidth = width;
-        ctx.shadowColor = 'rgba(227,192,112,0.9)';
-        ctx.shadowBlur = blur;
         ctx.stroke();
       }
       ctx.restore();
@@ -166,8 +179,9 @@
       ring(t, true);
     }
 
-    // ~30fps on phones; the loop stops entirely while the planet is off screen.
-    const frameGap = small ? 32 : 0;
+    // The planet turns slowly, so ~30fps is visually identical and halves the work;
+    // the loop stops entirely while the planet is off screen.
+    const frameGap = 32;
     let last = 0, running = false;
     function loop(time) {
       if (!visible || reduced) { running = false; return; }
