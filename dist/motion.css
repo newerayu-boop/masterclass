@@ -478,3 +478,9 @@
  .preview-top>.preview-tabs:nth-child(2)::-webkit-scrollbar{display:none}
  .preview-top>.preview-tabs em{flex:1 0 auto;padding:6px 5px;text-align:center;font-size:9px;letter-spacing:-.01em}
 }
+
+/* department switch in the hero dashboard */
+.preview-tabs em{cursor:pointer}
+.preview-panel.is-swap .preview-head,.preview-panel.is-swap .preview-feed>p>span,.preview-panel.is-swap .preview-metrics small,.preview-panel.is-swap .preview-metrics>div>span,.preview-panel.is-swap .preview-chart>span,.preview-panel.is-swap .preview-mobile>*{animation:dep-swap .5s cubic-bezier(.2,.7,.2,1) both}
+@keyframes dep-swap{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.preview-panel.is-swap *{animation:none!important}}
