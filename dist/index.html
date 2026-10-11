@@ -481,15 +481,8 @@ const MANAGER_TG = 'Yusufbaymanager';    // manager's Telegram username, without
 const leadForm = document.getElementById('lead-form');
 const formStatus = document.getElementById('form-status');
 const utm = Object.fromEntries([...new URLSearchParams(location.search)].filter(([k]) => k.startsWith('utm_')));
-const tgLink = (d) => {
-  const text = [
-    'Assalomu alaykum! AI Strateg kursiga qiziqyapman, batafsil ma’lumot olmoqchiman. Diagnostikaga yozilishga tayyorman.',
-    '',
-    `Ism: ${d.name}`,
-    `Telefon: ${d.phone}`,
-    `Soha: ${d.business}`,
-    `Format: ${d.plan}`
-  ].join('\n');
+const tgLink = () => {
+  const text = 'Assalomu alaykum! AI Strateg kursiga qiziqyapman, batafsil ma’lumot olmoqchiman. Diagnostikaga yozilishga tayyorman.';
   return `https://t.me/${MANAGER_TG}?text=${encodeURIComponent(text)}`;
 };
 const saveLead = (data) => {
