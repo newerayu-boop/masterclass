@@ -35,9 +35,11 @@ function doPost(e) {
     if (d.website) return json_({ok: true});          // защита от ботов
     if (!d.name || !d.phone) return json_({ok: false, error: 'name and phone are required'});
 
-    const tz = Session.getScriptTimeZone();
+    const tz = 'Asia/Tashkent';
     const now = new Date();
-    const day = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // только дата — для подсчёта «сегодня»
+    const sheet = leadsSheet_();
+    // только дата (по Ташкенту), в часовом поясе таблицы — чтобы «Новых сегодня» считалось верно
+    const day = Utilities.parseDate(Utilities.formatDate(now, tz, 'yyyy-MM-dd'), sheet.getParent().getSpreadsheetTimeZone(), 'yyyy-MM-dd');
     const comment = ['Заявка с сайта в ' + Utilities.formatDate(now, tz, 'HH:mm'),
                      d.utm ? 'UTM: ' + d.utm : '',
                      d.page ? 'Страница: ' + d.page : ''].filter(String).join(' · ');
@@ -58,7 +60,6 @@ function doPost(e) {
       comment                                // Комментарий
     ];
 
-    const sheet = leadsSheet_();
     // first empty row by the «Имя» column (the sheet has pre-formatted empty rows)
     const names = sheet.getRange('C2:C').getValues();
     let r = names.findIndex(function (v) { return v[0] === ''; });
