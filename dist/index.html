@@ -483,7 +483,8 @@ const formStatus = document.getElementById('form-status');
 const utm = Object.fromEntries([...new URLSearchParams(location.search)].filter(([k]) => k.startsWith('utm_')));
 const tgLink = (d) => {
   const text = [
-    'Assalomu alaykum! Saytdan diagnostikaga yozildim.',
+    'Assalomu alaykum! AI Strateg kursiga qiziqyapman, batafsil ma’lumot olmoqchiman. Diagnostikaga yozilishga tayyorman.',
+    '',
     `Ism: ${d.name}`,
     `Telefon: ${d.phone}`,
     `Soha: ${d.business}`,
