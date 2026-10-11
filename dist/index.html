@@ -410,10 +410,11 @@ html{scroll-behavior:smooth}*{box-sizing:border-box}body{min-width:280px}a{text-
 <label>Telefon raqamingiz <input name="phone" type="tel" autocomplete="tel" required placeholder="+998 90 123 45 67"></label>
 <label>Biznesingiz sohasi <input name="business" required placeholder="Masalan, savdo yoki xizmatlar"></label>
 <label>Qaysi format sizga qiziq? <select name="plan" required><option value="">Formatni tanlang</option><option>AI — Strateg</option><option>AI — Team</option><option>Hali bilmayman</option></select></label>
+<input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
 <button class="btn btn-gold" type="submit">Ariza yuborish</button>
 <p id="form-status" role="status" aria-live="polite"></p>
 </form>
-<a id="contact-fallback" class="btn btn-gold" href="https://t.me/kodiyusufbay" target="_blank" rel="noopener noreferrer" hidden>Telegram orqali bog‘lanish</a>
+<a id="contact-fallback" class="btn btn-gold" href="https://t.me/kodiyusufbay" target="_blank" rel="noopener noreferrer" hidden>Telegram ochilmasa — shu yerni bosing</a>
 <div style="font-size: 14px; line-height: 1.5; color: #8a8478">Ma’lumotlaringiz faqat diagnostika bo‘yicha bog‘lanish uchun ishlatiladi.</div>
 </div>
 </div>
@@ -473,45 +474,57 @@ caseCarousel.addEventListener('keydown', (event) => {
 window.addEventListener('resize', updateCaseControls);
 updateCaseControls();
 
-const SHEET_ENDPOINT = '';
+// Lead form: the application is saved to the Google Sheet (Apps Script web app), then the
+// visitor is sent to the manager's Telegram with a ready-made message they only need to send.
+const SHEET_ENDPOINT = '';            // Apps Script web-app URL (…/exec)
+const MANAGER_TG = 'kodiyusufbay';    // manager's Telegram username, without @
 const leadForm = document.getElementById('lead-form');
 const formStatus = document.getElementById('form-status');
-if (!SHEET_ENDPOINT) {
-  leadForm.hidden = true;
-  document.getElementById('contact-fallback').hidden = false;
-}
+const utm = Object.fromEntries([...new URLSearchParams(location.search)].filter(([k]) => k.startsWith('utm_')));
+const tgLink = (d) => {
+  const text = [
+    'Assalomu alaykum! Saytdan diagnostikaga yozildim.',
+    `Ism: ${d.name}`,
+    `Telefon: ${d.phone}`,
+    `Soha: ${d.business}`,
+    `Format: ${d.plan}`
+  ].join('\n');
+  return `https://t.me/${MANAGER_TG}?text=${encodeURIComponent(text)}`;
+};
+const saveLead = (data) => {
+  if (!SHEET_ENDPOINT) return Promise.resolve();
+  // text/plain + no-cors: a "simple" request Apps Script accepts without a CORS preflight
+  const send = fetch(SHEET_ENDPOINT, {method: 'POST', mode: 'no-cors', keepalive: true, headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: JSON.stringify(data)}).catch(() => {});
+  return Promise.race([send, new Promise((r) => setTimeout(r, 2500))]);
+};
 leadForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   formStatus.className = '';
+  formStatus.textContent = '';
   if (!leadForm.reportValidity()) return;
-  if (!SHEET_ENDPOINT) {
-    formStatus.textContent = 'Ariza yuborish tez orada ishga tushadi. Hozir Telegram orqali bog‘laning: @kodiyusufbay.';
+  const data = Object.fromEntries(new FormData(leadForm));
+  if (data.website) return; // honeypot: bots fill the hidden field
+  const digits = (data.phone || '').replace(/\D/g, '');
+  if (digits.length < 9) {
+    formStatus.textContent = 'Telefon raqamini to‘liq kiriting, masalan: +998 90 123 45 67.';
     formStatus.className = 'error';
     return;
   }
   const button = leadForm.querySelector('button[type="submit"]');
   button.disabled = true;
   button.textContent = 'Yuborilmoqda…';
-  try {
-    const data = Object.fromEntries(new FormData(leadForm));
-    data.submittedAt = new Date().toISOString();
-    const response = await fetch(SHEET_ENDPOINT, {
-      method: 'POST',
-      headers: {'Content-Type': 'text/plain;charset=utf-8'},
-      body: JSON.stringify(data)
-    });
-    const result = await response.json();
-    if (!response.ok || result.ok !== true) throw new Error('Submission failed');
-    leadForm.reset();
-    formStatus.textContent = 'Arizangiz qabul qilindi. Tez orada siz bilan bog‘lanamiz.';
-    formStatus.className = 'success';
-  } catch {
-    formStatus.textContent = 'Ariza yuborilmadi. Iltimos, qayta urinib ko‘ring yoki @kodiyusufbay ga yozing.';
-    formStatus.className = 'error';
-  } finally {
-    button.disabled = false;
-    button.textContent = 'Ariza yuborish';
-  }
+  data.page = location.href.split('#')[0];
+  data.utm = Object.entries(utm).map(([k, v]) => `${k}=${v}`).join(', ');
+  await saveLead(data);
+  formStatus.textContent = 'Arizangiz qabul qilindi! Telegram ochilmoqda — tayyor xabarni yuboring.';
+  formStatus.className = 'success';
+  const link = tgLink(data);
+  document.getElementById('contact-fallback').href = link;
+  document.getElementById('contact-fallback').hidden = false;
+  leadForm.reset();
+  button.disabled = false;
+  button.textContent = 'Ariza yuborish';
+  location.href = link;
 });
 </script>
 <script>
