@@ -481,22 +481,29 @@ const MANAGER_TG = 'Yusufbaymanager';    // manager's Telegram username, without
 const leadForm = document.getElementById('lead-form');
 const formStatus = document.getElementById('form-status');
 const utm = Object.fromEntries([...new URLSearchParams(location.search)].filter(([k]) => k.startsWith('utm_')));
-const tgLink = () => {
-  const text = 'Assalomu alaykum! AI Strateg kursiga qiziqyapman, batafsil ma’lumot olmoqchiman. Diagnostikaga yozilishga tayyorman.';
+const TG_TEXT = 'Assalomu alaykum! AI Strateg kursiga qiziqyapman, batafsil ma’lumot olmoqchiman. Diagnostikaga yozilishga tayyorman.';
+// If the lead could not be saved, the details go into the Telegram message so the manager still gets them.
+const tgLink = (d, withDetails) => {
+  const text = withDetails
+    ? [TG_TEXT, '', `Ism: ${d.name}`, `Telefon: ${d.phone}`, `Soha: ${d.business}`, `Format: ${d.plan}`].join('\n')
+    : TG_TEXT;
   return `https://t.me/${MANAGER_TG}?text=${encodeURIComponent(text)}`;
 };
-const saveLead = (data) => {
-  if (!SHEET_ENDPOINT) return Promise.resolve();
+// Save the lead and wait for the sheet to confirm it ({"ok":true}); retry once; beacon as a last resort.
+const saveLead = async (data) => {
+  if (!SHEET_ENDPOINT) return false;
   const body = JSON.stringify(data);
-  // sendBeacon is built for "send, then leave the page": the browser finishes the request
-  // even after we jump to Telegram. text/plain keeps it a simple request Apps Script accepts.
-  try {
-    if (navigator.sendBeacon && navigator.sendBeacon(SHEET_ENDPOINT, new Blob([body], {type: 'text/plain;charset=utf-8'}))) {
-      return new Promise((r) => setTimeout(r, 700));
-    }
-  } catch (e) { /* fall back to fetch */ }
-  const send = fetch(SHEET_ENDPOINT, {method: 'POST', mode: 'no-cors', keepalive: true, headers: {'Content-Type': 'text/plain;charset=utf-8'}, body}).catch(() => {});
-  return Promise.race([send, new Promise((r) => setTimeout(r, 4000))]);
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 12000);
+    try {
+      const res = await fetch(SHEET_ENDPOINT, {method: 'POST', headers: {'Content-Type': 'text/plain;charset=utf-8'}, body, signal: ctrl.signal});
+      const out = await res.json();
+      if (out && out.ok) return true;
+    } catch (e) { /* retry */ } finally { clearTimeout(timer); }
+  }
+  try { if (navigator.sendBeacon) navigator.sendBeacon(SHEET_ENDPOINT, new Blob([body], {type: 'text/plain;charset=utf-8'})); } catch (e) {}
+  return false;
 };
 leadForm.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -516,10 +523,10 @@ leadForm.addEventListener('submit', async (event) => {
   button.textContent = 'Yuborilmoqda…';
   data.page = location.href.split('#')[0];
   data.utm = Object.entries(utm).map(([k, v]) => `${k}=${v}`).join(', ');
-  await saveLead(data);
+  const saved = await saveLead(data);
   formStatus.textContent = 'Arizangiz qabul qilindi! Telegram ochilmoqda — tayyor xabarni yuboring.';
   formStatus.className = 'success';
-  const link = tgLink(data);
+  const link = tgLink(data, !saved);
   document.getElementById('contact-fallback').href = link;
   document.getElementById('contact-fallback').hidden = false;
   leadForm.reset();
