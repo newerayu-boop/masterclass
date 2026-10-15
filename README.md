@@ -38,4 +38,8 @@ npx vercel deploy --prod
 
 ## Заявки
 
-Google Sheets пока не подключён: `SHEET_ENDPOINT` в `dist/index.html` пустой. До подключения обработчика заявок используется ссылка на Telegram. Для активации формы необходимо настроить endpoint и обработку отправляемых данных.
+Формы основного сайта и лендингов отправляют заявки в Google Таблицу через Apps Script (`integrations/google-sheets-leads.gs`). Подробности, правила работы и открытые задачи: `CLAUDE.md`.
+
+## Лендинги /lead и /vsl
+
+Генерируются скриптом `tools/build_lp.py`, публикуются на GitHub Pages командой `bash tools/publish_pages.sh`: https://newerayu-boop.github.io/masterclass/lead/
