@@ -126,6 +126,23 @@
     addEventListener('scroll', () => { pastHero = scrollY > innerHeight * 0.6; sticky.classList.toggle('show', pastHero && seen.size === 0); }, {passive: true});
   }
 
+  /* ---------- countdown to the stream start ---------- */
+  document.querySelectorAll('[data-countdown]').forEach((el) => {
+    const to = Date.parse(el.dataset.countdown);
+    const pad = (n) => String(n).padStart(2, '0');
+    const tick = () => {
+      const left = Math.max(0, to - Date.now());
+      if (!left) { el.closest('.start')?.classList.add('started'); el.remove(); return; }
+      const s = Math.floor(left / 1000);
+      el.querySelector('[data-d]').textContent = Math.floor(s / 86400);
+      el.querySelector('[data-h]').textContent = pad(Math.floor(s / 3600) % 24);
+      el.querySelector('[data-m]').textContent = pad(Math.floor(s / 60) % 60);
+      el.querySelector('[data-s]').textContent = pad(s % 60);
+      setTimeout(tick, 1000);
+    };
+    tick();
+  });
+
   /* ---------- VSL player: CTA appears at the offer minute ---------- */
   const player = document.querySelector('[data-vsl]');
   if (player) {
