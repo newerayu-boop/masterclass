@@ -91,12 +91,12 @@
         card.querySelector('.done-msg').textContent = when === 'Hozir'
           ? 'Menejer 15 daqiqa ichida qo‘ng‘iroq qiladi (ish vaqtida 9:00–21:00).'
           : `Menejer siz tanlagan vaqtda qo‘ng‘iroq qiladi: ${when.toLowerCase()}.`;
-        tg.href = tgLink('Assalomu alaykum! Saytda raqamimni qoldirdim, AI Strateg bo‘yicha maslahat olmoqchiman.');
+        tg.href = tgLink('Assalomu alaykum! Saytda raqamimni qoldirdim, AI Strateg bo‘yicha diagnostikaga yozilmoqchiman.');
         tg.textContent = 'Kutmasdan Telegram’da yozish';
       } else {
         // the sheet did not confirm — make sure the manager still gets the contact
         card.querySelector('.done-msg').textContent = 'Arizani yakunlash uchun pastdagi tugmani bosing va Telegram’da xabarni yuboring.';
-        tg.href = tgLink(`Assalomu alaykum! AI Strateg bo‘yicha maslahat olmoqchiman.\nIsm: ${name}\nTelefon: ${ph}\nQulay vaqt: ${when}`);
+        tg.href = tgLink(`Assalomu alaykum! AI Strateg bo‘yicha diagnostikaga yozilmoqchiman.\nIsm: ${name}\nTelefon: ${ph}\nQulay vaqt: ${when}`);
         tg.textContent = 'Telegram’da yuborish';
         tg.classList.remove('btn-ghost');
       }

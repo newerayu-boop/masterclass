@@ -16,7 +16,7 @@ def form(fid, title, sub, btn):
 <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
 <p class="err" role="alert" aria-live="polite"></p>
 <button class="btn" type="submit">{btn}</button>
-<p class="fine">Bepul. Spam yo‘q, faqat bitta qo‘ng‘iroq.</p>
+<p class="fine">Bepul va majburiyatsiz. Ma’lumotlaringiz faqat bog‘lanish uchun.</p>
 </form>
 <div class="done" aria-live="polite"><div class="ok">✓</div><h3>Rahmat, <span class="done-name"></span>!</h3><p class="done-msg"></p><a class="btn btn-ghost done-tg" href="#" target="_blank" rel="noopener"></a></div>
 </div>'''
@@ -33,78 +33,115 @@ def cases():
         out.append(f'<article class="case"><picture><source srcset="../cases/{img}.webp" type="image/webp"><img src="../cases/{img}.jpg" alt="{n}" width="640" height="512" loading="lazy" decoding="async"></picture><div class="cb"><small>{f}</small><div class="m">{m}<em>{ml}</em></div><q>{q}</q><div class="nm">{n}<span>{r}</span></div></div></article>')
     return '<div class="cases" tabindex="0" aria-label="O‘quvchilar natijalari">'+''.join(out)+'</div><p class="swipe">← surib ko‘ring →</p>'
 
+
+AV='<img class="av" src="../lp/img/author-smile.webp" alt="" width="40" height="40" loading="lazy">'
+
 CASES_SEC=f"""<section class="sec" id="cases"><div class="wrap">
 <div class="sh"><div class="eb">Natijalar</div>
-<h2>Ular ham <span class="g">«AI bizga to‘g‘ri kelmaydi»</span> deb o‘ylagan edi</h2>
-<p class="lead">Oddiy tadbirkorlar, dasturchi emas. 6 hafta ichida o‘z bizneslarida AI-tizim qurishdi.</p></div>
+<h2>Ular ham shubha qilgan edi. <span class="g">Mana 6 hafta keyingi raqamlar</span></h2>
+<p class="lead">Zavod, savdo tarmog‘i, logistika, xizmatlar. Natijalar o‘quvchilar intervyularidan olingan.</p></div>
 {cases()}
-<div class="cta-row"><a class="btn btn-inline" href="#final" data-to-form>Men ham shunday natija xohlayman</a></div>
 </div></section>"""
 
-PAIN_SEC="""<section class="sec"><div class="wrap">
-<div class="sh"><div class="eb">Tanish holatmi?</div>
-<h2>Biznes o‘sadi, lekin <span class="g">hammasi sizning ustingizda</span></h2></div>
-<div class="pains">
-<div class="pain"><b>01</b><h3>Hisobotni kunlab kutasiz</h3><p>Raqamlar xodimlardan kelguncha qaror kechikadi, pul esa ketib bo‘ladi.</p></div>
-<div class="pain"><b>02</b><h3>Xodimlar rutina bilan band</h3><p>Bir xil savollarga javob, jadval to‘ldirish, qo‘lda hisob. Oylik esa to‘lanaveradi.</p></div>
-<div class="pain"><b>03</b><h3>Mijozlar javobsiz qoladi</h3><p>Kechasi va dam olish kunlari yozganlar raqobatchiga ketadi.</p></div>
-<div class="pain"><b>04</b><h3>AI bor, tizim yo‘q</h3><p>ChatGPT’dan savol-javob uchun foydalanasiz, lekin biznesda natija sezilmaydi.</p></div>
+def obj(n, q, title, body, extra=''):
+    return f"""<article class="obj">
+<div class="obj-q"><span class="qn">{n}</span><p>{q}</p></div>
+<div class="obj-a"><div class="who-s">{AV}<span>Yusufbay Kodirov</span></div><h3>{title}</h3>{body}{extra}</div>
+</article>"""
+
+ROI="""<div class="roi"><div class="roi-h">O‘quvchilar amaliyotidan · potensial hisob</div>
+<div class="roi-r"><span>Dizayner va vizual kontent</span><b>~$500/oy</b></div>
+<div class="roi-r"><span>Direct va yo‘qolgan tungi lidlar</span><b>~$500/oy</b></div>
+<div class="roi-r"><span>Kopirayting va hisobotlar (frilanser)</span><b>~$300–500/oy</b></div>
+<div class="roi-r"><span>Har yangi g‘oya yoki MVP, podryadchiksiz</span><b>$1 000+</b></div>
+<div class="roi-r"><span>Sizning vaqtingiz (rutina)</span><b>40+ soat/hafta</b></div>
+<div class="roi-t"><span>Jami tejash potensiali</span><b>$2 000+/oy</b></div></div>"""
+
+TOOLS='<div class="chips"><span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>NotebookLM</span><span>Claude Code</span><span>HeyGen</span></div>'
+INDUSTRIES='<div class="chips"><span>Zavod</span><span>28 do‘konli savdo</span><span>700+ truck logistika</span><span>Mebel ishlab chiqarish</span><span>Kiyim brendi</span><span>Ishga joylash xizmati</span></div>'
+
+OBJ_SEC=f"""<section class="sec sec-alt" id="objections"><div class="wrap">
+<div class="sh"><div class="eb">Shubhalar va javoblar</div>
+<h2>Sizni nima to‘xtatyapti? <span class="g">Halol javob beraman</span></h2>
+<p class="lead">Kurs arzon emas. Shuning uchun qaror qilishdan oldin har bir shubhangizga aniq javob olishingiz kerak.</p></div>
+<div class="objs">
+{obj('01','«Men dasturchi emasman. Texnik narsalarni tushunmayman.»','Bunga hojat yo‘q.','<p>O‘quvchilarimizning aksariyati zavod, do‘kon va xizmat biznesi egalari. Kod yozmaysiz: tayyor AI-vositalar bilan ishlaymiz. Har qadam ekranda ko‘rsatiladi, tushunmagan joyni payshanba kuni kurator bilan Zoom’da hal qilasiz.</p>',TOOLS)}
+{obj('02','«Vaqtim yo‘q. Biznesni tashlab o‘qiy olmayman.»','Kurs vaqtni olish uchun emas, qaytarish uchun.','<p>Haftasiga 2 ta jonli dars va amaliy vazifa. Darslar yozib olinadi va sizda abadiy qoladi: o‘tkazib yuborsangiz, keyin ko‘rasiz. Kurs oxirida rutina AI-agentlarga o‘tadi: o‘quvchilar haftasiga 40 soatgacha vaqt bo‘shatadi.</p>')}
+{obj('03','«Qimmat. Shuncha pulga arziydimi?»','Keling, hisoblaymiz.','<p>AI-agentlar ish haqi so‘ramaydi, kasal bo‘lmaydi va 24/7 ishlaydi. Oddiy hisob: kurs shu tejash bilan 1–2 oyda o‘zini qoplaydi. Aniq narx formatga bog‘liq. Diagnostikada avval sizning raqamlaringiz bilan foydani hisoblaymiz, keyin narx haqida gaplashamiz.</p>',ROI)}
+{obj('04','«YouTube’da hammasi bepul bor-ku.»','Ma’lumot bor. Tizim yo‘q.','<p>YouTube «qanday qilish»ni ko‘rsatadi. Bu yerda esa 6 hafta ichida o‘z biznesingiz ma’lumotlari ustida tayyor tizim qurasiz: bilim bazasi, 5 agent, dashboard, Jarvis, ilova va strategiya. Mentor strategiyangizni tekshiradi, siz uni himoya qilasiz.</p><p class="quote">«Qanday qilishni» emas, «nima qilishni» bilish muhimroq. Vositalar o‘zgaradi, to‘g‘ri qaror esa qoladi.</p>')}
+{obj('05','«Mening biznesim boshqacha. Bizda bu ishlamaydi.»','Natijalar turli sohalardan.','<p>Birinchi haftada aynan o‘z biznesingiz uchun AI bilim bazasini yaratasiz: narxlar, mijozlar, jarayonlar. Keyingi hamma narsa shu asosda quriladi, shuning uchun tizim sizning biznesingizga moslashadi, aksincha emas.</p>',INDUSTRIES)}
+{obj('06','«Boshlayman-u, o‘rtada tashlab qo‘yaman.»','Buning uchun tizim bor.','<ul class="ticks"><li>Har hafta qo‘lingizda qoladigan aniq natija bilan yopiladi</li><li>Bootcamp: kurator bilan qolib ketgan vazifalarni yakunlaysiz</li><li>Yopiq chat va har payshanba kurator-zoom</li><li>6-haftada strategiyangizni himoya qilasiz: bu sizni oxirigacha olib boradi</li></ul>')}
+{obj('07','«Buni xodimlarimga topshirsam bo‘lmaydimi?»','Avval siz tushunishingiz kerak.','<p>Qaysi jarayon AI’ga o‘tadi, qaysi biri yo‘q: buni rahbar hal qiladi. Shuning uchun AI — Team formati bor: siz va 2 ta boshqaruvchingiz birga o‘qiysiz. Tizim bitta odamda emas, jamoada qoladi.</p>')}
+{obj('08','«AI bu moda. Bir yildan keyin unutiladi.»','AI sizni ishsiz qoldirmaydi.','<p><b class="w">Bugun AI’ni joriy qilgan raqobatchi qoldiradi.</b> Texno Grand hisobotni operatordan 2 soat kutardi, endi telefonda 30 soniyada ochadi. Loyalty ELD yiliga $23 900+ qo‘shimcha daromad oldi. Bu moda emas, bu raqamlar.</p>')}
+</div>
+<div class="cta-band"><p>Javob topmagan savolingiz bormi? Diagnostikada shaxsan javob beramiz.</p><a class="btn btn-inline" href="#final" data-to-form>Bepul diagnostikaga yozilish</a></div>
+</div></section>"""
+
+WEEKS=[('0','Tayyorgarlik','Ish muhiti va 500+ tayyor prompt'),
+('1','Bilim bazasi','Biznesingiz ma’lumotlari AI uchun tartiblangan'),
+('2','5 ta AI-agent','Sotuv, kontent, hisobot: takroriy ishni bajaradi'),
+('3','Jonli dashboard','Muhim raqamlar bitta panelda'),
+('B','Bootcamp','Kurator bilan barcha vazifalarni yakunlaysiz'),
+('4','Shaxsiy Jarvis','Kompyuteringizda vazifalarni o‘zi bajaradi'),
+('5','O‘z ilovangiz','Ilova va AI joriy etish rejasi'),
+('6','Strategiya himoyasi','Mentor bilan himoya qilingan AI strategiya')]
+def weeks():
+    out=[]
+    for n,t,r in WEEKS:
+        lbl='Bootcamp' if n=='B' else f'{n}-hafta'
+        out.append(f'<li><b>{"★" if n=="B" else n}</b><div><small>{lbl}</small><h3>{t}</h3><p>{r}</p></div></li>')
+    return '<ol class="tl">'+''.join(out)+'</ol>'
+
+PROGRAM_SEC=f"""<section class="sec" id="program"><div class="wrap prog">
+<div><div class="sh"><div class="eb">Dastur · 6 hafta</div>
+<h2>Har hafta: <span class="g">biznesingiz uchun tayyor vosita</span></h2>
+<p class="lead">12 jonli dars, tayyorlov kursi va bootcamp. Nazariya emas: har bosqich oxirida qo‘lingizda ishlab turgan natija qoladi.</p></div>
+{weeks()}</div>
+<div class="prog-vis">
+<figure><img src="../lp/img/week-3.webp" alt="Jonli boshqaruv paneli" width="800" height="484" loading="lazy"><figcaption>3-hafta: jonli dashboard</figcaption></figure>
+<figure><img src="../lp/img/week-2.webp" alt="AI sotuv agenti" width="800" height="603" loading="lazy"><figcaption>2-hafta: AI sotuv agenti</figcaption></figure>
 </div>
 </div></section>"""
 
-OUTS_SEC="""<section class="sec sec-alt"><div class="wrap">
-<div class="sh"><div class="eb">Yechim · AI Strateg 3.0</div>
-<h2>6 haftada biznesingizda <span class="g">4 ta ishlaydigan natija</span></h2>
-<p class="lead">Nazariya emas. Har bosqich oxirida qo‘lingizda ishlab turgan tizim qoladi.</p></div>
-<div class="outs">
-<div class="out"><div class="ph"><img src="../lp/img/week-2.webp" alt="AI sotuv agenti mijoz bilan yozishmoqda" loading="lazy" width="800" height="603"></div><div class="ot"><small>2-hafta</small><h3>5 ta AI-xodim</h3><p>Sotuv, kontent, hisobot va mijozlar bilan ishlaydigan agentlar. Oyliksiz, 24/7.</p></div></div>
-<div class="out"><div class="ph"><img src="../lp/img/week-3.webp" alt="Jonli boshqaruv paneli" loading="lazy" width="800" height="484"></div><div class="ot"><small>3-hafta</small><h3>Jonli boshqaruv paneli</h3><p>Biznes raqamlari bitta ekranda. Hisobot kutish shart emas.</p></div></div>
-<div class="out"><div class="ph"><img src="../lp/img/week-4.webp" alt="Shaxsiy Jarvis" loading="lazy" width="800" height="677"></div><div class="ot"><small>4-hafta</small><h3>Shaxsiy «Jarvis»</h3><p>Kompyuteringizda o‘zi ishlaydigan yordamchi, siz uxlaganda ham.</p></div></div>
-<div class="out"><div class="ph"><img src="../lp/img/week-6.webp" alt="AI strategiya hujjati" loading="lazy" width="800" height="600"></div><div class="ot"><small>6-hafta</small><h3>Kompaniya uchun AI strategiya</h3><p>Ijrochidan strateggacha: biznesni boshqacha boshqarasiz.</p></div></div>
+INSIDE_SEC="""<section class="sec sec-alt"><div class="wrap">
+<div class="sh"><div class="eb">Kurs ichida</div>
+<h2>Siz nimaga <span class="g">ega bo‘lasiz</span></h2></div>
+<div class="inside">
+<div><b>12</b><h3>Jonli dars + yozuvi</h3><p>Yozuvlar sizda abadiy qoladi</p></div>
+<div><b>500+</b><h3>Prompt kutubxonasi</h3><p>Biznes vazifalari uchun tayyor promptlar</p></div>
+<div><b>5</b><h3>Agent va dashboard shablonlari</h3><p>Noldan emas, tayyor asosdan quriladi</p></div>
+<div><b>24/7</b><h3>Yopiq chat va kurator</h3><p>Har payshanba kurator-zoom</p></div>
+<div><b>6 oy</b><h3>Vositalar yangilanishi</h3><p>AI o‘zgarsa, materiallar ham yangilanadi</p></div>
+<div><b>20</b><h3>Ishtirokchi oqimda</h3><p>Har biriga e’tibor yetishi uchun</p></div>
 </div>
+<div class="formats">
+<div><small>Format 01</small><h3>AI — Strateg</h3><p>O‘zi kirib, biznesiga AI joriy qilmoqchi bo‘lgan rahbar uchun. 1 kishi.</p></div>
+<div class="rec"><small>Format 02 · tavsiya</small><h3>AI — Team</h3><p>Siz + 2 boshqaruvchingiz. Strategik sessiya, tizimni birgalikda qurish, alohida kurator va 2 ta guruhiy razbor.</p></div>
+</div>
+<p class="note">Narx formatga bog‘liq va diagnostikada aytiladi.</p>
 </div></section>"""
 
-FIT_SEC="""<section class="sec"><div class="wrap">
-<div class="sh"><div class="eb">Kimga mos</div>
-<h2>Bu dastur <span class="g">sizga mosmi?</span></h2></div>
-<div class="fit">
-<div class="yes"><h3>Mos keladi, agar siz:</h3><ul><li>biznes egasi yoki rahbarsiz</li><li>rutina va hisobotlarga vaqtingiz ketayapti</li><li>xodimlarga ko‘p to‘laysiz, natija esa sekin</li><li>dasturchi emassiz, bunga hojat ham yo‘q</li></ul></div>
-<div class="no"><h3>Mos kelmaydi, agar siz:</h3><ul><li>«tugmani bossam, pul tushsin» deb kutsangiz</li><li>haftasiga 3–4 soat ham ajrata olmasangiz</li><li>AI’ni faqat qiziqish uchun o‘rganmoqchi bo‘lsangiz</li></ul></div>
-</div>
-</div></section>"""
-
-AUTHOR_SEC="""<section class="sec sec-alt"><div class="wrap author">
+AUTHOR_SEC="""<section class="sec"><div class="wrap author">
 <div class="aph"><picture><source srcset="../lp/img/author.webp" type="image/webp"><img src="../lp/img/author.jpg" alt="Yusufbay Kodirov" width="900" height="1350" loading="lazy"></picture></div>
 <div><div class="eb">Muallif</div>
 <h2>Yusufbay Kodirov</h2>
 <p class="lead">AI Strateg mentorligi muallifi. Tadbirkorlarga AI’ni «qiziq texnologiya» emas, pul tejaydigan va pul olib keladigan ish quroliga aylantirishni o‘rgataman.</p>
-<ul class="ticks"><li>43+ o‘quvchi keysi, real biznes raqamlari bilan</li><li>Dasturchisiz: oddiy tilda, amaliyot orqali</li><li>Har hafta qo‘lingizda qoladigan ishlaydigan natija</li></ul>
-<div class="cta-row"><a class="btn btn-inline" href="#final" data-to-form>Maslahatga yozilish</a></div>
+<p class="lead">Mening vazifam sizni dasturchi qilish emas. Vazifam: 6 haftadan keyin siz biznesingizni ijrochi sifatida emas, strateg sifatida boshqarishingiz.</p>
+<a class="ig" href="https://instagram.com/kodiyusufbay" target="_blank" rel="noopener">@kodiyusufbay</a>
 </div></div></section>"""
-
-FAQ_SEC="""<section class="sec"><div class="wrap narrow">
-<div class="sh"><div class="eb">Savollar</div>
-<h2>Ko‘p so‘raladigan savollar</h2></div>
-<div class="faq">
-<details><summary>Men dasturchi emasman. Uddalay olamanmi?</summary><p>Ha. O‘quvchilarimizning aksariyati dasturchi emas, biznes egalari. Hammasi oddiy tilda, qadam-baqadam ko‘rsatiladi.</p></details>
-<details><summary>Maslahat haqiqatan bepulmi?</summary><p>Ha, bepul. 30 daqiqada biznesingizda AI qayerda pul tejashini hisoblab beramiz. Hech qanday majburiyat yo‘q.</p></details>
-<details><summary>Dastur qancha turadi?</summary><p>Narx formatga bog‘liq: yolg‘iz yoki jamoa bilan. Avval foydani hisoblaymiz, keyin qo‘ng‘iroqda sizga mos formatni aytamiz.</p></details>
-<details><summary>Qancha vaqt ajratishim kerak?</summary><p>Haftasiga 3–4 soat: jonli dars va amaliyot. Darslar yozib olinadi, o‘tkazib yuborsangiz ham ko‘rasiz.</p></details>
-<details><summary>Natija bo‘lmasa-chi?</summary><p>Har hafta aniq natija bilan yakunlanadi: agentlar, panel, Jarvis. Kurator va yopiq chat har qadamda yordam beradi.</p></details>
-</div>
-</div></section>"""
 
 def final(fid):
     return f"""<section class="sec final" id="final"><div class="wrap final-grid">
-<div><div class="eb">Bepul maslahat · 30 daqiqa</div>
-<h2>Biznesingizda AI <span class="g">qancha pul tejashini</span> bilib oling</h2>
+<div><div class="eb">Birinchi qadam</div>
+<h2>Hali ikkilanyapsizmi? <span class="g">Bu normal.</span></h2>
+<p class="lead">Katta qaror shunaqa bo‘ladi. Shuning uchun birinchi qadam sotib olish emas. Birinchi qadam: bepul diagnostika.</p>
 <ol class="steps">
-<li><b>1</b><div><h3>AI qancha tejashini hisoblaymiz</h3><p>Sizning raqamlaringiz asosida: qaysi xarajat va rutina AI’ga o‘tadi.</p></div></li>
-<li><b>2</b><div><h3>Birinchi 3 qadamni aytamiz</h3><p>Darhol natija beradigan jarayondan boshlaysiz.</p></div></li>
-<li><b>3</b><div><h3>Mos formatni tanlaymiz</h3><p>Yolg‘iz, jamoa bilan yoki tayyor tizim. Mos kelmasa, halol aytamiz.</p></div></li>
+<li><b>1</b><div><h3>30 daqiqa faqat sizning biznesingiz haqida</h3></div></li>
+<li><b>2</b><div><h3>AI qayerda birinchi pulni berishini aniq ko‘rsatamiz</h3></div></li>
+<li><b>3</b><div><h3>Sizga qaysi format mos, yoki umuman mos emasligini halol aytamiz</h3></div></li>
 </ol>
-<p class="seats">Yangi oqim: faqat 20 o‘rin</p></div>
-{form(fid,'Bepul maslahatga yoziling','2 ta maydon, 20 soniya.','Bepul maslahat olish')}
+<p class="seats">Yangi oqim: faqat 20 ishtirokchi</p></div>
+{form(fid,'Bepul diagnostikaga yoziling','Menejer 15 daqiqa ichida qo‘ng‘iroq qiladi.','Diagnostikaga yozilish')}
 </div></section>"""
 
 def head(title, desc, site):
@@ -122,48 +159,51 @@ def head(title, desc, site):
 <meta property="og:type" content="website">
 <link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0a'/%3E%3Cpath d='M14 45 30 15l7 14 5-9 9 25H14Zm12-8h11l-6-11-5 11Z' fill='%23c9a84c'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="../lp/lp.css?v=2">
+<link rel="stylesheet" href="../lp/lp.css?v=3">
 <script>window.LP_CONFIG = {{ site: '{site}' }};</script>
 </head>
 <body>
-<header class="top"><div class="wrap"><a class="logo" href="#">AI Strateg <span>3.0</span></a><nav class="tnav"><a class="tg-link" href="https://t.me/Yusufbaymanager" target="_blank" rel="noopener" aria-label="Telegram">{TG_SVG}<span>Telegram</span></a><a class="top-cta" href="#final" data-to-form>Bepul maslahat</a></nav></div></header>
+<header class="top"><div class="wrap"><a class="logo" href="#">AI Strateg <span>3.0</span></a><nav class="tnav"><a class="tg-link" href="https://t.me/Yusufbaymanager" target="_blank" rel="noopener" aria-label="Telegram">{TG_SVG}<span>Telegram</span></a><a class="top-cta" href="#final" data-to-form>Bepul diagnostika</a></nav></div></header>
 '''
 TAIL='''<footer class="foot">© AI Strateg · Yusufbay Kodirov · <a href="https://t.me/Yusufbaymanager" target="_blank" rel="noopener">@Yusufbaymanager</a></footer>
-<div class="sticky"><a class="btn" href="#final" data-to-form>Bepul maslahat olish</a></div>
-<script src="../lp/lp.js?v=2" defer></script>
+<div class="sticky"><a class="btn" href="#final" data-to-form>Bepul diagnostikaga yozilish</a></div>
+<script src="../lp/lp.js?v=3" defer></script>
 </body>
 </html>
 '''
 
-HERO_POINTS="""<ul class="hp-list">
-<li>Sotuv, hisobot va mijozlar bilan ishni AI-agentlarga topshirasiz</li>
-<li>Dasturchisiz: haftasiga 3–4 soat, oddiy tilda</li>
-<li>43+ tadbirkor allaqachon natija olgan</li>
-</ul>"""
-TRUST="""<div class="trust"><div><b>43+</b><small>o‘quvchi keysi</small></div><div><b>$7–30k</b><small>yillik tejash</small></div><div><b>6 hafta</b><small>natijagacha</small></div></div>"""
-WHO="""<div class="who"><img src="../lp/img/author-smile.webp" alt="" width="56" height="56"><div><b>Yusufbay Kodirov</b><small>AI Strateg mentorligi muallifi</small></div></div>"""
+HERO_VIS="""<div class="hero-vis" aria-hidden="true">
+<picture><source srcset="../lp/img/author-smile.webp" type="image/webp"><img src="../lp/img/author-smile.jpg" alt="" width="900" height="1350" fetchpriority="high"></picture>
+<div class="chip c1"><i class="dot"></i><div><b>Jarvis</b><small>Kunlik hisobot tayyor</small></div></div>
+<div class="chip c2"><div><b>5 ta AI-agent</b><small>ishlayapti · 24/7</small></div></div>
+<div class="chip c3"><div><b class="g">$30 000+</b><small>yiliga tejaladi · Texno Grand</small></div></div>
+</div>"""
+TRUST="""<div class="trust"><div><b>6 hafta</b><small>12 jonli dars</small></div><div><b>$30k+</b><small>yillik tejash, keys</small></div><div><b>20 o‘rin</b><small>yangi oqimda</small></div></div>"""
+
+BODY=f"""{CASES_SEC}
+{OBJ_SEC}
+{PROGRAM_SEC}
+{INSIDE_SEC}
+{AUTHOR_SEC}
+{final('form-final')}"""
 
 # ---------- Site A: /lead ----------
-lead=head('AI Strateg: bepul maslahat','Biznesingizda AI qancha pul tejashini bilib oling. Raqamingizni qoldiring, menejer 15 daqiqada qo‘ng‘iroq qiladi.','lead')+f"""<main>
+lead=head('AI Strateg 3.0: bepul diagnostika','6 haftada biznesingizda ishlaydigan AI-tizim. Bepul diagnostikada AI qayerda pul berishini hisoblaymiz.','lead')+f"""<main>
 <section class="hero"><div class="wrap hero-grid">
 <div class="hero-copy">
-<span class="badge"><i></i> Bepul maslahat · 30 daqiqa</span>
-<h1>6 haftada biznesingizda <span class="g">AI-xodimlar ishlaydi</span>: oyliksiz, 24/7</h1>
-<p class="sub">Raqamingizni qoldiring. Menejer 15 daqiqada qo‘ng‘iroq qiladi va biznesingizda AI qancha pul tejashini hisoblab beradi.</p>
+<span class="badge"><i></i> AI Strateg 3.0 · 6 hafta</span>
+<h1>Rutinani AI’ga bering. <span class="g">O‘zingiz strateg bo‘ling.</span></h1>
+<p class="sub">6 haftada biznesingizda 5 ta AI-agent, jonli dashboard va shaxsiy Jarvis ishlaydi. Dasturchisiz, o‘z biznesingiz ma’lumotlari ustida.</p>
+<div class="who"><img src="../lp/img/author-smile.webp" alt="" width="48" height="48"><div><b>Yusufbay Kodirov</b><small>AI Strateg mentorligi muallifi</small></div></div>
 </div>
-<div class="hero-extra">{HERO_POINTS}{WHO}</div>
 <div class="hero-form">
-{form('form-hero','Bepul maslahat oling','Biznesingiz uchun AI hisobi, 30 daqiqada.','Bepul maslahat olish')}
+{form('form-hero','Bepul diagnostika, 30 daqiqa','AI biznesingizda qayerda pul berishini hisoblaymiz.','Diagnostikaga yozilish')}
+<a class="more" href="#objections">Avval savollarimga javob olaman ↓</a>
 </div>
+<div class="hero-side">{HERO_VIS}</div>
 <div class="hero-trust">{TRUST}</div>
 </div></section>
-{PAIN_SEC}
-{OUTS_SEC}
-{CASES_SEC}
-{AUTHOR_SEC}
-{FIT_SEC}
-{FAQ_SEC}
-{final('form-final')}
+{BODY}
 </main>
 """+TAIL
 open(f'{ROOT}/lead/index.html','w').write(lead)
@@ -171,7 +211,7 @@ open(f'{ROOT}/lead/index.html','w').write(lead)
 # ---------- Site B: /vsl ----------
 VIDEO_SRC=''      # mp4 path (e.g. ../lp/vsl.mp4) or a YouTube link; set when the video is ready
 REVEAL_AT=240     # seconds: when the offer is named in the video, the button appears
-vsl=head('AI Strateg: videoni ko‘ring','Qisqa video: AI biznesingizda qanday ishlaydi. Keyin bepul maslahat.','vsl')+f"""<main>
+vsl=head('AI Strateg 3.0: videoni ko‘ring','Qisqa video: AI biznesingizda qanday ishlaydi. Keyin bepul diagnostika.','vsl')+f"""<main>
 <section class="hero hero-vsl"><div class="wrap">
 <div class="vsl-head">
 <span class="badge"><i></i> Videoni oxirigacha ko‘ring</span>
@@ -180,20 +220,15 @@ vsl=head('AI Strateg: videoni ko‘ring','Qisqa video: AI biznesingizda qanday i
 </div>
 <div class="player" data-vsl data-src="{VIDEO_SRC}" data-reveal-at="{REVEAL_AT}">
 <picture><source srcset="../lp/img/author-2.webp" type="image/webp"><img class="poster" src="../lp/img/author-2.jpg" alt="" width="900" height="1350"></picture>
-<div class="soon"><i>▶</i><b>Video tez orada</b><small>Hozircha maslahatga yozilishingiz mumkin</small></div>
+<div class="soon"><i>▶</i><b>Video tez orada</b><small>Hozircha diagnostikaga yozilishingiz mumkin</small></div>
 </div>
-<div class="vsl-cta wait"><a class="btn" href="#form-hero" data-to-form>Bepul maslahatga yozilish</a><p class="fine">Menejer 15 daqiqada qo‘ng‘iroq qiladi</p></div>
+<div class="vsl-cta wait"><a class="btn" href="#form-hero" data-to-form>Bepul diagnostikaga yozilish</a><p class="fine">Menejer 15 daqiqada qo‘ng‘iroq qiladi</p></div>
 <div class="vsl-form">
-<div class="vsl-form-copy"><h2>Videodan keyin: <span class="g">bepul maslahat</span></h2><p class="lead">30 daqiqada biznesingizda AI qancha pul tejashini hisoblab beramiz.</p>{HERO_POINTS}</div>
-{form('form-hero','Bepul maslahat oling','2 ta maydon, 20 soniya.','Bepul maslahat olish')}
+<div class="vsl-form-copy"><h2>Videodan keyin: <span class="g">bepul diagnostika</span></h2><p class="lead">30 daqiqada biznesingizda AI qayerda birinchi pulni berishini hisoblaymiz. Mos kelmasa, halol aytamiz.</p>{TRUST}</div>
+{form('form-hero','Bepul diagnostika, 30 daqiqa','2 ta maydon, 20 soniya.','Diagnostikaga yozilish')}
 </div>
-{TRUST}
 </div></section>
-{CASES_SEC}
-{OUTS_SEC}
-{AUTHOR_SEC}
-{FAQ_SEC}
-{final('form-final')}
+{BODY}
 </main>
 """+TAIL
 open(f'{ROOT}/vsl/index.html','w').write(vsl)
