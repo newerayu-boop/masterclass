@@ -133,7 +133,7 @@
     const src = player.dataset.src || '';
     const revealAt = +player.dataset.revealAt || 0;
     const reveal = () => cta && cta.classList.remove('wait');
-    if (!src) { reveal(); return; }                              // video not uploaded yet
+    if (!src) return;                                            // video not uploaded yet: the form right below is the CTA
     const yt = src.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/);
     player.querySelector('.soon')?.remove(); player.querySelector('.poster')?.remove();
     if (yt) {
