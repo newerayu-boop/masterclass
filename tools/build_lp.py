@@ -36,11 +36,31 @@ def cases():
 
 AV='<img class="av" src="../lp/img/author-smile.webp" alt="" width="40" height="40" loading="lazy">'
 
+HK='https://honor-keys.vercel.app/'
+ST=[('tx-aliyor','Texno Grand','Maishiy texnika · 28 do‘kon','Jamoa · 4 kishi','$30 000+ / yil','20+ AI tizim, dasturchisiz','texnogrand.html'),
+('mirodil','Loyalty ELD','AQSh yuk mashinalari uchun ELD','Jamoa · 3 kishi','500 → 700+','truck · 18 kunda','loyalty.html'),
+('jamshid','VisaPro · Jamshid','Yevropaga ishchi viza','Yakka','1 soat → 10 s','arizaga birinchi javob','jamshid.html'),
+('abdurahmon','Honor Furniture · Abdurahmon','Mebel savdosi va o‘z zavodi','Yakka','$19 000 / yil','tejaldi: 7 Excel → 1 baza','honor.html'),
+('sevara','Finway · Sevara','Buxgalteriya autsorsingi · 200 firma','Yakka','$4–5k / oy','tejaldi · 2 haftada ofis AI nazoratida','sevara.html'),
+('bobir','Trinity Construction · Bobir','Turar-joy majmuasi · 6 blok','Yakka','4 → 1 soat','kunlik ish · butun biznes bitta pultda','bobir.html'),
+('abdulaziz','ALSAGE PHARM','BAD va vitamin ishlab chiqarish','Jamoa · 3 kishi','15 → 4 soat','haftalik qo‘lda boshqaruv','alsage.html'),
+('bilol','METIKS × MetallStal','Metall savdosi va lazer sexi','Jamoa · 2 kishi','6× taklif','bitta sotuvchi ulguradi · chek +25%','metall.html'),
+('munira','Carbonado · Munira','Kelinlik saloni · 10 yil','Yakka','$3 500 / oy','tejaldi · 334k ko‘rish bir sutkada','munira.html'),
+('asilbek','Grand Mumtoz · Asilbek','Oilaviy mehmonxona · 48 xona','Yakka · 15 yosh','6 → 1 soat','direktorning kunlik qo‘l ishi','asilbek.html'),
+('fayzullaxon','Kamol Digital · Fayzullaxon','Onlayn kurslar va zapusklar','Yakka','10% → 20%','sifatli liddan sotuv','fayzullaxon.html'),
+('ulugbek','Vaqt AI · Ulug‘bek','Rejalashtiruvchi ilova','Yakka','2 oy → 2 hafta','ilovani o‘zi chiqardi','vaqt.html')]
+def st_cards():
+    out=[]
+    for img,n,ind,tag,m,ml,href in ST:
+        out.append(f'<a class="sc" href="{HK}{href}" target="_blank" rel="noopener"><div class="sc-top"><img src="../lp/st/{img}.webp" alt="" width="56" height="56" loading="lazy"><div><b>{n}</b><small>{ind}</small></div></div><div class="sc-m">{m}</div><div class="sc-ml">{ml}</div><div class="sc-f"><span>{tag}</span><em>Keysni ochish ↗</em></div></a>')
+    return '<div class="scs">'+''.join(out)+'</div><p class="swipe sw-m">← surib ko‘ring: 12 ta keys →</p>'
+
 CASES_SEC=f"""<section class="sec" id="cases"><div class="wrap">
-<div class="sh"><div class="eb">Natijalar</div>
-<h2>Ular ham shubha qilgan edi. <span class="g">Mana 6 hafta keyingi raqamlar</span></h2>
-<p class="lead">Zavod, savdo tarmog‘i, logistika, xizmatlar. Natijalar o‘quvchilar intervyularidan olingan.</p></div>
-{cases()}
+<div class="sh"><div class="eb">2 oqim · 120+ o‘quvchi</div>
+<h2>Ular ham shubha qilgan edi. <span class="g">Mana natijalar</span></h2></div>
+<div class="bigstat"><b>$170 000+</b><p>shuncha turardi o‘quvchilar AI bilan o‘zlari qurgan tizimlar, agar dasturchiga buyurtma qilinsa</p></div>
+{st_cards()}
+<div class="cases-more"><a class="btn btn-ghost btn-inline" href="{HK}" target="_blank" rel="noopener">Barcha 25+ keysni batafsil ko‘rish ↗</a><p>Har bir keysda: nima qurildi, qancha vaqt ketdi, qanday natija. Summalar o‘quvchilar iltimosiga ko‘ra maxfiylik uchun o‘zgartirilgan.</p></div>
 </div></section>"""
 
 def obj(n, q, title, body, extra=''):
@@ -58,21 +78,21 @@ ROI="""<div class="roi"><div class="roi-h">O‘quvchilar amaliyotidan · potensi
 <div class="roi-t"><span>Jami tejash potensiali</span><b>$2 000+/oy</b></div></div>"""
 
 TOOLS='<div class="chips"><span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>NotebookLM</span><span>Claude Code</span><span>HeyGen</span></div>'
-INDUSTRIES='<div class="chips"><span>Zavod</span><span>28 do‘konli savdo</span><span>700+ truck logistika</span><span>Mebel ishlab chiqarish</span><span>Kiyim brendi</span><span>Ishga joylash xizmati</span></div>'
+INDUSTRIES='<div class="chips"><span>BAD ishlab chiqarish</span><span>Qurilish</span><span>28 do‘konli savdo</span><span>Metall savdosi</span><span>Distribyutsiya</span><span>Logistika</span><span>Mehmonxona</span><span>Kelinlik saloni</span><span>Buxgalteriya</span><span>Onlayn kurslar</span></div>'
 
 OBJ_SEC=f"""<section class="sec sec-alt" id="objections"><div class="wrap">
 <div class="sh"><div class="eb">Shubhalar va javoblar</div>
 <h2>Sizni nima to‘xtatyapti? <span class="g">Halol javob beraman</span></h2>
 <p class="lead">Kurs arzon emas. Shuning uchun qaror qilishdan oldin har bir shubhangizga aniq javob olishingiz kerak.</p></div>
 <div class="objs">
-{obj('01','«Men dasturchi emasman. Texnik narsalarni tushunmayman.»','Bunga hojat yo‘q.','<p>O‘quvchilarimizning aksariyati zavod, do‘kon va xizmat biznesi egalari. Kod yozmaysiz: tayyor AI-vositalar bilan ishlaymiz. Har qadam ekranda ko‘rsatiladi, tushunmagan joyni payshanba kuni kurator bilan Zoom’da hal qilasiz.</p>',TOOLS)}
+{obj('01','«Men dasturchi emasman. Texnik narsalarni tushunmayman.»','Bunga hojat yo‘q.','<p>120+ o‘quvchimizning aksariyati zavod, do‘kon va xizmat biznesi egalari. Texno Grand jamoasi dasturchisiz 20+ AI tizim qurdi. Eng yosh o‘quvchimiz 15 yoshda oilaviy mehmonxonani AI bilan boshqaryapti. Kod yozmaysiz: har qadam ekranda ko‘rsatiladi, tushunmagan joyni payshanba kuni kurator bilan Zoom’da hal qilasiz.</p>',TOOLS)}
 {obj('02','«Vaqtim yo‘q. Biznesni tashlab o‘qiy olmayman.»','Kurs vaqtni olish uchun emas, qaytarish uchun.','<p>Haftasiga 2 ta jonli dars va amaliy vazifa. Darslar yozib olinadi va sizda abadiy qoladi: o‘tkazib yuborsangiz, keyin ko‘rasiz. Kurs oxirida rutina AI-agentlarga o‘tadi: o‘quvchilar haftasiga 40 soatgacha vaqt bo‘shatadi.</p>')}
-{obj('03','«Qimmat. Shuncha pulga arziydimi?»','Keling, hisoblaymiz.','<p>AI-agentlar ish haqi so‘ramaydi, kasal bo‘lmaydi va 24/7 ishlaydi. Oddiy hisob: kurs shu tejash bilan 1–2 oyda o‘zini qoplaydi. Aniq narx formatga bog‘liq. Diagnostikada avval sizning raqamlaringiz bilan foydani hisoblaymiz, keyin narx haqida gaplashamiz.</p>',ROI)}
+{obj('03','«Qimmat. Shuncha pulga arziydimi?»','Keling, hisoblaymiz.','<p>O‘quvchilar qurgan tizimlar dasturchiga buyurtma qilinsa $170 000+ turardi. Texno Grand yiliga $30 000+ tejaydi, Honor Furniture $19 000. AI-agentlar ish haqi so‘ramaydi va 24/7 ishlaydi. Oddiy hisob: kurs shu tejash bilan 1–2 oyda o‘zini qoplaydi. Aniq narx formatga bog‘liq. Diagnostikada avval sizning raqamlaringiz bilan foydani hisoblaymiz, keyin narx haqida gaplashamiz.</p>',ROI)}
 {obj('04','«YouTube’da hammasi bepul bor-ku.»','Ma’lumot bor. Tizim yo‘q.','<p>YouTube «qanday qilish»ni ko‘rsatadi. Bu yerda esa 6 hafta ichida o‘z biznesingiz ma’lumotlari ustida tayyor tizim qurasiz: bilim bazasi, 5 agent, dashboard, Jarvis, ilova va strategiya. Mentor strategiyangizni tekshiradi, siz uni himoya qilasiz.</p><p class="quote">«Qanday qilishni» emas, «nima qilishni» bilish muhimroq. Vositalar o‘zgaradi, to‘g‘ri qaror esa qoladi.</p>')}
 {obj('05','«Mening biznesim boshqacha. Bizda bu ishlamaydi.»','Natijalar turli sohalardan.','<p>Birinchi haftada aynan o‘z biznesingiz uchun AI bilim bazasini yaratasiz: narxlar, mijozlar, jarayonlar. Keyingi hamma narsa shu asosda quriladi, shuning uchun tizim sizning biznesingizga moslashadi, aksincha emas.</p>',INDUSTRIES)}
 {obj('06','«Boshlayman-u, o‘rtada tashlab qo‘yaman.»','Buning uchun tizim bor.','<ul class="ticks"><li>Har hafta qo‘lingizda qoladigan aniq natija bilan yopiladi</li><li>Bootcamp: kurator bilan qolib ketgan vazifalarni yakunlaysiz</li><li>Yopiq chat va har payshanba kurator-zoom</li><li>6-haftada strategiyangizni himoya qilasiz: bu sizni oxirigacha olib boradi</li></ul>')}
-{obj('07','«Buni xodimlarimga topshirsam bo‘lmaydimi?»','Avval siz tushunishingiz kerak.','<p>Qaysi jarayon AI’ga o‘tadi, qaysi biri yo‘q: buni rahbar hal qiladi. Shuning uchun AI — Team formati bor: siz va 2 ta boshqaruvchingiz birga o‘qiysiz. Tizim bitta odamda emas, jamoada qoladi.</p>')}
-{obj('08','«AI bu moda. Bir yildan keyin unutiladi.»','AI sizni ishsiz qoldirmaydi.','<p><b class="w">Bugun AI’ni joriy qilgan raqobatchi qoldiradi.</b> Texno Grand hisobotni operatordan 2 soat kutardi, endi telefonda 30 soniyada ochadi. Loyalty ELD yiliga $23 900+ qo‘shimcha daromad oldi. Bu moda emas, bu raqamlar.</p>')}
+{obj('07','«Buni xodimlarimga topshirsam bo‘lmaydimi?»','Avval siz tushunishingiz kerak.','<p>Qaysi jarayon AI’ga o‘tadi, qaysi biri yo‘q: buni rahbar hal qiladi. Shuning uchun AI — Team formati bor: siz va 2 ta boshqaruvchingiz birga o‘qiysiz. Tizim bitta odamda emas, jamoada qoladi.</p><p class="quote">«Yaxshiyamki, jamoa bilan kelganmiz!» O‘quvchilardan eng ko‘p eshitgan gapimiz.</p>')}
+{obj('08','«AI bu moda. Bir yildan keyin unutiladi.»','AI sizni ishsiz qoldirmaydi.','<p><b class="w">Bugun AI’ni joriy qilgan raqobatchi qoldiradi.</b> Loyalty ELD 18 kunda 500 dan 700+ truckka o‘sdi. VisaPro arizaga javobni 1 soatdan 10 soniyaga tushirdi. Bu moda emas, bu raqamlar.</p>')}
 </div>
 <div class="cta-band"><p>Javob topmagan savolingiz bormi? Diagnostikada shaxsan javob beramiz.</p><a class="btn btn-inline" href="#final" data-to-form>Bepul diagnostikaga yozilish</a></div>
 </div></section>"""
@@ -112,7 +132,7 @@ INSIDE_SEC="""<section class="sec sec-alt"><div class="wrap">
 <div><b>5</b><h3>Agent va dashboard shablonlari</h3><p>Noldan emas, tayyor asosdan quriladi</p></div>
 <div><b>24/7</b><h3>Yopiq chat va kurator</h3><p>Har payshanba kurator-zoom</p></div>
 <div><b>6 oy</b><h3>Vositalar yangilanishi</h3><p>AI o‘zgarsa, materiallar ham yangilanadi</p></div>
-<div><b>20</b><h3>Ishtirokchi oqimda</h3><p>Har biriga e’tibor yetishi uchun</p></div>
+<div><b>20</b><h3>Ishtirokchi oqimda</h3><p>3-oqim 2-noyabrda boshlanadi</p></div>
 </div>
 <div class="formats">
 <div><small>Format 01</small><h3>AI — Strateg</h3><p>O‘zi kirib, biznesiga AI joriy qilmoqchi bo‘lgan rahbar uchun. 1 kishi.</p></div>
@@ -140,7 +160,7 @@ def final(fid):
 <li><b>2</b><div><h3>AI qayerda birinchi pulni berishini aniq ko‘rsatamiz</h3></div></li>
 <li><b>3</b><div><h3>Sizga qaysi format mos, yoki umuman mos emasligini halol aytamiz</h3></div></li>
 </ol>
-<p class="seats">Yangi oqim: faqat 20 ishtirokchi</p></div>
+<div class="start"><div class="seats">3-oqim 2-noyabrda boshlanadi · faqat 20 o‘rin</div><div class="cd" data-countdown="2026-11-02T00:00:00+05:00"><span><b data-d>--</b>kun</span><span><b data-h>--</b>soat</span><span><b data-m>--</b>daqiqa</span><span><b data-s>--</b>soniya</span></div></div></div>
 {form(fid,'Bepul diagnostikaga yoziling','Menejer 15 daqiqa ichida qo‘ng‘iroq qiladi.','Diagnostikaga yozilish')}
 </div></section>"""
 
@@ -159,7 +179,7 @@ def head(title, desc, site):
 <meta property="og:type" content="website">
 <link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0a'/%3E%3Cpath d='M14 45 30 15l7 14 5-9 9 25H14Zm12-8h11l-6-11-5 11Z' fill='%23c9a84c'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="../lp/lp.css?v=3">
+<link rel="stylesheet" href="../lp/lp.css?v=4">
 <script>window.LP_CONFIG = {{ site: '{site}' }};</script>
 </head>
 <body>
@@ -167,7 +187,7 @@ def head(title, desc, site):
 '''
 TAIL='''<footer class="foot">© AI Strateg · Yusufbay Kodirov · <a href="https://t.me/Yusufbaymanager" target="_blank" rel="noopener">@Yusufbaymanager</a></footer>
 <div class="sticky"><a class="btn" href="#final" data-to-form>Bepul diagnostikaga yozilish</a></div>
-<script src="../lp/lp.js?v=3" defer></script>
+<script src="../lp/lp.js?v=4" defer></script>
 </body>
 </html>
 '''
@@ -178,7 +198,7 @@ HERO_VIS="""<div class="hero-vis" aria-hidden="true">
 <div class="chip c2"><div><b>5 ta AI-agent</b><small>ishlayapti · 24/7</small></div></div>
 <div class="chip c3"><div><b class="g">$30 000+</b><small>yiliga tejaladi · Texno Grand</small></div></div>
 </div>"""
-TRUST="""<div class="trust"><div><b>6 hafta</b><small>12 jonli dars</small></div><div><b>$30k+</b><small>yillik tejash, keys</small></div><div><b>20 o‘rin</b><small>yangi oqimda</small></div></div>"""
+TRUST="""<div class="trust"><div><b>120+</b><small>o‘quvchi, 2 oqim</small></div><div><b>$170k+</b><small>qurilgan tizimlar qiymati</small></div><div><b>2-noyabr</b><small>3-oqim starti</small></div></div>"""
 
 BODY=f"""{CASES_SEC}
 {OBJ_SEC}
@@ -191,7 +211,7 @@ BODY=f"""{CASES_SEC}
 lead=head('AI Strateg 3.0: bepul diagnostika','6 haftada biznesingizda ishlaydigan AI-tizim. Bepul diagnostikada AI qayerda pul berishini hisoblaymiz.','lead')+f"""<main>
 <section class="hero"><div class="wrap hero-grid">
 <div class="hero-copy">
-<span class="badge"><i></i> AI Strateg 3.0 · 6 hafta</span>
+<span class="badge"><i></i> 3-oqim · 2-noyabr start · 20 o‘rin</span>
 <h1>Rutinani AI’ga bering. <span class="g">O‘zingiz strateg bo‘ling.</span></h1>
 <p class="sub">6 haftada biznesingizda 5 ta AI-agent, jonli dashboard va shaxsiy Jarvis ishlaydi. Dasturchisiz, o‘z biznesingiz ma’lumotlari ustida.</p>
 <div class="who"><img src="../lp/img/author-smile.webp" alt="" width="48" height="48"><div><b>Yusufbay Kodirov</b><small>AI Strateg mentorligi muallifi</small></div></div>
