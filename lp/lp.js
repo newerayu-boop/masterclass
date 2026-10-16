@@ -53,6 +53,25 @@
     return false;
   };
 
+  /* ---------- savings calculator: the visitor's own number, also passed to the manager ---------- */
+  let calcNote = '';
+  const calc = document.querySelector('[data-calc]');
+  if (calc) {
+    const fmt = (n) => '$' + Math.round(n).toLocaleString('en-US').replace(/,/g, ' ');
+    const val = (name) => +calc.querySelector(`input[name=${name}]:checked`).value;
+    const run = (touched) => {
+      const emp = val('emp'), sal = val('sal'), share = val('share') / 100;
+      const month = emp * sal * share * 0.5;
+      const hours = emp * 40 * share * 0.5;
+      calc.querySelector('[data-cy]').textContent = fmt(month * 12);
+      calc.querySelector('[data-cm]').textContent = fmt(month);
+      calc.querySelector('[data-ch]').textContent = Math.round(hours);
+      if (touched) calcNote = `Kalkulyator: ≈${fmt(month * 12)}/yil (xodim ~${emp}, oylik $${sal}, rutina ${Math.round(share * 100)}%)`;
+    };
+    calc.addEventListener('change', () => run(true));
+    run(false);
+  }
+
   /* ---------- forms ---------- */
   document.querySelectorAll('[data-lead-form]').forEach((card) => {
     const form = card.querySelector('form');
@@ -79,7 +98,7 @@
       const data = {
         name, phone: ph, business: '', plan: '', website: '',
         page: location.href.split('#')[0],
-        utm: [`Sayt: ${CFG.site}`, `Qulay vaqt: ${when}`, utm].filter(Boolean).join(' · ')
+        utm: [`Sayt: ${CFG.site}`, `Qulay vaqt: ${when}`, calcNote, utm].filter(Boolean).join(' · ')
       };
       const saved = await saveLead(data);
       btn.disabled = false; btn.textContent = btnText;
@@ -115,7 +134,7 @@
   }));
   const sticky = document.querySelector('.sticky');
   if (sticky && 'IntersectionObserver' in window) {
-    const forms = [...document.querySelectorAll('[data-lead-form]')];
+    const forms = [...document.querySelectorAll('[data-lead-form], [data-calc]')];
     const seen = new Set();
     let pastHero = false;
     const io = new IntersectionObserver((es) => {
