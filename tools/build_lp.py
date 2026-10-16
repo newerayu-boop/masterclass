@@ -116,7 +116,8 @@ PROGRAM_SEC=f"""<section class="sec" id="program"><div class="wrap prog">
 <div><div class="sh"><div class="eb">Dastur · 6 hafta</div>
 <h2>Har hafta: <span class="g">biznesingiz uchun tayyor vosita</span></h2>
 <p class="lead">12 jonli dars, tayyorlov kursi va bootcamp. Nazariya emas: har bosqich oxirida qo‘lingizda ishlab turgan natija qoladi.</p></div>
-{weeks()}</div>
+{weeks()}
+<div class="cta-row"><a class="btn btn-inline" href="#final" data-to-form>Dasturga mosligimni bilish</a></div></div>
 <div class="prog-vis">
 <figure><img src="../lp/img/week-3.webp" alt="Jonli boshqaruv paneli" width="800" height="484" loading="lazy"><figcaption>3-hafta: jonli dashboard</figcaption></figure>
 <figure><img src="../lp/img/week-2.webp" alt="AI sotuv agenti" width="800" height="603" loading="lazy"><figcaption>2-hafta: AI sotuv agenti</figcaption></figure>
@@ -179,7 +180,7 @@ def head(title, desc, site):
 <meta property="og:type" content="website">
 <link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0a'/%3E%3Cpath d='M14 45 30 15l7 14 5-9 9 25H14Zm12-8h11l-6-11-5 11Z' fill='%23c9a84c'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="../lp/lp.css?v=4">
+<link rel="stylesheet" href="../lp/lp.css?v=5">
 <script>window.LP_CONFIG = {{ site: '{site}' }};</script>
 </head>
 <body>
@@ -187,7 +188,7 @@ def head(title, desc, site):
 '''
 TAIL='''<footer class="foot">© AI Strateg · Yusufbay Kodirov · <a href="https://t.me/Yusufbaymanager" target="_blank" rel="noopener">@Yusufbaymanager</a></footer>
 <div class="sticky"><a class="btn" href="#final" data-to-form>Bepul diagnostikaga yozilish</a></div>
-<script src="../lp/lp.js?v=4" defer></script>
+<script src="../lp/lp.js?v=5" defer></script>
 </body>
 </html>
 '''
@@ -200,7 +201,29 @@ HERO_VIS="""<div class="hero-vis" aria-hidden="true">
 </div>"""
 TRUST="""<div class="trust"><div><b>120+</b><small>o‘quvchi, 2 oqim</small></div><div><b>$170k+</b><small>qurilgan tizimlar qiymati</small></div><div><b>2-noyabr</b><small>3-oqim starti</small></div></div>"""
 
-BODY=f"""{CASES_SEC}
+def opts(name, items, default):
+    return ''.join(f'<label><input type="radio" name="{name}" value="{v}"{" checked" if v==default else ""}><b>{t}</b></label>' for v,t in items)
+CALC_SEC=f"""<section class="sec sec-alt" id="calc"><div class="wrap calc-grid">
+<div><div class="sh"><div class="eb">Hisoblab ko‘ring</div>
+<h2>AI’siz biznesingiz <span class="g">har oy qancha yo‘qotyapti?</span></h2>
+<p class="lead">3 ta savol, 20 soniya. Bu taxminiy hisob: aniq raqamni diagnostikada sizning ma’lumotlaringiz bilan chiqaramiz.</p></div>
+<div class="vs">
+<div class="vs-old"><small>Eski usul</small><ul><li>Rutinaga botgan, har bir qadam uchun kadr kutadi</li><li>Oylik to‘laydi, hisobotlarni haftalab kutadi</li></ul></div>
+<div class="vs-new"><small>Strateg</small><ul><li>AI-xodimlarni boshqaradi, ularning operatsion xarajati deyarli nol</li><li>Hamma raqamlar jonli boshqaruv panelida</li></ul></div>
+</div></div>
+<div class="calc" data-calc>
+<fieldset><legend>Rutina bilan band xodimlar soni</legend><div class="opts">{opts('emp',[('2','1–3'),('7','4–10'),('20','11–30'),('40','30+')],'7')}</div></fieldset>
+<fieldset><legend>Bir xodimning o‘rtacha oyligi</legend><div class="opts">{opts('sal',[('300','$300'),('500','$500'),('800','$800'),('1200','$1 200+')],'500')}</div></fieldset>
+<fieldset><legend>Ish vaqtining qancha qismi rutinaga ketadi?</legend><p class="hint">Hisobot, bir xil savollarga javob, jadval, qo‘lda hisob</p><div class="opts">{opts('share',[('20','20%'),('30','30%'),('45','40%+')],'30')}</div></fieldset>
+<div class="calc-res"><small>AI’ga o‘tkazsa bo‘ladigan xarajat</small><div class="cr-y">≈ <b data-cy>$6 300</b> / yil</div><p>Oyiga ≈ <b data-cm>$525</b> · haftasiga ≈ <b data-ch>42</b> soat bo‘shaydi</p></div>
+<a class="btn" href="#final" data-to-form>Shu hisobni diagnostikada aniqlashtirish</a>
+<p class="fine">Formula: xodimlar × oylik × rutina ulushi × 50% (AI’ga o‘tadigan qism) × 12 oy. Taxminiy.</p>
+</div>
+</div></section>"""
+
+PROOF="""<div class="proof"><div class="avs"><img src="../lp/st/tx-aliyor.webp" alt="" width="36" height="36"><img src="../lp/st/sevara.webp" alt="" width="36" height="36"><img src="../lp/st/mirodil.webp" alt="" width="36" height="36"><img src="../lp/st/munira.webp" alt="" width="36" height="36"><img src="../lp/st/bobir.webp" alt="" width="36" height="36"></div><p><b>120+ tadbirkor</b> 2 oqimda o‘qidi va o‘z biznesida AI-tizim qurdi</p></div>"""
+BODY=f"""{CALC_SEC}
+{CASES_SEC}
 {OBJ_SEC}
 {PROGRAM_SEC}
 {INSIDE_SEC}
@@ -212,12 +235,13 @@ lead=head('AI Strateg 3.0: bepul diagnostika','6 haftada biznesingizda ishlaydig
 <section class="hero"><div class="wrap hero-grid">
 <div class="hero-copy">
 <span class="badge"><i></i> 3-oqim · 2-noyabr start · 20 o‘rin</span>
-<h1>Rutinani AI’ga bering. <span class="g">O‘zingiz strateg bo‘ling.</span></h1>
-<p class="sub">6 haftada biznesingizda 5 ta AI-agent, jonli dashboard va shaxsiy Jarvis ishlaydi. Dasturchisiz, o‘z biznesingiz ma’lumotlari ustida.</p>
+<h1>6 haftada biznesingizda <span class="g">AI-otdel ishlaydi</span></h1>
+<p class="sub">Bitta xodim oyligidan kam xarajat bilan: 5 ta AI-agent, jonli dashboard va shaxsiy Jarvis. Dasturchisiz: rutinani AI’ga berasiz, o‘zingiz strateg bo‘lasiz.</p>
 <div class="who"><img src="../lp/img/author-smile.webp" alt="" width="48" height="48"><div><b>Yusufbay Kodirov</b><small>AI Strateg mentorligi muallifi</small></div></div>
 </div>
 <div class="hero-form">
 {form('form-hero','Bepul diagnostika, 30 daqiqa','AI biznesingizda qayerda pul berishini hisoblaymiz.','Diagnostikaga yozilish')}
+{PROOF}
 <a class="more" href="#objections">Avval savollarimga javob olaman ↓</a>
 </div>
 <div class="hero-side">{HERO_VIS}</div>
@@ -245,7 +269,7 @@ vsl=head('AI Strateg 3.0: videoni ko‘ring','Qisqa video: AI biznesingizda qand
 <div class="vsl-cta wait"><a class="btn" href="#form-hero" data-to-form>Bepul diagnostikaga yozilish</a><p class="fine">Menejer 15 daqiqada qo‘ng‘iroq qiladi</p></div>
 <div class="vsl-form">
 <div class="vsl-form-copy"><h2>Videodan keyin: <span class="g">bepul diagnostika</span></h2><p class="lead">30 daqiqada biznesingizda AI qayerda birinchi pulni berishini hisoblaymiz. Mos kelmasa, halol aytamiz.</p>{TRUST}</div>
-{form('form-hero','Bepul diagnostika, 30 daqiqa','2 ta maydon, 20 soniya.','Diagnostikaga yozilish')}
+<div>{form('form-hero','Bepul diagnostika, 30 daqiqa','2 ta maydon, 20 soniya.','Diagnostikaga yozilish')}{PROOF}</div>
 </div>
 </div></section>
 {BODY}
